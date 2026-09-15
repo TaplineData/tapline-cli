@@ -1,0 +1,57 @@
+{
+  "name": "@tapline/cli",
+  "version": "0.1.0",
+  "description": "Command-line access to Tapline's web scraping APIs for YouTube, Airbnb, GMGN and GeckoTerminal.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "tapline": "./dist/bin.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaplineData/tapline-cli.git"
+  },
+  "homepage": "https://tapline.sh/sign-up?utm_source=cli&utm_medium=referral&utm_campaign=developer_acquisition&utm_content=package_metadata",
+  "keywords": [
+    "tapline",
+    "cli",
+    "command-line",
+    "youtube",
+    "airbnb",
+    "gmgn",
+    "geckoterminal",
+    "api",
+    "client",
+    "sdk",
+    "scraping",
+    "web-scraping",
+    "scraping-api",
+    "youtube-scraper",
+    "youtube-transcript",
+    "airbnb-scraper",
+    "gmgn-api",
+    "geckoterminal-api",
+    "crypto-data",
+    "dex-data"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.tests.json",
+    "test": "node --import tsx --test tests/*.test.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@tapline/client": "^0.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.22.0",
+    "typescript": "^5.7.0"
+  }
+}
