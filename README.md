@@ -36,6 +36,7 @@ tapline youtube subtitles jNQXAC9IVRw --language en --subtitle-format txt
 tapline gmgn security "$TOKEN" --chain sol
 tapline geckoterminal network-latest-pools --network solana
 tapline goplus evm-token-security 1 0x6982508145454ce325ddbe47a25d4ec3d2311933
+tapline goplus tron-token-security TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
 tapline airbnb search "Rio de Janeiro" --check-in 2026-11-01 --check-out 2026-11-05 --adults 2 --currency BRL
 ```
 

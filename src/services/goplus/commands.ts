@@ -15,6 +15,10 @@ const RUNNERS: Record<string, Command['run']> = {
     client.goplus.getSolanaTokenSecurity({
       mint: params.mint as string,
     }),
+  "tron-token-security": (client, { params }) =>
+    client.goplus.getTronTokenSecurity({
+      address: params.address as string,
+    }),
 };
 
 export const COMMAND_LIST: Command[] = COMMANDS.map((spec) => ({ ...spec, run: RUNNERS[spec.name] }));

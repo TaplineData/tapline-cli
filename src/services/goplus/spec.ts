@@ -6,24 +6,35 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "evm-token-security",
     method: "get_evm_token_security",
-    summary: "GoPlus token security for one EVM token: honeypot, tax, owner and mint flags, top holders and liquidity. The GoPlus envelope is returned unchanged; read `code` (1 complete, 2 partial, 3 no contract code) and `result`, which is keyed by the lowercased address. Powered by GoPlus Security.",
+    summary: "GoPlus token security for one EVM token: honeypot, tax, owner and mint flags, top holders and liquidity. The GoPlus envelope comes back unchanged. `code` 1 means complete data and 2 partial, and code 3 also passes through. GoPlus keys `result` by the lowercased address and leaves it empty when it has no token at that address on that chain. Powered by GoPlus Security.",
     credits: 3,
     route: "GET /api/v1/goplus/evm/{chain_id}/tokens/{address}/security",
     hasBody: false,
     params: [
-      { name: "chain_id", flag: "chain-id", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["1", "56", "8453", "4663"], description: "EVM chain id: 1 Ethereum, 56 BNB Chain, 8453 Base, 4663 Robinhood Chain." },
+      { name: "chain_id", flag: "chain-id", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["1", "10", "25", "56", "100", "130", "137", "143", "146", "169", "177", "196", "204", "321", "324", "480", "988", "1030", "1514", "1625", "1672", "1868", "2741", "2818", "4200", "4663", "5000", "5042", "8453", "9745", "42161", "42766", "43114", "48900", "59144", "80094", "81457", "200901", "201022", "534352", "688688", "810180", "5734951"], description: "EVM chain id as GoPlus numbers it, such as 1 Ethereum, 56 BNB Chain or 8453 Base. The enum lists every EVM chain GoPlus token security supports." },
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address: 0x plus 40 hex characters, any case." },
     ],
   },
   {
     name: "solana-token-security",
     method: "get_solana_token_security",
-    summary: "GoPlus token security for one Solana mint: mint, freeze, close and metadata authorities, Token-2022 transfer fee and hook, top holders and liquidity. The GoPlus envelope is returned unchanged; read `code` and `result`, which is keyed by the mint. Powered by GoPlus Security.",
+    summary: "GoPlus token security for one Solana mint: mint, freeze, close and metadata authorities, Token-2022 transfer fee and hook, top holders and liquidity. The GoPlus envelope comes back unchanged. `code` 1 means complete data and 2 partial, and code 3 also passes through. GoPlus keys `result` by the mint. Powered by GoPlus Security.",
     credits: 3,
     route: "GET /api/v1/goplus/solana/tokens/{mint}/security",
     hasBody: false,
     params: [
       { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token mint address, base58." },
+    ],
+  },
+  {
+    name: "tron-token-security",
+    method: "get_tron_token_security",
+    summary: "GoPlus token security for one Tron TRC-20 token: honeypot, tax, owner and mint flags, blacklist, top holders and CEX listings. The GoPlus envelope comes back unchanged. `code` 1 means complete data and 2 partial, and code 3 also passes through. GoPlus keys `result` by the base58 address in its original case. Powered by GoPlus Security.",
+    credits: 3,
+    route: "GET /api/v1/goplus/tron/tokens/{address}/security",
+    hasBody: false,
+    params: [
+      { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "TRC-20 token contract address, base58 starting with T." },
     ],
   },
 ];
