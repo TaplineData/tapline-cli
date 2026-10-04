@@ -1,6 +1,6 @@
 # @tapline/cli
 
-`tapline` puts Tapline's YouTube, Airbnb, GMGN and GeckoTerminal APIs on your command line.
+`tapline` puts Tapline's YouTube, Airbnb, GMGN, GeckoTerminal and Pons Family APIs on your command line.
 Every endpoint the [TypeScript client](https://www.npmjs.com/package/@tapline/client) exposes is a
 command, generated from the same API spec, so the two never drift apart.
 
@@ -35,6 +35,7 @@ tapline youtube search "learn typescript"
 tapline youtube subtitles jNQXAC9IVRw --language en --subtitle-format txt
 tapline gmgn security "$TOKEN" --chain sol
 tapline geckoterminal network-latest-pools --network solana
+tapline ponsfamily list-launches --sort volume --page-size 10
 tapline airbnb search "Rio de Janeiro" --check-in 2026-11-01 --check-out 2026-11-05 --adults 2 --currency BRL
 ```
 

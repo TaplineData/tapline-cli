@@ -5,10 +5,12 @@ import { COMMAND_LIST as airbnbCommands } from './services/airbnb/commands.js';
 import { COMMAND_LIST as youtubeCommands } from './services/youtube/commands.js';
 import { COMMAND_LIST as gmgnCommands } from './services/gmgn/commands.js';
 import { COMMAND_LIST as geckoterminalCommands } from './services/geckoterminal/commands.js';
+import { COMMAND_LIST as ponsfamilyCommands } from './services/ponsfamily/commands.js';
 
 export const SERVICES: Service[] = [
   { name: 'airbnb', commands: airbnbCommands },
   { name: 'youtube', commands: youtubeCommands },
   { name: 'gmgn', commands: gmgnCommands },
   { name: 'geckoterminal', commands: geckoterminalCommands },
+  { name: 'ponsfamily', commands: ponsfamilyCommands },
 ];
