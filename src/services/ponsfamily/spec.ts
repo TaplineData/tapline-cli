@@ -302,7 +302,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "profile",
     method: "get_profile",
-    summary: "The launches a wallet created, alongside the ETH/USD rate pons priced them with.",
+    summary: "The launches a wallet deployed or earns fees from, with its claimed and claimable fees on each, alongside the ETH/USD rate pons priced them with.",
     credits: 2,
     route: "GET /api/v1/ponsfamily/wallets/{address}/profile",
     hasBody: false,
