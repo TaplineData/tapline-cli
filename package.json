@@ -1,7 +1,7 @@
 {
   "name": "@tapline/cli",
   "version": "0.1.0",
-  "description": "Command-line access to Tapline's web scraping APIs for YouTube, Airbnb, GMGN and GeckoTerminal.",
+  "description": "Command-line access to Tapline's web scraping APIs for YouTube, Airbnb, GMGN, GeckoTerminal and Pons Family.",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -23,6 +23,7 @@
     "airbnb",
     "gmgn",
     "geckoterminal",
+    "ponsfamily",
     "api",
     "client",
     "sdk",
@@ -34,6 +35,7 @@
     "airbnb-scraper",
     "gmgn-api",
     "geckoterminal-api",
+    "ponsfamily-api",
     "crypto-data",
     "dex-data"
   ],
