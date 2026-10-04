@@ -1,6 +1,6 @@
 {
   "name": "@tapline/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Command-line access to Tapline's web scraping APIs for YouTube, Airbnb, GMGN and GeckoTerminal.",
   "license": "MIT",
   "type": "module",
@@ -47,7 +47,7 @@
     "dist"
   ],
   "dependencies": {
-    "@tapline/client": "^0.2.1"
+    "@tapline/client": "^0.2.3"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
