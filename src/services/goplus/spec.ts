@@ -7,7 +7,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "evm-token-security",
     method: "get_evm_token_security",
     summary: "GoPlus token security for one EVM token: honeypot, tax, owner and mint flags, top holders and liquidity. The GoPlus envelope is returned unchanged; read `code` (1 complete, 2 partial, 3 no contract code) and `result`, which is keyed by the lowercased address. Powered by GoPlus Security.",
-    credits: null,
+    credits: 3,
     route: "GET /api/v1/goplus/evm/{chain_id}/tokens/{address}/security",
     hasBody: false,
     params: [
@@ -19,7 +19,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "solana-token-security",
     method: "get_solana_token_security",
     summary: "GoPlus token security for one Solana mint: mint, freeze, close and metadata authorities, Token-2022 transfer fee and hook, top holders and liquidity. The GoPlus envelope is returned unchanged; read `code` and `result`, which is keyed by the mint. Powered by GoPlus Security.",
-    credits: null,
+    credits: 3,
     route: "GET /api/v1/goplus/solana/tokens/{mint}/security",
     hasBody: false,
     params: [
