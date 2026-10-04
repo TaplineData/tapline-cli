@@ -172,7 +172,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "pool-swaps",
     method: "pool_swaps",
-    summary: "Individual swaps in a pool. Requires a cursor: pass a unix timestamp to start from.",
+    summary: "Individual swaps in a pool. Defaults to the latest swaps when neither cursor is supplied. Pass a unix timestamp or a returned cursor to paginate.",
     credits: 2,
     route: "GET /api/v1/gecko-terminal/networks/{network}/pools/{address}/swaps",
     hasBody: false,
@@ -181,7 +181,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "network", flag: "network", in: "path", kind: "string", list: false, required: true, positional: true, description: "GeckoTerminal network identifier." },
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "On-chain pool address." },
       { name: "pair_id", flag: "pair-id", in: "query", kind: "string", list: false, required: true, positional: true, description: "Pair id from the pool's `pairs` relationship." },
-      { name: "page_after", flag: "page-after", in: "query", kind: "string", list: false, required: false, positional: false, description: "Return swaps older than this cursor." },
+      { name: "page_after", flag: "page-after", in: "query", kind: "string", list: false, required: false, positional: false, description: "Return swaps older than this cursor. Defaults to the current unix timestamp when neither cursor is supplied." },
       { name: "page_before", flag: "page-before", in: "query", kind: "string", list: false, required: false, positional: false, description: "Return swaps newer than this cursor." },
       { name: "inverted", flag: "inverted", in: "query", kind: "boolean", list: false, required: false, positional: false, default: "false", description: "Quote prices in the other token of the pair." },
       { name: "sender", flag: "sender", in: "query", kind: "string", list: false, required: false, positional: false, description: "Restrict swaps to one sender wallet address." },
