@@ -8,7 +8,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_analytics",
     summary: "Protocol-wide launch, volume, trade and revenue totals plus the daily series behind them.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/analytics",
+    route: "GET /v1/ponsfamily/analytics",
     hasBody: false,
     params: [
     ],
@@ -18,7 +18,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_creator_holdings",
     summary: "The share of supply each deployer still holds of the token it launched.",
     credits: 2,
-    route: "POST /api/v1/ponsfamily/tokens/creator-holdings",
+    route: "POST /v1/ponsfamily/tokens/creator-holdings",
     hasBody: true,
     params: [
       { name: "pairs", flag: "pairs", in: "body", kind: "json", list: false, required: true, positional: true, description: "Token/deployer pairs to resolve, at most 100 per call." },
@@ -29,7 +29,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_developer_trades",
     summary: "What the deployer did with its own allocation: buys, sells, transfers, burns, and the dumped/moved/burned verdicts.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/markets/{token}/dev-trades",
+    route: "GET /v1/ponsfamily/markets/{token}/dev-trades",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address on Robinhood Chain." },
@@ -41,7 +41,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_eth_price",
     summary: "The ETH/USD rate pons prices every launch with.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/eth-price",
+    route: "GET /v1/ponsfamily/eth-price",
     hasBody: false,
     params: [
     ],
@@ -51,7 +51,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_fee_sharing",
     summary: "Whether each token routes its creator fees to holders.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/tokens/fee-sharing",
+    route: "GET /v1/ponsfamily/tokens/fee-sharing",
     hasBody: false,
     params: [
       { name: "tokens", flag: "tokens", in: "query", kind: "string", list: true, required: true, positional: true, description: "Token contract addresses to resolve, at most 100 per call." },
@@ -62,7 +62,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_forum_community",
     summary: "One token community with its supply, burn and market-cap figures.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/forum/communities/{slug}",
+    route: "GET /v1/ponsfamily/forum/communities/{slug}",
     hasBody: false,
     params: [
       { name: "slug", flag: "slug", in: "path", kind: "string", list: false, required: true, positional: true, description: "Forum community slug." },
@@ -73,7 +73,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_forum_holding",
     summary: "A wallet's balance in a community token and the posting tier that balance earns it.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/forum/holdings/{token}/{wallet}",
+    route: "GET /v1/ponsfamily/forum/holdings/{token}/{wallet}",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address on Robinhood Chain." },
@@ -85,7 +85,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_forum_market",
     summary: "The memestock board: US market session state, the community ticker rows and the equities they track.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/forum/market",
+    route: "GET /v1/ponsfamily/forum/market",
     hasBody: false,
     params: [
     ],
@@ -95,7 +95,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_forum_post",
     summary: "One forum post with its vote counts and community metadata.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/forum/posts/{post_id}",
+    route: "GET /v1/ponsfamily/forum/posts/{post_id}",
     hasBody: false,
     params: [
       { name: "post_id", flag: "post-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Forum post UUID." },
@@ -106,7 +106,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_forum_post_comments",
     summary: "The comment thread under a forum post.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/forum/posts/{post_id}/comments",
+    route: "GET /v1/ponsfamily/forum/posts/{post_id}/comments",
     hasBody: false,
     params: [
       { name: "post_id", flag: "post-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Forum post UUID." },
@@ -118,7 +118,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "list_cto_migrations",
     summary: "Community-takeover migrations: the old and new token, the deposit/claim schedule and how much has been migrated.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/cto-migrations",
+    route: "GET /v1/ponsfamily/cto-migrations",
     hasBody: false,
     params: [
     ],
@@ -128,7 +128,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "list_forum_communities",
     summary: "Token communities ranked by market cap, burn share or real market cap.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/forum/communities",
+    route: "GET /v1/ponsfamily/forum/communities",
     hasBody: false,
     params: [
       { name: "rank", flag: "rank", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["marketCap", "burnPct", "realMcap"], default: "marketCap", description: "Ranking column." },
@@ -140,7 +140,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "list_forum_posts",
     summary: "The memestock forum feed, optionally narrowed to one token community.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/forum/posts",
+    route: "GET /v1/ponsfamily/forum/posts",
     hasBody: false,
     params: [
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["hot", "new", "top"], default: "hot", description: "Feed ranking." },
@@ -152,7 +152,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "list_graduated_catalog",
     summary: "The graduated tokens as full launch records, the catalog view of the graduations feed.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/launches/graduated",
+    route: "GET /v1/ponsfamily/launches/graduated",
     hasBody: false,
     params: [
     ],
@@ -162,7 +162,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "list_graduations",
     summary: "Every graduation event pons has observed, as token address and graduation block.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/launches/graduations",
+    route: "GET /v1/ponsfamily/launches/graduations",
     hasBody: false,
     params: [
     ],
@@ -172,7 +172,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "list_launches",
     summary: "The pons launchpad explore board: tokens still climbing the bonding curve plus a page of graduated tokens.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/launches",
+    route: "GET /v1/ponsfamily/launches",
     hasBody: false,
     pagination: { flag: "page" },
     params: [
@@ -191,7 +191,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "list_live_markets",
     summary: "Live price and graduation-progress snapshot for the launches currently trading.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/launches/live-markets",
+    route: "GET /v1/ponsfamily/launches/live-markets",
     hasBody: false,
     params: [
       { name: "markets", flag: "markets", in: "query", kind: "string", list: true, required: false, positional: false, description: "Restrict the live-market snapshot to these token addresses, at most 100 per call." },
@@ -202,7 +202,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_market",
     summary: "Price, market cap, liquidity, recent trades and price points for one v1 token.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/markets/{token}",
+    route: "GET /v1/ponsfamily/markets/{token}",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address on Robinhood Chain." },
@@ -214,7 +214,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_market_ath",
     summary: "All-time-high price for a token and the block it was set in.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/markets/{token}/ath",
+    route: "GET /v1/ponsfamily/markets/{token}/ath",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address on Robinhood Chain." },
@@ -225,7 +225,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_market_burned",
     summary: "Supply burned for a token, in wei.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/markets/{token}/burned",
+    route: "GET /v1/ponsfamily/markets/{token}/burned",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address on Robinhood Chain." },
@@ -236,7 +236,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_market_chart",
     summary: "Bucketed price and volume points for a token, at the resolution the range implies.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/markets/{token}/chart",
+    route: "GET /v1/ponsfamily/markets/{token}/chart",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address on Robinhood Chain." },
@@ -248,7 +248,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_market_holders",
     summary: "Ranked token holders with balance, supply share and per-holder PnL where pons can compute it.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/markets/{token}/holders",
+    route: "GET /v1/ponsfamily/markets/{token}/holders",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address on Robinhood Chain." },
@@ -259,7 +259,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_market_order_depth",
     summary: "Resting limit-order depth around the current price, bucketed into price bands.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/markets/{token}/order-depth",
+    route: "GET /v1/ponsfamily/markets/{token}/order-depth",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address on Robinhood Chain." },
@@ -270,7 +270,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_market_tip",
     summary: "The latest observed pool price, the cheap poll the launchpad UI uses.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/markets/{token}/tip",
+    route: "GET /v1/ponsfamily/markets/{token}/tip",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address on Robinhood Chain." },
@@ -281,7 +281,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_market_trades",
     summary: "The most recent buys and sells against a token's pool.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/markets/{token}/trades",
+    route: "GET /v1/ponsfamily/markets/{token}/trades",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address on Robinhood Chain." },
@@ -292,7 +292,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_portfolio_chart",
     summary: "Portfolio value over time for a wallet, with the change over the requested window.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/wallets/{address}/portfolio-chart",
+    route: "GET /v1/ponsfamily/wallets/{address}/portfolio-chart",
     hasBody: false,
     params: [
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Wallet address." },
@@ -304,7 +304,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_profile",
     summary: "The launches a wallet deployed or earns fees from, with its claimed and claimable fees on each, alongside the ETH/USD rate pons priced them with.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/wallets/{address}/profile",
+    route: "GET /v1/ponsfamily/wallets/{address}/profile",
     hasBody: false,
     params: [
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Wallet address." },
@@ -315,7 +315,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "search_launches",
     summary: "Search every pons launch by name, symbol or contract address.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/launches/search",
+    route: "GET /v1/ponsfamily/launches/search",
     hasBody: false,
     pagination: { flag: "page" },
     params: [
@@ -330,7 +330,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_token",
     summary: "Static token metadata: supply, socials, pool wiring and the deployer that launched it.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/tokens/{token}",
+    route: "GET /v1/ponsfamily/tokens/{token}",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address on Robinhood Chain." },
@@ -341,7 +341,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_token_images",
     summary: "Resolved logo URLs keyed by lower-cased token address.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/tokens/images",
+    route: "GET /v1/ponsfamily/tokens/images",
     hasBody: false,
     params: [
       { name: "tokens", flag: "tokens", in: "query", kind: "string", list: true, required: true, positional: true, description: "Token contract addresses to resolve, at most 100 per call." },
@@ -352,7 +352,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_v2_creator_fees",
     summary: "Creator-fee escrow for a v2 launch: recipient, quote asset and what has been earned so far.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/v2-markets/{token}/creator-fees",
+    route: "GET /v1/ponsfamily/v2-markets/{token}/creator-fees",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address of a v2 (curve) launch." },
@@ -363,7 +363,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_v2_distributor",
     summary: "Holder fee-sharing distributor state for a v2 launch, including the latest payout epoch.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/v2-markets/{token}/distributor",
+    route: "GET /v1/ponsfamily/v2-markets/{token}/distributor",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address of a v2 (curve) launch." },
@@ -374,7 +374,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_v2_market_chart",
     summary: "Bucketed price and volume points for a v2 launch, with the quote asset's USD rate.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/v2-markets/{token}/chart",
+    route: "GET /v1/ponsfamily/v2-markets/{token}/chart",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address of a v2 (curve) launch." },
@@ -386,7 +386,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_v2_market_holders",
     summary: "Ranked holders of a v2 launch.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/v2-markets/{token}/holders",
+    route: "GET /v1/ponsfamily/v2-markets/{token}/holders",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address of a v2 (curve) launch." },
@@ -397,7 +397,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_v2_market_trades",
     summary: "Trades against a v2 (curve) launch, quoted in the launch's own quote asset.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/v2-markets/{token}/trades",
+    route: "GET /v1/ponsfamily/v2-markets/{token}/trades",
     hasBody: false,
     params: [
       { name: "token", flag: "token", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token contract address of a v2 (curve) launch." },
@@ -408,7 +408,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_wallet_identities",
     summary: "Public pons profiles (username, avatar, bio) for the given wallets.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/wallets/identities",
+    route: "GET /v1/ponsfamily/wallets/identities",
     hasBody: false,
     params: [
       { name: "addresses", flag: "addresses", in: "query", kind: "string", list: true, required: true, positional: true, description: "Wallet addresses to resolve, at most 100 per call." },
@@ -419,7 +419,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_wallet_positions",
     summary: "A wallet's open and closed positions, its trade activity, and realized/unrealized PnL totals.",
     credits: 2,
-    route: "GET /api/v1/ponsfamily/wallets/{address}/positions",
+    route: "GET /v1/ponsfamily/wallets/{address}/positions",
     hasBody: false,
     params: [
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Wallet address." },

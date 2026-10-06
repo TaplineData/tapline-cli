@@ -8,7 +8,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "activity_rank_info",
     summary: "The chain's running trading competition: its leaderboard entries and the start and end of the scoring window.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/activity-rank-info",
+    route: "GET /v1/gmgn/{chain}/activity-rank-info",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -19,7 +19,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "agged_token_trades",
     summary: "Trades bucketed by time and aggregated per wallet, optionally narrowed to one wallet cohort.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/agged-trades",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/agged-trades",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -33,7 +33,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "agged_token_transfers",
     summary: "A single wallet's token transfers in and out, bucketed by time.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/agged-token-transfers",
+    route: "GET /v1/gmgn/{chain}/agged-token-transfers",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -47,7 +47,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "bluechip_rank",
     summary: "Tokens ranked by the share of holders who also hold blue-chip assets.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/bluechip-rank",
+    route: "GET /v1/gmgn/{chain}/bluechip-rank",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -61,7 +61,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "dev_created_tokens",
     summary: "Every token a developer wallet has launched, with how many reached the open market and their all-time-high market caps.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/dev-created-tokens/{wallet_address}",
+    route: "GET /v1/gmgn/{chain}/dev-created-tokens/{wallet_address}",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -73,7 +73,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "dex_trades_polling",
     summary: "DEX trading activity on the chain over the window: the totals plus the leading launchpads and protocols, each with volume, trade count and trader count.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/dex-trades-polling",
+    route: "GET /v1/gmgn/{chain}/dex-trades-polling",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -85,7 +85,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "gas_price_list",
     summary: "Current gas prices for every supported chain, with priority and MEV tip tiers, estimated confirmation times and the native token's USD price.",
     credits: 2,
-    route: "GET /api/v1/gmgn/gas-price-list",
+    route: "GET /v1/gmgn/gas-price-list",
     hasBody: false,
     params: [
     ],
@@ -95,7 +95,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "holder_stat",
     summary: "How many of a token's holders fall into each wallet cohort: smart money, snipers, insiders, bundlers and the rest.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/holder-stat",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/holder-stat",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -107,7 +107,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "holders",
     summary: "A token's holders, sortable by balance or profit and filterable by wallet cohort. Paginate with the `next` cursor.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/holders",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/holders",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "data.next" },
     params: [
@@ -126,7 +126,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "hot_searches",
     summary: "Most-searched tokens per chain, same ranking payload as trending but scored on GMGN search volume.",
     credits: 2,
-    route: "POST /api/v1/gmgn/hot-searches",
+    route: "POST /v1/gmgn/hot-searches",
     hasBody: true,
     params: [
       { name: "requests", flag: "requests", in: "body", kind: "json", list: false, required: true, positional: true, description: "One entry per chain. GMGN ranks every entry in a single upstream call and returns the buckets in the same order." },
@@ -137,7 +137,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "launchpad_tax_policy",
     summary: "Per-launchpad tax and trading-limit rules for the chain, with the localized warning text GMGN shows for each.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/launchpad-tax-policy",
+    route: "GET /v1/gmgn/{chain}/launchpad-tax-policy",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -148,7 +148,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "liquidity",
     summary: "Add and remove liquidity events for the token, newest first. GMGN serves this on Solana only; every other chain answers HTTP 400. Use /liquidity-stats for the rest.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/liquidity",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/liquidity",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "data.next" },
     params: [
@@ -163,7 +163,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "live_preview",
     summary: "The token's live-stream card: creator, socials, market cap and whether a stream is running right now.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/live-preview",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/live-preview",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -175,7 +175,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "live_twitch_kol",
     summary: "Twitch channels of known influencers streaming right now, grouped by chain.",
     credits: 2,
-    route: "GET /api/v1/gmgn/live-twitch-kol",
+    route: "GET /v1/gmgn/live-twitch-kol",
     hasBody: false,
     params: [
     ],
@@ -185,7 +185,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "major_coin_prices",
     summary: "Spot prices for the major coins you name, one entry per symbol.",
     credits: 2,
-    route: "POST /api/v1/gmgn/major-coin-prices",
+    route: "POST /v1/gmgn/major-coin-prices",
     hasBody: true,
     params: [
       { name: "symbols", flag: "symbols", in: "body", kind: "string", list: true, required: true, positional: true },
@@ -196,7 +196,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "mcap_candles",
     summary: "Market-cap OHLCV bars for a token, at the requested resolution.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/mcap-candles",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/mcap-candles",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -210,7 +210,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "multi_token_full_info",
     summary: "Everything GMGN knows about each token in one call: pool, security, rug check, creator stats, trade stats and all-time high.",
     credits: 2,
-    route: "POST /api/v1/gmgn/{chain}/multi-token-full-info",
+    route: "POST /v1/gmgn/{chain}/multi-token-full-info",
     hasBody: true,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -222,7 +222,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "multi_token_info",
     summary: "Token profiles for a batch of addresses in one call.",
     credits: 2,
-    route: "POST /api/v1/gmgn/{chain}/multi-token-info",
+    route: "POST /v1/gmgn/{chain}/multi-token-info",
     hasBody: true,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -234,7 +234,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "multi_window_token_info",
     summary: "Token profiles for a batch of addresses, each with its biggest pool, creator, supply and price movement across every window.",
     credits: 2,
-    route: "POST /api/v1/gmgn/{chain}/multi-window-token-info",
+    route: "POST /v1/gmgn/{chain}/multi-window-token-info",
     hasBody: true,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -246,7 +246,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "native_transfer",
     summary: "The transfer that funded a wallet with the chain's native token, including who sent it.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/native-transfer/{wallet_address}",
+    route: "GET /v1/gmgn/{chain}/native-transfer/{wallet_address}",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -258,7 +258,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "new_pairs",
     summary: "Newly created trading pairs with their launchpad, liquidity and base-token snapshot.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/new-pairs",
+    route: "GET /v1/gmgn/{chain}/new-pairs",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -274,7 +274,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "pool_fee_info",
     summary: "Fee setup of every pool trading the token: exchange, liquidity, fee ratio and whether the fee is dynamic.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/pool-fee-info",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/pool-fee-info",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -286,7 +286,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "recommend_slippage",
     summary: "Slippage GMGN recommends for buying and for selling a token, with its tax flag and volatility score.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/recommend-slippage",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/recommend-slippage",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -298,7 +298,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "search",
     summary: "Search tokens and wallets by name, symbol, contract address or wallet address. Returns matching coins with full market data and matching wallets with 7-day P&L.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/search",
+    route: "GET /v1/gmgn/{chain}/search",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -310,7 +310,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "security",
     summary: "Contract safety checks for a token, plus the launchpad it was created on.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/security",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/security",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -322,7 +322,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "similar_coin_extremes",
     summary: "Of all tokens sharing this name or symbol, the one with the highest market cap and the one created earliest. Use it to tell an original from a copycat.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/similar-coin-extremes",
+    route: "GET /v1/gmgn/{chain}/similar-coin-extremes",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -336,7 +336,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "similar_coins",
     summary: "Tokens whose name or symbol is close to the one you pass, with each one's market cap and liquidity.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/similar-coins",
+    route: "GET /v1/gmgn/{chain}/similar-coins",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -351,7 +351,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "smart_money_wallet_info",
     summary: "Smart-money profile for a wallet: labels, socials and aggregate performance. GMGN's smart-money backend does not cover arbitrum, arc, robinhood, stable or xlayer; use /wallet-common-stat for those.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/smart-money-wallet/{wallet_address}",
+    route: "GET /v1/gmgn/{chain}/smart-money-wallet/{wallet_address}",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -363,7 +363,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "socials",
     summary: "A token's social links, community vote tally and rug check.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/socials",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/socials",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -375,7 +375,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "stats",
     summary: "Holder-quality breakdown for a token: blue-chip overlap, insider and sniper concentration, bot activity and how much the creator still holds.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/stats",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/stats",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -387,7 +387,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "swap_rankings",
     summary: "Tokens ranked by swap activity over the window, excluding wash trading.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/swap-rankings",
+    route: "GET /v1/gmgn/{chain}/swap-rankings",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -400,7 +400,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_ai_narrative",
     summary: "GMGN's generated plain-language summary of what the token is, in English and both Chinese scripts.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/ai-narrative",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/ai-narrative",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -412,7 +412,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_bundler_stat",
     summary: "Bundler activity on the token: wallet count, swap count, hold and swap ratios, and quote volume.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/bundler-stat",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/bundler-stat",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -424,7 +424,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_candles",
     summary: "Price OHLCV candles for a token.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/candles",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/candles",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -440,7 +440,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_community_messages",
     summary: "Messages posted to a token's GMGN community feed, with each author's wallet and X handle.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/community-messages",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/community-messages",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -453,7 +453,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_dev_info",
     summary: "Creator wallet status and holdings, top-10 holder rate, DexScreener paid-promotion flags, and the creator's Twitter token-launch history.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/dev-info",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/dev-info",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -465,7 +465,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_fee_distribution",
     summary: "How the launchpad splits this token's trading fees, and which recipients have claimed.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/fee-distribution",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/fee-distribution",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -477,7 +477,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_fee_info",
     summary: "Per-pool fee configuration plus the security and launchpad summary GMGN shows beside it.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/fee-info",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/fee-info",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -489,7 +489,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_holder_extra_info",
     summary: "Funding trail for specific holders: native balance, first transfer in and out, wallet age and tags.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/holder-extra-info",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/holder-extra-info",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -502,7 +502,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_info_brief",
     summary: "Compact token records for a batch of addresses: symbol, logo, decimals, supply, liquidity, launchpad and honeypot flag.",
     credits: 2,
-    route: "POST /api/v1/gmgn/{chain}/token-info-brief",
+    route: "POST /v1/gmgn/{chain}/token-info-brief",
     hasBody: true,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -514,7 +514,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_liquidity_stats",
     summary: "Wallet-category breakdown of the token's liquidity providers: smart, fresh, renowned, creator, sniper, rat-trader, whale, top, following and bundler counts.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/liquidity-stats",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/liquidity-stats",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -526,7 +526,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_liquidity_trend",
     summary: "Aggregate pool size and pool count across the token's liquidity pools. GMGN serves this on Solana only; every other chain answers HTTP 400.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/liquidity-trend",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/liquidity-trend",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -538,7 +538,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_logo_history",
     summary: "Every logo the token has used, with the timestamp each was set. A changed logo is a common rebrand or impersonation signal.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/logo-history",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/logo-history",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -550,7 +550,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_prices",
     summary: "Current price for up to many token addresses in one call.",
     credits: 2,
-    route: "POST /api/v1/gmgn/{chain}/token-prices",
+    route: "POST /v1/gmgn/{chain}/token-prices",
     hasBody: true,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -562,7 +562,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_signals",
     summary: "Tokens currently firing GMGN surge signals, with the market-cap snapshot at each trigger.",
     credits: 2,
-    route: "POST /api/v1/gmgn/{chain}/token-signals",
+    route: "POST /v1/gmgn/{chain}/token-signals",
     hasBody: true,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -574,7 +574,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_trades_v2",
     summary: "Trade history from GMGN's multi-region feed, with maker tags on every fill. Serves a fixed 50-trade page; paginate with `cursor` from the previous page's `data.next`.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/trades-v2",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/trades-v2",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "data.next" },
     params: [
@@ -589,7 +589,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_trends",
     summary: "Holder-structure time series. One series is returned per requested `trends_type`.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/trends",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/trends",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -602,7 +602,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "top_buyers",
     summary: "The token's earliest large buyers and what they did since: still holding, sold part, sold out or bought more.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/top-buyers",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/top-buyers",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -614,7 +614,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "top_callers",
     summary: "Wallets ranked by the multiple their public token calls returned, with the tokens they called.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/top-callers",
+    route: "GET /v1/gmgn/{chain}/top-callers",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -626,7 +626,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "trader_stat",
     summary: "How many of a token's traders fall into each wallet cohort: smart money, snipers, insiders, bundlers and the rest.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/trader-stat",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/trader-stat",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -638,7 +638,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "traders",
     summary: "Wallets trading a token, ranked by profit or another field and filterable by cohort. Paginate with the `next` cursor.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/traders",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/traders",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "data.next" },
     params: [
@@ -656,7 +656,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "trades",
     summary: "Individual trades in a token, newest first. Paginate with the `next` cursor; the upstream page size is fixed.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/trades",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/trades",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "data.next" },
     params: [
@@ -671,7 +671,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "trending_tokens",
     summary: "Trending token leaderboards. GMGN ranks every requested chain in one upstream call and returns one bucket per request entry, in the same order.",
     credits: 2,
-    route: "POST /api/v1/gmgn/trending-tokens",
+    route: "POST /v1/gmgn/trending-tokens",
     hasBody: true,
     params: [
       { name: "requests", flag: "requests", in: "body", kind: "json", list: false, required: true, positional: true, description: "One entry per chain. GMGN ranks every entry in a single upstream call and returns the buckets in the same order." },
@@ -682,7 +682,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "wallet_activity",
     summary: "A wallet's swap and liquidity events with token, quote token, USD cost, gas and launchpad per event. Cursor-paginated via the `next` field.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/wallet-activity/{wallet_address}",
+    route: "GET /v1/gmgn/{chain}/wallet-activity/{wallet_address}",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "data.next" },
     params: [
@@ -698,7 +698,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "wallet_chain_balances",
     summary: "Native balance and held-token count per chain. GMGN ignores the chain segment and answers for every chain it indexes, so one call covers all of them.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/wallet-chain-balances/{wallet_address}",
+    route: "GET /v1/gmgn/{chain}/wallet-chain-balances/{wallet_address}",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -710,7 +710,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "wallet_common_stat",
     summary: "Wallet identity and provenance: labels, tag ranks, socials, follower and rename counts, and the funding wallet that first sent it native currency.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/wallet-common-stat/{wallet_address}",
+    route: "GET /v1/gmgn/{chain}/wallet-common-stat/{wallet_address}",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -722,7 +722,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "wallet_pnl",
     summary: "Full wallet P&L analytics: realized and unrealized profit, win rate, holding periods and risk flags. GMGN's smart-money backend does not cover arbitrum, arc, robinhood, stable or xlayer; use /wallet-stat for those.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/wallet-pnl/{wallet_address}",
+    route: "GET /v1/gmgn/{chain}/wallet-pnl/{wallet_address}",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -735,7 +735,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "wallet_rankings",
     summary: "Smart-money wallet leaderboard with per-window PnL, win rate, volume and daily profit history.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/wallet-rankings",
+    route: "GET /v1/gmgn/{chain}/wallet-rankings",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -748,7 +748,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "wallet_stat",
     summary: "Wallet P&L for the window: realized profit, cost basis, buy/sell counts, win rate and the P&L multiple distribution. Served on every GMGN chain, including the ones /wallet-pnl cannot reach.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/wallet-stat/{wallet_address}",
+    route: "GET /v1/gmgn/{chain}/wallet-stat/{wallet_address}",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -761,7 +761,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "wallet_tags_stat",
     summary: "Count of each wallet cohort holding a token: smart, fresh, renowned, sniper, whale, bundler and more.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/wallet-tags-stat",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/wallet-tags-stat",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
@@ -773,7 +773,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "website_info",
     summary: "The token's declared website, its resolved IP, and when the site was first seen.",
     credits: 2,
-    route: "GET /api/v1/gmgn/{chain}/token/{token_address}/website-info",
+    route: "GET /v1/gmgn/{chain}/token/{token_address}/website-info",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
