@@ -8,7 +8,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "candlesticks",
     summary: "OHLCV bars for a pair, at the requested resolution and denomination.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/candlesticks/{pool_id}/{pair_id}",
+    route: "GET /v1/gecko-terminal/candlesticks/{pool_id}/{pair_id}",
     hasBody: false,
     params: [
       { name: "pool_id", flag: "pool-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "GeckoTerminal numeric pool id, as returned in a pool resource's `id`." },
@@ -25,7 +25,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "dexes",
     summary: "Indexed DEXes with their per-DEX volume and transaction metrics.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/dexes",
+    route: "GET /v1/gecko-terminal/dexes",
     hasBody: false,
     pagination: { flag: "page" },
     params: [
@@ -38,7 +38,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "global_stats",
     summary: "Aggregate DEX market stats: total 24h volume, pool and network counts, and the fear-and-greed index.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/global-stats",
+    route: "GET /v1/gecko-terminal/global-stats",
     hasBody: false,
     params: [
     ],
@@ -48,7 +48,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "latest_pools",
     summary: "Newly created pools across every chain, newest first.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/pools/latest",
+    route: "GET /v1/gecko-terminal/pools/latest",
     hasBody: false,
     pagination: { flag: "page" },
     params: [
@@ -61,7 +61,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "network_latest_pools",
     summary: "Newly created pools on one chain, newest first.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/networks/{network}/pools/latest",
+    route: "GET /v1/gecko-terminal/networks/{network}/pools/latest",
     hasBody: false,
     pagination: { flag: "page" },
     params: [
@@ -75,7 +75,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "network_pools",
     summary: "Screen pools on one chain, optionally narrowed to a single DEX.",
     credits: 2,
-    route: "POST /api/v1/gecko-terminal/networks/{network}/pools/search",
+    route: "POST /v1/gecko-terminal/networks/{network}/pools/search",
     hasBody: true,
     pagination: { flag: "page" },
     params: [
@@ -108,7 +108,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "network_rankings",
     summary: "Chain leaderboard: each network with its 24h volume, transaction count and pool count.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/networks/rankings",
+    route: "GET /v1/gecko-terminal/networks/rankings",
     hasBody: false,
     pagination: { flag: "page" },
     params: [
@@ -120,7 +120,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "networks",
     summary: "Every chain GeckoTerminal indexes, with its identifier, image and native currency.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/networks",
+    route: "GET /v1/gecko-terminal/networks",
     hasBody: false,
     params: [
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, description: "Ordering applied to the chain list, e.g. `-24h_volume`." },
@@ -131,7 +131,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "pool",
     summary: "Full pool detail: price, reserves, GT score, security metrics, tokens, DEX and developer.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/networks/{network}/pools/{address}",
+    route: "GET /v1/gecko-terminal/networks/{network}/pools/{address}",
     hasBody: false,
     params: [
       { name: "network", flag: "network", in: "path", kind: "string", list: false, required: true, positional: true, description: "GeckoTerminal network identifier." },
@@ -144,7 +144,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "pool_related_pools",
     summary: "Other pools trading the same base token, with their liquidity and 24h volume.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/networks/{network}/pools/{address}/related-pools",
+    route: "GET /v1/gecko-terminal/networks/{network}/pools/{address}/related-pools",
     hasBody: false,
     params: [
       { name: "network", flag: "network", in: "path", kind: "string", list: false, required: true, positional: true, description: "GeckoTerminal network identifier." },
@@ -156,7 +156,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "pool_sender_swaps",
     summary: "Swaps in a pool over a time window, grouped by sender wallet.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/networks/{network}/pools/{address}/sender-swaps",
+    route: "GET /v1/gecko-terminal/networks/{network}/pools/{address}/sender-swaps",
     hasBody: false,
     params: [
       { name: "network", flag: "network", in: "path", kind: "string", list: false, required: true, positional: true, description: "GeckoTerminal network identifier." },
@@ -174,7 +174,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "pool_swaps",
     summary: "Individual swaps in a pool. Defaults to the latest swaps when neither cursor is supplied. Pass a unix timestamp or a returned cursor to paginate.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/networks/{network}/pools/{address}/swaps",
+    route: "GET /v1/gecko-terminal/networks/{network}/pools/{address}/swaps",
     hasBody: false,
     pagination: { flag: "page-after", nextPath: "links.next" },
     params: [
@@ -192,7 +192,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "pool_token_info_snapshots",
     summary: "Descriptions, socials and metadata for both tokens in a pool, as last snapshotted.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/networks/{network}/pools/{address}/token-info-snapshots",
+    route: "GET /v1/gecko-terminal/networks/{network}/pools/{address}/token-info-snapshots",
     hasBody: false,
     params: [
       { name: "network", flag: "network", in: "path", kind: "string", list: false, required: true, positional: true, description: "GeckoTerminal network identifier." },
@@ -204,7 +204,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "pools",
     summary: "Screen pools across every chain by liquidity, volume, age, holders, taxes and trade counts.",
     credits: 2,
-    route: "POST /api/v1/gecko-terminal/pools/search",
+    route: "POST /v1/gecko-terminal/pools/search",
     hasBody: true,
     pagination: { flag: "page" },
     params: [
@@ -235,7 +235,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "revival_radar_pools",
     summary: "Revival Radar: older pools whose trading activity has re-accelerated.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/pools/revival-radar",
+    route: "GET /v1/gecko-terminal/pools/revival-radar",
     hasBody: false,
     params: [
     ],
@@ -245,7 +245,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "search",
     summary: "Search tokens, pools, pairs, categories, chains and DEXes by name, symbol or address.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/search",
+    route: "GET /v1/gecko-terminal/search",
     hasBody: false,
     params: [
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Free-text query matched against tokens, pools, categories, chains and DEXes." },
@@ -256,7 +256,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "search_trends",
     summary: "What other users are searching for right now, as shown in the empty search box.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/search-trends",
+    route: "GET /v1/gecko-terminal/search-trends",
     hasBody: false,
     params: [
     ],
@@ -266,7 +266,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "tag_network_pools",
     summary: "Pools belonging to one category, restricted to a single chain.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/tags/{tag}/networks/{network}/pools",
+    route: "GET /v1/gecko-terminal/tags/{tag}/networks/{network}/pools",
     hasBody: false,
     pagination: { flag: "page" },
     params: [
@@ -280,7 +280,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "tag_pools",
     summary: "Pools belonging to one category, across every chain.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/tags/{tag}/pools",
+    route: "GET /v1/gecko-terminal/tags/{tag}/pools",
     hasBody: false,
     pagination: { flag: "page" },
     params: [
@@ -293,7 +293,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "tags",
     summary: "Token categories (meme, defi, ai-agents, launchpads) with each category's top tokens.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/tags",
+    route: "GET /v1/gecko-terminal/tags",
     hasBody: false,
     pagination: { flag: "page" },
     params: [
@@ -305,7 +305,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_developer_past_tokens",
     summary: "Other tokens launched by the same developer, with each one's market cap and top pool.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/token-developers/{developer_detail_id}/past-tokens",
+    route: "GET /v1/gecko-terminal/token-developers/{developer_detail_id}/past-tokens",
     hasBody: false,
     params: [
       { name: "developer_detail_id", flag: "developer-detail-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Id of a `token_developer_detail` resource embedded in a pool response." },
@@ -316,7 +316,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_historical_holders",
     summary: "Holder count over time, as a series of snapshots.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/networks/{network}/tokens/{token_address}/historical-holders",
+    route: "GET /v1/gecko-terminal/networks/{network}/tokens/{token_address}/historical-holders",
     hasBody: false,
     params: [
       { name: "network", flag: "network", in: "path", kind: "string", list: false, required: true, positional: true, description: "GeckoTerminal network identifier." },
@@ -329,7 +329,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_top_holders",
     summary: "Largest holders of a token, with each holder's balance and share of supply.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/networks/{network}/tokens/{token_address}/top-holders",
+    route: "GET /v1/gecko-terminal/networks/{network}/tokens/{token_address}/top-holders",
     hasBody: false,
     params: [
       { name: "network", flag: "network", in: "path", kind: "string", list: false, required: true, positional: true, description: "GeckoTerminal network identifier." },
@@ -341,7 +341,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_top_traders",
     summary: "Most profitable wallets in a token, with realised and unrealised PnL, buys, sells and balance.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/tokens/{token_id}/top-traders",
+    route: "GET /v1/gecko-terminal/tokens/{token_id}/top-traders",
     hasBody: false,
     params: [
       { name: "token_id", flag: "token-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "GeckoTerminal numeric token id, as returned in a token resource's `id`." },
@@ -352,7 +352,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "trending_links",
     summary: "The curated shortcuts GeckoTerminal pins above its trending table.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/trending-links",
+    route: "GET /v1/gecko-terminal/trending-links",
     hasBody: false,
     params: [
     ],
@@ -362,7 +362,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "trending_themes",
     summary: "Narratives currently trending, each with the pools driving it.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/trending-themes",
+    route: "GET /v1/gecko-terminal/trending-themes",
     hasBody: false,
     params: [
       { name: "network", flag: "network", in: "query", kind: "string", list: false, required: false, positional: false, description: "Restrict results to one network identifier." },
@@ -375,7 +375,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "trends",
     summary: "Trending tokens: the top gainers, newest pools and hottest pairs powering the home page.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/trends",
+    route: "GET /v1/gecko-terminal/trends",
     hasBody: false,
     params: [
       { name: "network", flag: "network", in: "query", kind: "string", list: false, required: false, positional: false, description: "Restrict results to one network identifier." },
@@ -387,7 +387,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "wallet_token",
     summary: "One wallet's position in one token: buys, sells, balance and PnL.",
     credits: 2,
-    route: "GET /api/v1/gecko-terminal/tokens/{token_id}/wallets/{wallet_address}",
+    route: "GET /v1/gecko-terminal/tokens/{token_id}/wallets/{wallet_address}",
     hasBody: false,
     params: [
       { name: "token_id", flag: "token-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "GeckoTerminal numeric token id, as returned in a token resource's `id`." },

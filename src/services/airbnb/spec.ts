@@ -8,7 +8,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_calendar",
     summary: "Check the availability of an Airbnb listing by month.",
     credits: 1,
-    route: "POST /api/v1/airbnb/calendar",
+    route: "POST /v1/airbnb/calendar",
     hasBody: true,
     params: [
       { name: "count", flag: "count", in: "body", kind: "integer", list: false, required: false, positional: false, default: "12", description: "Number of months to fetch" },
@@ -23,7 +23,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_details",
     summary: "Get details about an Airbnb listing.",
     credits: 5,
-    route: "POST /api/v1/airbnb/details",
+    route: "POST /v1/airbnb/details",
     hasBody: true,
     params: [
       { name: "room_id", flag: "room-id", in: "body", kind: "string", list: false, required: true, positional: true, description: "Airbnb listing ID. Listings get delisted, so any given ID (including the example) can stop resolving." },
@@ -34,7 +34,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_price",
     summary: "Get the price for an Airbnb listing over a date range.",
     credits: 2,
-    route: "POST /api/v1/airbnb/price",
+    route: "POST /v1/airbnb/price",
     hasBody: true,
     params: [
       { name: "adults", flag: "adults", in: "body", kind: "integer", list: false, required: false, positional: false, default: "1", description: "Number of adults" },
@@ -49,7 +49,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_reviews",
     summary: "Get reviews for an Airbnb listing.",
     credits: 2,
-    route: "POST /api/v1/airbnb/reviews",
+    route: "POST /v1/airbnb/reviews",
     hasBody: true,
     pagination: { flag: "offset" },
     params: [
@@ -64,7 +64,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "search",
     summary: "Search for Airbnb listings within a radius, by place ID, or by text query.",
     credits: 5,
-    route: "POST /api/v1/airbnb/search",
+    route: "POST /v1/airbnb/search",
     hasBody: true,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
@@ -84,7 +84,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "min_beds", flag: "min-beds", in: "body", kind: "integer", list: false, required: false, positional: false, description: "Minimum number of beds" },
       { name: "ne_lat", flag: "ne-lat", in: "body", kind: "number", list: false, required: false, positional: false, description: "Northeast latitude of bounding box" },
       { name: "ne_long", flag: "ne-long", in: "body", kind: "number", list: false, required: false, positional: false, description: "Northeast longitude of bounding box" },
-      { name: "place_id", flag: "place-id", in: "body", kind: "string", list: false, required: false, positional: false, description: "Google Place ID for the search area, from the `GET /api/v1/airbnb/locations` endpoint (`suggestions[].place_id`)." },
+      { name: "place_id", flag: "place-id", in: "body", kind: "string", list: false, required: false, positional: false, description: "Google Place ID for the search area, from the `GET /v1/airbnb/locations` endpoint (`suggestions[].place_id`)." },
       { name: "price_max", flag: "price-max", in: "body", kind: "integer", list: false, required: false, positional: false, description: "Maximum price filter" },
       { name: "price_min", flag: "price-min", in: "body", kind: "integer", list: false, required: false, positional: false, description: "Minimum price filter" },
       { name: "query", flag: "query", in: "body", kind: "string", list: false, required: false, positional: true, description: "Text location query (e.g. 'London, United Kingdom')" },
@@ -99,7 +99,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "search_locations",
     summary: "Find Airbnb locations matching a text query.",
     credits: 1,
-    route: "GET /api/v1/airbnb/locations",
+    route: "GET /v1/airbnb/locations",
     hasBody: false,
     params: [
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Free-text location query (e.g. 'London', 'Rio de Janeiro')" },

@@ -114,7 +114,7 @@ describe('the tapline command', () => {
 
     assert.equal(result.code, 0);
     assert.equal(stub.last.method, 'GET');
-    assert.equal(stub.last.url, '/api/v1/youtube/search?query=learn+typescript&sort=view_count');
+    assert.equal(stub.last.url, '/v1/youtube/search?query=learn+typescript&sort=view_count');
     assert.equal(stub.last.apiKey, 'env-key');
     assert.match(result.data, /results: \d+ item\(s\)/);
     assert.match(result.notes, new RegExp(`rerun with --cursor ${SEARCH.pagination.next_cursor}`));
@@ -138,7 +138,7 @@ describe('the tapline command', () => {
 
     assert.equal(
       stub.last.url,
-      '/api/v1/gmgn/sol/token/So11111111111111111111111111111111111111112/holders?limit=10',
+      '/v1/gmgn/sol/token/So11111111111111111111111111111111111111112/holders?limit=10',
     );
   });
 

@@ -8,7 +8,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_channel",
     summary: "Get a YouTube channel's profile and statistics.",
     credits: 3,
-    route: "GET /api/v1/youtube/channels/{channel_id}",
+    route: "GET /v1/youtube/channels/{channel_id}",
     hasBody: false,
     params: [
       { name: "channel_id", flag: "channel-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "YouTube channel ID, @handle, or full allowed channel URL. Full URLs may use /channel/, /@, /c/, or /user/ and cannot include a content tab or query string." },
@@ -19,7 +19,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_channel_videos",
     summary: "Get recent videos from a YouTube channel.",
     credits: 2,
-    route: "GET /api/v1/youtube/channels/{channel_id}/videos",
+    route: "GET /v1/youtube/channels/{channel_id}/videos",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
@@ -33,7 +33,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_comment_replies",
     summary: "Get replies to a comment on a YouTube video.",
     credits: 2,
-    route: "GET /api/v1/youtube/videos/{video_id}/comments/{comment_id}/replies",
+    route: "GET /v1/youtube/videos/{video_id}/comments/{comment_id}/replies",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
@@ -47,7 +47,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_comments",
     summary: "Get comments for a YouTube video.",
     credits: 2,
-    route: "GET /api/v1/youtube/videos/{video_id}/comments",
+    route: "GET /v1/youtube/videos/{video_id}/comments",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
@@ -61,7 +61,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_formats",
     summary: "List the video and audio formats available for a YouTube video.",
     credits: 2,
-    route: "GET /api/v1/youtube/videos/{video_id}/formats",
+    route: "GET /v1/youtube/videos/{video_id}/formats",
     hasBody: false,
     params: [
       { name: "video_id", flag: "video-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "YouTube video ID or a supported video URL, normalized to the eleven-character video ID. URLs may use watch?v=, youtu.be/, shorts/, embed/, or live/ forms." },
@@ -72,7 +72,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_heatmap",
     summary: "Get the replay heatmap for a YouTube video.",
     credits: 2,
-    route: "GET /api/v1/youtube/videos/{video_id}/heatmap",
+    route: "GET /v1/youtube/videos/{video_id}/heatmap",
     hasBody: false,
     params: [
       { name: "video_id", flag: "video-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "YouTube video ID or a supported video URL, normalized to the eleven-character video ID. URLs may use watch?v=, youtu.be/, shorts/, embed/, or live/ forms." },
@@ -83,7 +83,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_metadata",
     summary: "Get metadata for a YouTube video.",
     credits: 2,
-    route: "GET /api/v1/youtube/videos/{video_id}/metadata",
+    route: "GET /v1/youtube/videos/{video_id}/metadata",
     hasBody: false,
     params: [
       { name: "video_id", flag: "video-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "YouTube video ID or a supported video URL, normalized to the eleven-character video ID. URLs may use watch?v=, youtu.be/, shorts/, embed/, or live/ forms." },
@@ -96,7 +96,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_playlist",
     summary: "Get a YouTube playlist and its videos.",
     credits: 2,
-    route: "GET /api/v1/youtube/playlist/{playlist_id}",
+    route: "GET /v1/youtube/playlist/{playlist_id}",
     hasBody: false,
     params: [
       { name: "playlist_id", flag: "playlist-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "YouTube playlist ID (2\u2013150 URL-safe characters)." },
@@ -108,7 +108,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "search",
     summary: "Search YouTube for matching videos, channels, and playlists.",
     credits: 2,
-    route: "GET /api/v1/youtube/search",
+    route: "GET /v1/youtube/search",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
@@ -127,7 +127,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_subtitle_tracks",
     summary: "List the subtitle tracks available for a YouTube video.",
     credits: 2,
-    route: "GET /api/v1/youtube/videos/{video_id}/subtitles/tracks",
+    route: "GET /v1/youtube/videos/{video_id}/subtitles/tracks",
     hasBody: false,
     params: [
       { name: "video_id", flag: "video-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "YouTube video ID or a supported video URL, normalized to the eleven-character video ID. URLs may use watch?v=, youtu.be/, shorts/, embed/, or live/ forms." },
@@ -139,7 +139,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_subtitles",
     summary: "Get subtitles for a YouTube video in the requested language and format.",
     credits: 2,
-    route: "GET /api/v1/youtube/videos/{video_id}/subtitles",
+    route: "GET /v1/youtube/videos/{video_id}/subtitles",
     hasBody: false,
     params: [
       { name: "video_id", flag: "video-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "YouTube video ID or a supported video URL, normalized to the eleven-character video ID. URLs may use watch?v=, youtu.be/, shorts/, embed/, or live/ forms." },
