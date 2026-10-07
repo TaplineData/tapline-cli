@@ -8,6 +8,7 @@ import { COMMAND_LIST as geckoterminalCommands } from './services/geckoterminal/
 import { COMMAND_LIST as ponsfamilyCommands } from './services/ponsfamily/commands.js';
 import { COMMAND_LIST as goplusCommands } from './services/goplus/commands.js';
 import { COMMAND_LIST as twitterCommands } from './services/twitter/commands.js';
+import { COMMAND_LIST as pinterestCommands } from './services/pinterest/commands.js';
 
 export const SERVICES: Service[] = [
   { name: 'airbnb', commands: airbnbCommands },
@@ -17,4 +18,5 @@ export const SERVICES: Service[] = [
   { name: 'ponsfamily', commands: ponsfamilyCommands },
   { name: 'goplus', commands: goplusCommands },
   { name: 'twitter', commands: twitterCommands },
+  { name: 'pinterest', commands: pinterestCommands },
 ];

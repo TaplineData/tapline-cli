@@ -1,6 +1,6 @@
 # @tapline/cli
 
-`tapline` puts Tapline's YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family and Twitter (X) APIs on your command line.
+`tapline` puts Tapline's YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X) and Pinterest APIs on your command line.
 Every endpoint the [TypeScript client](https://www.npmjs.com/package/@tapline/client) exposes is a
 command, generated from the same API spec, so the two never drift apart.
 
@@ -40,6 +40,9 @@ tapline goplus tron-token-security TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
 tapline ponsfamily list-launches --sort volume --page-size 10
 tapline twitter user-profile nasa
 tapline twitter tweet 2106870968048386134
+tapline pinterest search-pins "italian pot roast"
+tapline pinterest pin https://pin.it/2u9bHtUx6
+tapline pinterest board /broadstbullycom/nhl-hockey/
 tapline airbnb search "Rio de Janeiro" --check-in 2026-11-01 --check-out 2026-11-05 --adults 2 --currency BRL
 ```
 
