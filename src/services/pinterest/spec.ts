@@ -6,7 +6,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "board",
     method: "get_board",
-    summary: "The pins on a public Pinterest board, in board order: Pinterest's own pin objects with images, link, title, pinner, board and aggregated pin data. `id` is the numeric pin id, `link` is `null` on a pin uploaded without one, and Pinterest sends no `pin_join` for board pins. Up to 25 pins per page; pass `cursor` back for the next page, which is `null` on the last one.",
+    summary: "The pins on a public Pinterest board, in board order: Pinterest's own pin objects with images, link, title, pinner, board and aggregated pin data. `id` is the numeric pin id, `link` is `null` on a pin uploaded without one, and Pinterest sends no `pin_join` for board pins. About 25 pins per page; pass `cursor` back for the next page, which is `null` on the last one.",
     credits: 1,
     route: "GET /v1/pinterest/board",
     hasBody: false,
@@ -47,7 +47,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "user-boards",
     method: "get_user_boards",
-    summary: "A Pinterest user's public boards, most recently pinned to first: name, URL, description, pin and follower counts, owner and cover images. Up to 25 boards per page; pass `cursor` back for the next page, which is `null` on the last one.",
+    summary: "A Pinterest user's public boards, most recently pinned to first: name, URL, description, pin and follower counts, owner and cover images. About 25 boards per page; pass `cursor` back for the next page, which is `null` on the last one.",
     credits: 1,
     route: "GET /v1/pinterest/user/boards",
     hasBody: false,
