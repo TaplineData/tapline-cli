@@ -38,8 +38,8 @@ tapline geckoterminal network-latest-pools --network solana
 tapline goplus evm-token-security 1 0x6982508145454ce325ddbe47a25d4ec3d2311933
 tapline goplus tron-token-security TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
 tapline ponsfamily list-launches --sort volume --page-size 10
-tapline twitter user-profile nasa
-tapline twitter tweet 2106870968048386134
+tapline twitter profile --handle nasa
+tapline twitter tweet https://x.com/Seahawks/status/2106870968048386134
 tapline pinterest search-pins "italian pot roast"
 tapline pinterest pin https://pin.it/2u9bHtUx6
 tapline pinterest board /broadstbullycom/nhl-hockey/

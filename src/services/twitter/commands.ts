@@ -6,19 +6,28 @@ import { COMMANDS } from './spec.js';
 const RUNNERS: Record<string, Command['run']> = {
   community: (client, { params }) =>
     client.twitter.getCommunity({
-      community_id: params.community_id as string,
+      url: params.url as string,
+    }),
+  "community-tweets": (client, { params }) =>
+    client.twitter.getCommunityTweets({
+      url: params.url as string,
+    }),
+  profile: (client, { params }) =>
+    client.twitter.getProfile({
+      cache_max_age: params.cache_max_age as ("1d" | "3d" | "7d" | "14d" | "30d" | null) | undefined,
+      handle: params.handle as (string | null) | undefined,
+      user_id: params.user_id as (string | null) | undefined,
     }),
   tweet: (client, { params }) =>
     client.twitter.getTweet({
-      tweet_id: params.tweet_id as string,
+      url: params.url as string,
+      trim: params.trim as (boolean | null) | undefined,
+      cache_max_age: params.cache_max_age as ("1d" | "3d" | "7d" | "14d" | "30d" | null) | undefined,
     }),
-  "user-profile": (client, { params }) =>
-    client.twitter.getUserProfile({
-      screen_name: params.screen_name as string,
-    }),
-  "user-profile-by-id": (client, { params }) =>
-    client.twitter.getUserProfileById({
-      user_id: params.user_id as string,
+  "user-tweets": (client, { params }) =>
+    client.twitter.getUserTweets({
+      handle: params.handle as string,
+      trim: params.trim as (boolean | null) | undefined,
     }),
 };
 
