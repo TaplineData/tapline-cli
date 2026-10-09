@@ -61,7 +61,8 @@ function report(result: unknown, command: Command, out: Output, json: boolean, f
     return EXIT_OK;
   }
   out.data(json ? JSON.stringify(result, null, 2) : render(result));
-  const next = command.pagination?.nextPath ? valueAt(result, command.pagination.nextPath) : undefined;
+  const paths = command.pagination?.nextPaths ?? (command.pagination?.nextPath ? [command.pagination.nextPath] : []);
+  const next = paths.map((path) => valueAt(result, path)).find((value) => typeof value === 'string' && value !== '');
   if (typeof next === 'string' && next !== '') {
     out.note(`More results: rerun with --${command.pagination!.flag} ${next}`);
   }

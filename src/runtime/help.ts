@@ -57,6 +57,13 @@ function argumentShape(param: ParamSpec): string {
   return param.required ? `<${param.flag}>` : `[${param.flag}]`;
 }
 
+function optionFlag(param: ParamSpec): string {
+  const flag = param.kind === 'boolean' && param.choices?.length === 1 && param.choices[0] === 'false'
+    ? `no-${param.flag}`
+    : param.flag;
+  return `--${flag} ${placeholder(param)}`.trim();
+}
+
 export function usageFor(service: string, command: CommandSpec): string {
   const shapes = command.params.filter((param) => param.positional).map(argumentShape);
   return `tapline ${service} ${command.name} ${[...shapes, '[options]'].join(' ')}`.replace(/\s+/g, ' ');
@@ -75,7 +82,7 @@ export function commandHelp(service: string, command: CommandSpec): string {
       ...columns(
         positionals.map((param) => [
           argumentShape(param),
-          `${describe(param)} Can also be given as --${param.flag}.`.trim(),
+          `${describe(param)} Can also be given as ${optionFlag(param)}.`.trim(),
         ]),
       ),
       '',
@@ -86,7 +93,7 @@ export function commandHelp(service: string, command: CommandSpec): string {
   if (options.length > 0 || command.hasBody) {
     out.push('Options:');
     const entries: Array<[string, string]> = options.map((param) => [
-      `--${param.flag} ${placeholder(param)}`.trim(),
+      optionFlag(param),
       describe(param),
     ]);
     if (command.hasBody) {
@@ -95,9 +102,15 @@ export function commandHelp(service: string, command: CommandSpec): string {
     out.push(...columns(entries), '');
   }
 
+  for (const group of command.atLeastOne ?? []) {
+    const flags = group.map((name) => `--${command.params.find((param) => param.name === name)!.flag}`);
+    out.push(`Requires one of: ${flags.join(', ')}.`, '');
+  }
+
   if (command.pagination) {
-    const next = command.pagination.nextPath
-      ? `The next page's value is at ${command.pagination.nextPath} in the response, and is printed after each page.`
+    const paths = command.pagination.nextPaths ?? (command.pagination.nextPath ? [command.pagination.nextPath] : []);
+    const next = paths.length > 0
+      ? `The next page's value is at ${paths.join(' or ')} in the response, and is printed after each page.`
       : 'Ask for each page yourself.';
     out.push('Pagination:', ...columns([[`--${command.pagination.flag}`, `One page per call. ${next}`]]), '');
   }

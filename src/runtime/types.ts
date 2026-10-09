@@ -25,6 +25,8 @@ export interface PaginationSpec {
   flag: string;
   /** Dotted path to the next page's value in the response, when the API returns one. */
   nextPath?: string;
+  /** Alternative dotted paths used by response variants, checked in order. */
+  nextPaths?: string[];
 }
 
 export interface CommandSpec {
@@ -35,6 +37,8 @@ export interface CommandSpec {
   credits: number | null;
   route: string;
   params: ParamSpec[];
+  /** Parameter names grouped so each group requires at least one non-null value. */
+  atLeastOne?: string[][];
   /** Whether the command sends a request body, and so accepts `--body`. */
   hasBody: boolean;
   pagination?: PaginationSpec;

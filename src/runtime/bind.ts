@@ -121,5 +121,17 @@ export function bindInput(command: CommandSpec, parsed: ParsedArgv, usage: strin
   if (missing.length > 0) {
     throw new UsageError(`${command.name} needs ${missing.join(', ')}.`, usage);
   }
+  for (const group of command.atLeastOne ?? []) {
+    const given = group.some((name) => {
+      const param = command.params.find((candidate) => candidate.name === name);
+      if (!param) return false;
+      const value = target(param)[name];
+      return value !== undefined && value !== null && value !== '';
+    });
+    if (!given) {
+      const flags = group.map((name) => `--${command.params.find((param) => param.name === name)!.flag}`);
+      throw new UsageError(`${command.name} needs ${flags.join(' or ')}.`, usage);
+    }
+  }
   return { params, body };
 }
