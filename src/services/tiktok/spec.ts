@@ -37,7 +37,7 @@ export const COMMANDS: CommandSpec[] = [
     credits: 1,
     route: "GET /v1/tiktok/video/comments",
     hasBody: false,
-    pagination: { flag: "cursor", nextPath: "cursor" },
+    pagination: { flag: "cursor", nextPaths: ["cursor", "cursor"] },
     params: [
       { name: "cursor", flag: "cursor", in: "query", kind: "integer", list: false, required: false, positional: false, description: "The `cursor` from the previous page. Omit it for the first page." },
       { name: "trim", flag: "trim", in: "query", kind: "boolean", list: false, required: false, positional: false, description: "Set to `true` for the trimmed answer Scrape Creators returns: fewer keys per item." },
@@ -51,7 +51,7 @@ export const COMMANDS: CommandSpec[] = [
     credits: 1,
     route: "GET /v1/tiktok/user/followers",
     hasBody: false,
-    pagination: { flag: "min-time", nextPath: "min_time" },
+    pagination: { flag: "min-time", nextPaths: ["min_time", "min_time"] },
     params: [
       { name: "min_time", flag: "min-time", in: "query", kind: "integer", list: false, required: false, positional: false, description: "The `min_time` from the previous page. Omit it for the first page." },
       { name: "trim", flag: "trim", in: "query", kind: "boolean", list: false, required: false, positional: false, description: "Set to `true` for the trimmed answer Scrape Creators returns: fewer keys per item." },
@@ -66,7 +66,7 @@ export const COMMANDS: CommandSpec[] = [
     credits: 1,
     route: "GET /v1/tiktok/user/following",
     hasBody: false,
-    pagination: { flag: "min-time", nextPath: "min_time" },
+    pagination: { flag: "min-time", nextPaths: ["min_time", "min_time"] },
     params: [
       { name: "handle", flag: "handle", in: "query", kind: "string", list: false, required: true, positional: true, description: "The TikTok handle, with or without a leading @." },
       { name: "min_time", flag: "min-time", in: "query", kind: "integer", list: false, required: false, positional: false, description: "The `min_time` from the previous page. Omit it for the first page." },
@@ -91,9 +91,9 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_profile_videos",
     summary: "Videos a TikTok user posted, newest first or most popular first, 35 per page. Items follow Scrape Creators' app layout (`aweme_id`, `statistics`, `video.play_addr`, snake_case `author`), built from TikTok's logged-out web data: a key the web data has no source for is left out, never filled in, and TikTok rounds counts of 10,000 or more for logged-out viewers (1,041,184 plays reads 1,000,000). Pass `max_cursor` back for the next page while `has_more` is 1.",
     credits: 1,
-    route: "GET /v3/tiktok/profile/videos",
+    route: "GET /v1/tiktok/profile/videos",
     hasBody: false,
-    pagination: { flag: "max-cursor", nextPath: "max_cursor" },
+    pagination: { flag: "max-cursor", nextPaths: ["max_cursor", "max_cursor"] },
     params: [
       { name: "sort_by", flag: "sort-by", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["latest", "popular"], description: "`latest` (default) or `popular`, most viewed first." },
       { name: "max_cursor", flag: "max-cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "The `max_cursor` from the previous page. Omit it for the first page." },
@@ -110,7 +110,7 @@ export const COMMANDS: CommandSpec[] = [
     credits: 1,
     route: "GET /v1/tiktok/search/hashtag",
     hasBody: false,
-    pagination: { flag: "cursor", nextPath: "cursor" },
+    pagination: { flag: "cursor", nextPaths: ["cursor", "cursor"] },
     params: [
       { name: "hashtag", flag: "hashtag", in: "query", kind: "string", list: false, required: true, positional: true, description: "The hashtag, with or without a leading #." },
       { name: "region", flag: "region", in: "query", kind: "string", list: false, required: false, positional: false, description: "Two-letter country code for the proxy, such as `US`, `GB` or `PH`. TikTok answers as it does to a viewer in that country; it does not filter results to that country." },
@@ -138,7 +138,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/tiktok/song",
     hasBody: false,
     params: [
-      { name: "clipId", flag: "clipId", in: "query", kind: "string", list: false, required: true, positional: true, description: "The sound's clip id, the number at the end of a sound URL such as `https://www.tiktok.com/music/Different-Acoustic-6717159721276540930`." },
+      { name: "clipId", flag: "clip-id", in: "query", kind: "string", list: false, required: true, positional: true, description: "The sound's clip id, the number at the end of a sound URL such as `https://www.tiktok.com/music/Different-Acoustic-6717159721276540930`." },
     ],
   },
   {
@@ -150,7 +150,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "cursor" },
     params: [
-      { name: "clipId", flag: "clipId", in: "query", kind: "string", list: false, required: true, positional: true, description: "The sound's clip id, the number at the end of a sound URL such as `https://www.tiktok.com/music/Different-Acoustic-6717159721276540930`." },
+      { name: "clipId", flag: "clip-id", in: "query", kind: "string", list: false, required: true, positional: true, description: "The sound's clip id, the number at the end of a sound URL such as `https://www.tiktok.com/music/Different-Acoustic-6717159721276540930`." },
       { name: "cursor", flag: "cursor", in: "query", kind: "integer", list: false, required: false, positional: false, description: "The `cursor` from the previous page. Omit it for the first page." },
     ],
   },
@@ -184,7 +184,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_video",
     summary: "One TikTok video or photo post as `aweme_detail`, TikTok's own Android app object with exact counts, plus the `url` and `create_time_utc` Scrape Creators adds. It comes from the app's feed, which leaves out about a quarter of the keys the app's detail view has. With `get_transcript=true`, `transcript` holds the WEBVTT captions in the video's original language, or `null` when it has none.",
     credits: 1,
-    route: "GET /v2/tiktok/video",
+    route: "GET /v1/tiktok/video",
     hasBody: false,
     params: [
       { name: "get_transcript", flag: "get-transcript", in: "query", kind: "boolean", list: false, required: false, positional: false, description: "Set to `true` to add `transcript`, the video's WEBVTT captions, or `null` when it has none." },

@@ -84,7 +84,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_post_comments",
     summary: "A page of up to 15 comments on a public post or reel: text, ISO 8601 `created_at`, like count and the commenter's id, username, verification and profile picture. Instagram does not show reply counts to logged-out visitors, so `child_comment_count` is null. Pass `cursor` back for the next page; it is null on the last one.",
     credits: 1,
-    route: "GET /v2/instagram/post/comments",
+    route: "GET /v1/instagram/post/comments",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "cursor" },
     params: [
@@ -136,7 +136,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "get_user_posts",
     summary: "A page of 12 of a user's posts, newest first, as Instagram's feed returns them: media type, shortcode, caption, like, comment and play counts, image and video versions, tagged users, `url` and an ISO 8601 `created_at` (`taken_at` stays the Unix time). Pass `next_max_id` back for the next page while `more_available` is true. An unknown handle answers an empty page; a private account answers 404. `trim=true` keeps Scrape Creators' trimmed item fields.",
     credits: 1,
-    route: "GET /v2/instagram/user/posts",
+    route: "GET /v1/instagram/user/posts",
     hasBody: false,
     pagination: { flag: "next-max-id", nextPath: "next_max_id" },
     params: [
