@@ -9,6 +9,7 @@ import { COMMAND_LIST as ponsfamilyCommands } from './services/ponsfamily/comman
 import { COMMAND_LIST as goplusCommands } from './services/goplus/commands.js';
 import { COMMAND_LIST as twitterCommands } from './services/twitter/commands.js';
 import { COMMAND_LIST as pinterestCommands } from './services/pinterest/commands.js';
+import { COMMAND_LIST as pumpfunCommands } from './services/pumpfun/commands.js';
 
 export const SERVICES: Service[] = [
   { name: 'airbnb', commands: airbnbCommands },
@@ -19,4 +20,5 @@ export const SERVICES: Service[] = [
   { name: 'goplus', commands: goplusCommands },
   { name: 'twitter', commands: twitterCommands },
   { name: 'pinterest', commands: pinterestCommands },
+  { name: 'pumpfun', commands: pumpfunCommands },
 ];
