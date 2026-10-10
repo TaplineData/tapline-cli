@@ -71,7 +71,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "list-token-trades",
     method: "list_token_trades",
-    summary: "A token's trades and liquidity events across every pool, newest first, with USD volume, price, wallet, venue and birdeye's wallet tags. The tape moves while you page, so a trade can repeat on the next page: dedupe by `id`. Pages stop before offset 10,000. An unknown token answers an empty page. Priced per page, not per trade.",
+    summary: "A token's trades and liquidity events across every pool, newest first, with USD volume, price, wallet, venue and birdeye's wallet tags. The tape moves while you page, so a trade can repeat on the next page: dedupe by `id`. Pages stop after offset 9,000. An unknown token answers an empty page. Priced per page, not per trade.",
     credits: 1,
     route: "GET /v1/birdeye/chains/{chain}/tokens/{address}/trades",
     hasBody: false,
@@ -110,6 +110,20 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["all", "solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon"], description: "Chain to rank tokens on, or `all` for birdeye's multichain ranking." },
+    ],
+  },
+  {
+    name: "list-wallet-portfolio",
+    method: "list_wallet_portfolio",
+    summary: "A Solana wallet's current token holdings by USD value, largest first, with the wallet's total value. An empty wallet answers an empty `items` list.",
+    credits: 2,
+    route: "GET /v1/birdeye/solana/wallets/{wallet}/portfolio",
+    hasBody: false,
+    pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
+    params: [
+      { name: "wallet", flag: "wallet", in: "path", kind: "string", list: false, required: true, positional: true, description: "Solana wallet address, base58." },
+      { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "50", description: "Holdings per page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "", description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
     ],
   },
   {
@@ -170,7 +184,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token address on the chosen chain: a base58 mint on Solana, 0x plus 40 hex characters on an EVM chain." },
       { name: "interval", flag: "interval", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1s", "5s", "15s", "30s", "1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h", "1d", "1w", "1mo"], default: "15m", description: "Candle size." },
       { name: "count", flag: "count", in: "query", kind: "integer", list: false, required: false, positional: false, default: "300", description: "Number of candles." },
-      { name: "to", flag: "to", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Last candle's unix time in seconds." },
+      { name: "to", flag: "to", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Return bars strictly before this unix time, in seconds." },
     ],
   },
   {
@@ -208,20 +222,6 @@ export const COMMANDS: CommandSpec[] = [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc"], description: "Chain of the wallet PnL data. birdeye computes PnL on these chains only." },
       { name: "wallet", flag: "wallet", in: "path", kind: "string", list: false, required: true, positional: true, description: "Wallet address on the chosen chain: base58 on Solana, 0x plus 40 hex characters on an EVM chain." },
       { name: "period", flag: "period", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1d", "7d", "30d", "90d"], default: "30d", description: "Window the summary covers." },
-    ],
-  },
-  {
-    name: "wallet-portfolio",
-    method: "get_wallet_portfolio",
-    summary: "A Solana wallet's current token holdings by USD value, largest first, with the wallet's total value. An empty wallet answers an empty `items` list.",
-    credits: 2,
-    route: "GET /v1/birdeye/solana/wallets/{wallet}/portfolio",
-    hasBody: false,
-    pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
-    params: [
-      { name: "wallet", flag: "wallet", in: "path", kind: "string", list: false, required: true, positional: true, description: "Solana wallet address, base58." },
-      { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "50", description: "Holdings per page." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "", description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
     ],
   },
 ];

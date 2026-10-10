@@ -1,6 +1,6 @@
 # @tapline/cli
 
-`tapline` puts Tapline's YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Instagram, Pumpfun, and TikTok APIs on your command line.
+`tapline` puts Tapline's YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Instagram, Pumpfun, TikTok, and Birdeye APIs on your command line.
 Every endpoint the [TypeScript client](https://www.npmjs.com/package/@tapline/client) exposes is a
 command, generated from the same API spec, so the two never drift apart.
 
@@ -48,6 +48,8 @@ tapline instagram post https://www.instagram.com/reel/Dd9Etk7R91I/
 tapline tiktok profile --handle stoolpresidente
 tapline tiktok video https://www.tiktok.com/@stoolpresidente/video/7517114944362499342
 tapline tiktok trending-feed US
+tapline birdeye token-overview solana JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN
+tapline birdeye list-leaderboard base --interval 7d
 tapline airbnb search "Rio de Janeiro" --check-in 2026-11-01 --check-out 2026-11-05 --adults 2 --currency BRL
 ```
 

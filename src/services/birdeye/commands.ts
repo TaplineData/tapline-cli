@@ -56,6 +56,12 @@ const RUNNERS: Record<string, Command['run']> = {
     client.birdeye.listTrendingTokens({
       chain: params.chain as birdeye.BirdeyeTrendingChain,
     }),
+  "list-wallet-portfolio": (client, { params }) =>
+    client.birdeye.listWalletPortfolio({
+      wallet: params.wallet as string,
+      limit: params.limit as number | undefined,
+      cursor: params.cursor as string | undefined,
+    }),
   "list-wallet-tokens": (client, { params }) =>
     client.birdeye.listWalletTokens({
       chain: params.chain as birdeye.BirdeyePnlChain,
@@ -102,12 +108,6 @@ const RUNNERS: Record<string, Command['run']> = {
       chain: params.chain as birdeye.BirdeyePnlChain,
       wallet: params.wallet as string,
       period: params.period as birdeye.BirdeyePnlPeriod | undefined,
-    }),
-  "wallet-portfolio": (client, { params }) =>
-    client.birdeye.getWalletPortfolio({
-      wallet: params.wallet as string,
-      limit: params.limit as number | undefined,
-      cursor: params.cursor as string | undefined,
     }),
 };
 

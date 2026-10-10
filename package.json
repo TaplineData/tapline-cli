@@ -1,7 +1,7 @@
 {
   "name": "@tapline/cli",
   "version": "0.1.7",
-  "description": "Command-line access to Tapline's web scraping APIs for YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Instagram, Pumpfun and TikTok.",
+  "description": "Command-line access to Tapline's web scraping APIs for YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Instagram, Pumpfun, TikTok and Birdeye.",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -30,6 +30,7 @@
     "instagram",
     "pumpfun",
     "tiktok",
+    "birdeye",
     "api",
     "client",
     "sdk",
