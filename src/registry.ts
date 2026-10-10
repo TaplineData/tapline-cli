@@ -12,6 +12,7 @@ import { COMMAND_LIST as pinterestCommands } from './services/pinterest/commands
 import { COMMAND_LIST as instagramCommands } from './services/instagram/commands.js';
 import { COMMAND_LIST as pumpfunCommands } from './services/pumpfun/commands.js';
 import { COMMAND_LIST as tiktokCommands } from './services/tiktok/commands.js';
+import { COMMAND_LIST as birdeyeCommands } from './services/birdeye/commands.js';
 
 export const SERVICES: Service[] = [
   { name: 'airbnb', commands: airbnbCommands },
@@ -25,4 +26,5 @@ export const SERVICES: Service[] = [
   { name: 'instagram', commands: instagramCommands },
   { name: 'pumpfun', commands: pumpfunCommands },
   { name: 'tiktok', commands: tiktokCommands },
+  { name: 'birdeye', commands: birdeyeCommands },
 ];
