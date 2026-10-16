@@ -8,15 +8,15 @@ import { COMMANDS } from './spec.js';
 const RUNNERS: Record<string, Command['run']> = {
   "list-comparables": (client, { params }) =>
     client.zillow.listComparables({
-      zpid: params.zpid as string,
+      zpid: params.zpid as number,
     }),
   property: (client, { params }) =>
     client.zillow.getProperty({
-      zpid: params.zpid as string,
+      zpid: params.zpid as number,
     }),
   "property-history": (client, { params }) =>
     client.zillow.getPropertyHistory({
-      zpid: params.zpid as string,
+      zpid: params.zpid as number,
       metric: params.metric as zillow.ZillowHistoryMetric | undefined,
       period: params.period as zillow.ZillowHistoryPeriod | undefined,
     }),

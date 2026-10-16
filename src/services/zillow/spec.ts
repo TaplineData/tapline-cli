@@ -11,7 +11,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/zillow/properties/{zpid}/comparables",
     hasBody: false,
     params: [
-      { name: "zpid", flag: "zpid", in: "path", kind: "string", list: false, required: true, positional: true, description: "Zillow property id, the digits before `_zpid` in a home's Zillow URL." },
+      { name: "zpid", flag: "zpid", in: "path", kind: "integer", list: false, required: true, positional: true, description: "Zillow property id: the digits before `_zpid` in a home's Zillow URL, or the `zpid` of a property, comparable or address suggestion. Search listings carry it as a string." },
     ],
   },
   {
@@ -22,7 +22,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/zillow/properties/{zpid}",
     hasBody: false,
     params: [
-      { name: "zpid", flag: "zpid", in: "path", kind: "string", list: false, required: true, positional: true, description: "Zillow property id, the digits before `_zpid` in a home's Zillow URL." },
+      { name: "zpid", flag: "zpid", in: "path", kind: "integer", list: false, required: true, positional: true, description: "Zillow property id: the digits before `_zpid` in a home's Zillow URL, or the `zpid` of a property, comparable or address suggestion. Search listings carry it as a string." },
     ],
   },
   {
@@ -33,7 +33,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/zillow/properties/{zpid}/history",
     hasBody: false,
     params: [
-      { name: "zpid", flag: "zpid", in: "path", kind: "string", list: false, required: true, positional: true, description: "Zillow property id, the digits before `_zpid` in a home's Zillow URL." },
+      { name: "zpid", flag: "zpid", in: "path", kind: "integer", list: false, required: true, positional: true, description: "Zillow property id: the digits before `_zpid` in a home's Zillow URL, or the `zpid` of a property, comparable or address suggestion. Search listings carry it as a string." },
       { name: "metric", flag: "metric", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["zestimate", "rent_zestimate", "zestimate_change", "tax_paid", "tax_assessment"], default: "zestimate", description: "Which series: `zestimate` (monthly Zestimate), `rent_zestimate` (monthly Rent Zestimate), `zestimate_change` (monthly year-over-year change as a fraction), `tax_paid` (yearly property tax) or `tax_assessment` (yearly assessed value, as `Land` and `Structure` series)." },
       { name: "period", flag: "period", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["one_year", "five_years", "ten_years"], default: "ten_years", description: "How far back the series goes." },
     ],
