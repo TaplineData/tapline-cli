@@ -6,7 +6,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "list-listing-publishers",
     method: "list_listing_publishers",
-    summary: "Every publisher advertising the same property, when imovelweb groups duplicate listings (search results flag them in `duplicate`): each publisher's own listing id and URL, name, logo and ad tier, but no publisher id or price; fetch each `listing_id` from `/listings/{posting_id}` for those. A listing nobody else advertises answers an empty list.",
+    summary: "Every publisher advertising the same property, when imovelweb groups duplicate listings (search results flag them in `duplicate_group_id`): each publisher's own listing id and URL, name, logo and ad tier, but no publisher id or price; fetch each `listing_id` from `/listings/{posting_id}` for those. A listing nobody else advertises answers an empty list; imovelweb answers the same for an id it does not know, so an empty list is checked against the listing page and an unknown id answers 404.",
     credits: 1,
     route: "GET /v1/imovelweb/listings/{posting_id}/publishers",
     hasBody: false,
@@ -17,7 +17,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "list-listings",
     method: "list_listings",
-    summary: "Search imovelweb.com.br, Brazil's QuintoAndar-owned listings portal: homes and commercial property for sale, rent, short stays, auction and new developments, 30 per page. Each listing carries its price per operation, condo fee, rooms and areas, address with its state, city and district, coordinates, photos in every size, the publisher (type, CRECI licence and, when published, its main phone) and its WhatsApp number when the advertiser shows one. A development also carries its stage, delivery date, price and size ranges and unit groups in `development`. Fields imovelweb sends that this API does not decode stay in each record's `raw`, under imovelweb's names; a code imovelweb adds that this API has no name for yet decodes to null. About a fifth of listings hide their map position (`location.latitude` null); the detail route usually still has coordinates. Rent and season listings give the rental period only in their text. `applied_filters` is imovelweb's own account of the filters it applied, in this API's parameter names: compare it with the request to spot a filter imovelweb dropped. Search a publisher's portfolio with `publisher_id`. Pages stop at page 1,000 (30,000 listings); narrow the filters to reach the rest. Priced per page, not per listing.",
+    summary: "Search imovelweb.com.br, Brazil's QuintoAndar-owned listings portal: homes and commercial property for sale, rent, short stays, auction and new developments, 30 per page. Each listing carries its price per operation, condo fee, rooms and areas, address with its state, city and district, coordinates, photos in every size, the publisher (type, CRECI licence and, when published, its main phone) and its WhatsApp number when the advertiser shows one. A development also carries its stage, delivery date, price and size ranges and unit groups in `development`. Fields imovelweb sends that this API does not decode stay in each record's `raw`, under imovelweb's names; a code imovelweb adds that this API has no name for yet decodes to null. About a fifth of listings hide their map position (`location.latitude` null); the detail route usually still has coordinates. Rent and season listings give the rental period only in their text, and imovelweb sends no IPTU on search results. `applied_filters` is imovelweb's own account of the filters it applied, in this API's parameter names: compare it with the request to spot a filter imovelweb dropped. Search a publisher's portfolio with `publisher_id`. Pages stop at page 1,000 (30,000 listings); narrow the filters to reach the rest. Priced per page, not per listing.",
     credits: 2,
     route: "GET /v1/imovelweb/listings",
     hasBody: false,
@@ -68,7 +68,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "list-similar-listings",
     method: "list_similar_listings",
-    summary: "Listings imovelweb shows as similar to this one (same area, type and price band), from imovelweb's compact card: its operation, property type and price arrive as display text and come back decoded, with rooms and areas, address and photos; fetch `/listings/{posting_id}` for the full record. A development or a listing imovelweb pairs with nothing answers an empty list. imovelweb does not check the id: one it does not know answers a couple of generic listings.",
+    summary: "Listings imovelweb shows as similar to this one (same area, type and price band), from imovelweb's compact card: its operation, property type and price arrive as display text and come back decoded, with rooms and areas, address and photos; fetch `/listings/{posting_id}` for the full record. A development or a listing imovelweb pairs with nothing answers an empty list. imovelweb does not check the id, so the route reads the listing page first: an id imovelweb does not know answers 404.",
     credits: 1,
     route: "GET /v1/imovelweb/listings/{posting_id}/similar",
     hasBody: false,
@@ -80,7 +80,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "listing",
     method: "get_listing",
-    summary: "One listing's full page: the complete description as plain text (line breaks kept, imovelweb's markup removed), every photo and floor plan in every size, every amenity with the area it belongs to, prices per operation, condo fee, coordinates, publication date, imovelweb's view counter when it shows one, the publisher with CRECI licence and the first digits of its phone (`publisher.partial_phone`; the full numbers are on `/publishers/{publisher_id}`), and a development's stage, ranges and units. `has_duplicates` is true when other publishers list the same property; `/listings/{posting_id}/publishers` lists them. Fields imovelweb sends that this API does not decode stay in `raw`, under imovelweb's names; a code imovelweb adds that this API has no name for yet decodes to null. A listing id imovelweb does not know answers 404.",
+    summary: "One listing's full page: the complete description as plain text (line breaks kept, imovelweb's markup removed), every photo and floor plan in every size, every amenity with the area it belongs to, prices per operation, condo fee, the IPTU the page shows (`iptu`, no period given), coordinates, publication date, imovelweb's view counter when it shows one, the publisher with CRECI licence and the first digits of its phone (`publisher.partial_phone`; the full numbers are on `/publishers/{publisher_id}`), and a development's stage, ranges and units. `has_duplicates` is true when other publishers list the same property; `/listings/{posting_id}/publishers` lists them. Fields imovelweb sends that this API does not decode stay in `raw`, under imovelweb's names; a code imovelweb adds that this API has no name for yet decodes to null. A listing id imovelweb does not know answers 404.",
     credits: 2,
     route: "GET /v1/imovelweb/listings/{posting_id}",
     hasBody: false,
@@ -91,7 +91,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "map-listings",
     method: "map_listings",
-    summary: "Map markers for a search: the 100 most relevant listings with id, title, first listed operation and price (a listing offered for both sale and rent can show its sale price on a rent search) and coordinates, the count of matching listings imovelweb can place on the map (`total`, lower than the search total), the `viewport`, and, when you filter by one location, its `area` with level, centre and GeoJSON outline. Takes the filters of `/listings`; the markers cannot be paged or re-sorted. imovelweb's map fails on many filters across the whole country or a state; those answer 400 with the reason (not charged): narrow to a city or neighbourhood or use `/listings`. `max_age=launching_soon` fails wherever the map runs, so it answers 422 before any call.",
+    summary: "Map markers for a search: the 100 most relevant listings with id, title, first listed operation and price (a listing offered for both sale and rent can show its sale price on a rent search) and coordinates, the count of matching listings imovelweb can place on the map (`total`, lower than the search total), the `viewport`, and, when you filter by one location, its `area` with level, centre and GeoJSON outline. Takes the filters of `/listings`; the markers cannot be paged or re-sorted. imovelweb's map ignores `publisher_id`, so `applied_filters` leaves it out. imovelweb's map fails on many filters across the whole country or a state; those answer 400 with the reason (not charged): narrow to a city or neighbourhood or use `/listings`. `max_age=launching_soon` fails wherever the map runs, so it answers 422 before any call.",
     credits: 1,
     route: "GET /v1/imovelweb/listings/map",
     hasBody: false,
@@ -127,7 +127,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "publisher",
     method: "get_publisher",
-    summary: "An agency's or developer's profile: name, its phone text as the publisher writes it (`phone_text`) and parsed into +55 numbers (`phone_numbers`), office address, year joined, live and listed listing counts, logo, and the ratings buyers gave it (`ratings` is null when imovelweb keeps no statistics for the publisher; an unrated one has a null `review_count`, `average` and `recommend_percent`, and no questions). List its listings with `/listings?publisher_id=`. Owners selling directly (`publisher.type` `owner` on a search listing) have no profile page: their ids answer 404, and the listing's `whatsapp` is their contact. An id imovelweb does not know answers 404.",
+    summary: "An agency's or developer's profile: name, its phone text as the publisher writes it (`phone_text`) and parsed into +55 numbers (`phone_numbers`), office address, year joined, live and listed listing counts, logo, and the ratings buyers gave it (`ratings` is null when imovelweb keeps no statistics for the publisher; an unrated one has a null `review_count`, `average` and `recommend_percent`, and no questions). List its listings with `/listings?publisher_id=`. Owners selling directly (`publisher.type` `owner` on a search listing) have no profile page, so their ids answer the same 404 as an id imovelweb does not know; the listing's `whatsapp` is their contact.",
     credits: 2,
     route: "GET /v1/imovelweb/publishers/{publisher_id}",
     hasBody: false,
