@@ -37,6 +37,9 @@ const RUNNERS: Record<string, Command['run']> = {
       keyword: params.keyword as (string | null) | undefined,
       min_condo_fee: params.min_condo_fee as (number | null) | undefined,
       max_condo_fee: params.max_condo_fee as (number | null) | undefined,
+      development_stage: params.development_stage as imovelweb.ImovelwebDevelopmentStage[] | undefined,
+      without_guarantor: params.without_guarantor as boolean | undefined,
+      price_includes_condo_fee: params.price_includes_condo_fee as boolean | undefined,
     }),
   "list-locations": (client, { params }) =>
     client.imovelweb.listLocations({
@@ -77,6 +80,9 @@ const RUNNERS: Record<string, Command['run']> = {
       keyword: params.keyword as (string | null) | undefined,
       min_condo_fee: params.min_condo_fee as (number | null) | undefined,
       max_condo_fee: params.max_condo_fee as (number | null) | undefined,
+      development_stage: params.development_stage as imovelweb.ImovelwebDevelopmentStage[] | undefined,
+      without_guarantor: params.without_guarantor as boolean | undefined,
+      price_includes_condo_fee: params.price_includes_condo_fee as boolean | undefined,
     }),
   publisher: (client, { params }) =>
     client.imovelweb.getPublisher({
