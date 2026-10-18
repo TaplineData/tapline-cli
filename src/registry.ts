@@ -13,6 +13,8 @@ import { COMMAND_LIST as instagramCommands } from './services/instagram/commands
 import { COMMAND_LIST as pumpfunCommands } from './services/pumpfun/commands.js';
 import { COMMAND_LIST as tiktokCommands } from './services/tiktok/commands.js';
 import { COMMAND_LIST as birdeyeCommands } from './services/birdeye/commands.js';
+import { COMMAND_LIST as zillowCommands } from './services/zillow/commands.js';
+import { COMMAND_LIST as linkedinCommands } from './services/linkedin/commands.js';
 import { COMMAND_LIST as imovelwebCommands } from './services/imovelweb/commands.js';
 
 export const SERVICES: Service[] = [
@@ -28,5 +30,7 @@ export const SERVICES: Service[] = [
   { name: 'pumpfun', commands: pumpfunCommands },
   { name: 'tiktok', commands: tiktokCommands },
   { name: 'birdeye', commands: birdeyeCommands },
+  { name: 'zillow', commands: zillowCommands },
+  { name: 'linkedin', commands: linkedinCommands },
   { name: 'imovelweb', commands: imovelwebCommands },
 ];
