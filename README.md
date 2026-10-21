@@ -1,6 +1,6 @@
 # @tapline/cli
 
-`tapline` puts Tapline's YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Instagram, Pumpfun, TikTok, Birdeye, LinkedIn, and imovelweb APIs on your command line.
+`tapline` puts Tapline's YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Instagram, Pumpfun, TikTok, Birdeye, LinkedIn, imovelweb, and Expedia APIs on your command line.
 Every endpoint the [TypeScript client](https://www.npmjs.com/package/@tapline/client) exposes is a
 command, generated from the same API spec, so the two never drift apart.
 
@@ -54,6 +54,9 @@ tapline linkedin profile https://www.linkedin.com/in/williamhgates/
 tapline linkedin search-jobs --keywords "data engineer" --location "New York, United States" --posted-within past_week
 tapline imovelweb list-locations pinheiros
 tapline imovelweb list-listings --operation rent --location-id V1-Z-52 --min-bedrooms 2
+tapline expedia search-locations "new york"
+tapline expedia search-hotels 2621 --check-in 2026-12-14 --check-out 2026-12-16 --sort price_low_to_high
+tapline expedia list-hotel-rooms 19681371 --check-in 2026-12-14 --check-out 2026-12-16 --adults 2
 tapline airbnb search "Rio de Janeiro" --check-in 2026-11-01 --check-out 2026-11-05 --adults 2 --currency BRL
 ```
 
