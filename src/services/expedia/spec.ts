@@ -11,7 +11,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/expedia/hotels/{hotel_id}",
     hasBody: false,
     params: [
-      { name: "hotel_id", flag: "hotel-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Expedia hotel id: the number after `.h` in a hotel's Expedia URL (`...Pod-Times-Square.h19681371.Hotel-Information`), or `id` on a `/hotels` result." },
+      { name: "hotel_id", flag: "hotel-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Expedia hotel id, 1 to 2147483647: the number after `.h` in a hotel's Expedia URL (`...Pod-Times-Square.h19681371.Hotel-Information`), or `id` on a `/hotels` result." },
     ],
   },
   {
@@ -23,7 +23,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "hotel_id", flag: "hotel-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Expedia hotel id: the number after `.h` in a hotel's Expedia URL (`...Pod-Times-Square.h19681371.Hotel-Information`), or `id` on a `/hotels` result." },
+      { name: "hotel_id", flag: "hotel-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Expedia hotel id, 1 to 2147483647: the number after `.h` in a hotel's Expedia URL (`...Pod-Times-Square.h19681371.Hotel-Information`), or `id` on a `/hotels` result." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["most_recent", "highest_rating", "lowest_rating"], default: "most_recent", description: "`most_recent`, `highest_rating` or `lowest_rating`." },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "", description: "`pagination.next_cursor` from the previous page; empty for the first page. The cursor holds only a position, so send it with the same parameters as the page it came from." },
     ],
@@ -36,7 +36,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/expedia/hotels/{hotel_id}/rooms",
     hasBody: false,
     params: [
-      { name: "hotel_id", flag: "hotel-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Expedia hotel id: the number after `.h` in a hotel's Expedia URL (`...Pod-Times-Square.h19681371.Hotel-Information`), or `id` on a `/hotels` result." },
+      { name: "hotel_id", flag: "hotel-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Expedia hotel id, 1 to 2147483647: the number after `.h` in a hotel's Expedia URL (`...Pod-Times-Square.h19681371.Hotel-Information`), or `id` on a `/hotels` result." },
       { name: "check_in", flag: "check-in", in: "query", kind: "string", list: false, required: true, positional: true, description: "Arrival date, `YYYY-MM-DD`: today or later, at most 500 days ahead." },
       { name: "check_out", flag: "check-out", in: "query", kind: "string", list: false, required: true, positional: true, description: "Departure date, `YYYY-MM-DD`: after `check_in`, at most 28 nights later." },
       { name: "adults", flag: "adults", in: "query", kind: "integer", list: false, required: false, positional: false, default: "2", description: "Adults in the room." },
