@@ -6,6 +6,14 @@ import type { Command } from '../../runtime/types.js';
 import { COMMANDS } from './spec.js';
 
 const RUNNERS: Record<string, Command['run']> = {
+  "fare-calendar": (client, { params }) =>
+    client.expedia.getFareCalendar({
+      origin: params.origin as string,
+      destination: params.destination as string,
+      departure_date: params.departure_date as string,
+      return_date: params.return_date as (string | null) | undefined,
+      cabin: params.cabin as expedia.ExpediaFlightCabin | undefined,
+    }),
   hotel: (client, { params }) =>
     client.expedia.getHotel({
       hotel_id: params.hotel_id as string,
@@ -23,6 +31,27 @@ const RUNNERS: Record<string, Command['run']> = {
       check_out: params.check_out as string,
       adults: params.adults as number | undefined,
       children_ages: params.children_ages as (number[] | null) | undefined,
+    }),
+  "search-airports": (client, { params }) =>
+    client.expedia.searchAirports({
+      query: params.query as string,
+      limit: params.limit as number | undefined,
+    }),
+  "search-flights": (client, { params }) =>
+    client.expedia.searchFlights({
+      origin: params.origin as string,
+      destination: params.destination as string,
+      departure_date: params.departure_date as string,
+      return_date: params.return_date as (string | null) | undefined,
+      cabin: params.cabin as expedia.ExpediaFlightCabin | undefined,
+      adults: params.adults as number | undefined,
+      children_ages: params.children_ages as (number[] | null) | undefined,
+      infants_in_lap: params.infants_in_lap as number | undefined,
+      sort: params.sort as expedia.ExpediaFlightSort | undefined,
+      max_stops: params.max_stops as (number | null) | undefined,
+      airlines: params.airlines as (string[] | null) | undefined,
+      departure_time: params.departure_time as (expedia.ExpediaFlightTimeOfDay | null) | undefined,
+      refundable: params.refundable as boolean | undefined,
     }),
   "search-hotels": (client, { params }) =>
     client.expedia.searchHotels({
@@ -45,6 +74,28 @@ const RUNNERS: Record<string, Command['run']> = {
     client.expedia.searchLocations({
       query: params.query as string,
       limit: params.limit as number | undefined,
+    }),
+  "search-multi-city-flights": (client, { params }) =>
+    client.expedia.searchMultiCityFlights({
+      legs: params.legs as string[],
+      cabin: params.cabin as expedia.ExpediaFlightCabin | undefined,
+      adults: params.adults as number | undefined,
+      children_ages: params.children_ages as (number[] | null) | undefined,
+      infants_in_lap: params.infants_in_lap as number | undefined,
+      sort: params.sort as expedia.ExpediaFlightSort | undefined,
+      max_stops: params.max_stops as (number | null) | undefined,
+      airlines: params.airlines as (string[] | null) | undefined,
+      departure_time: params.departure_time as (expedia.ExpediaFlightTimeOfDay | null) | undefined,
+      refundable: params.refundable as boolean | undefined,
+    }),
+  "search-next-leg": (client, { params }) =>
+    client.expedia.searchNextLeg({
+      token: params.token as string,
+      sort: params.sort as expedia.ExpediaFlightSort | undefined,
+      max_stops: params.max_stops as (number | null) | undefined,
+      airlines: params.airlines as (string[] | null) | undefined,
+      departure_time: params.departure_time as (expedia.ExpediaFlightTimeOfDay | null) | undefined,
+      refundable: params.refundable as boolean | undefined,
     }),
 };
 
