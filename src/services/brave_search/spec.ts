@@ -98,7 +98,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/brave-search/suggestions",
     hasBody: false,
     params: [
-      { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text. Operators such as `site:`, quotes and `-term` work; `intitle:` and `inurl:` don't." },
+      { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text. Operators such as `site:`, quotes and `-term` work; `intitle:`, `inurl:`, `intext:` and `inanchor:` don't." },
     ],
   },
   {
@@ -148,7 +148,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "spellcheck", flag: "spellcheck", in: "query", kind: "boolean", list: false, required: false, positional: false, default: "true", description: "Correct misspelt queries." },
       { name: "goggle_url", flag: "goggle-url", in: "query", kind: "string", list: false, required: false, positional: false, description: "A Goggle's `url` from `/goggles` to re-rank results. A Goggle the search has not indexed is ignored; check one with `/goggles/profile`." },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first. Send it with the same filters. Brave serves 6 pages on `/search` and 2 on `/news` and `/videos`." },
-      { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text. Operators such as `site:`, quotes and `-term` work; `intitle:` and `inurl:` don't." },
+      { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text. Operators such as `site:`, quotes and `-term` work; `intitle:`, `inurl:`, `intext:` and `inanchor:` don't." },
       { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"], default: "us", description: "Country to search from." },
       { name: "safe_search", flag: "safe-search", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["strict", "moderate", "off"], default: "moderate", description: "Adult-content filter." },
       { name: "freshness", flag: "freshness", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["any", "past_day", "past_week", "past_month", "past_year"], default: "any", description: "Only pages from the past day, week, month or year." },
@@ -176,7 +176,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/brave-search/images",
     hasBody: false,
     params: [
-      { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text. Operators such as `site:`, quotes and `-term` work; `intitle:` and `inurl:` don't." },
+      { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text. Operators such as `site:`, quotes and `-term` work; `intitle:`, `inurl:`, `intext:` and `inanchor:` don't." },
       { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"], default: "us", description: "Country to search from." },
       { name: "safe_search", flag: "safe-search", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["strict", "moderate", "off"], default: "moderate", description: "Adult-content filter." },
     ],
@@ -191,7 +191,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first. Send it with the same filters. Brave serves 6 pages on `/search` and 2 on `/news` and `/videos`." },
-      { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text. Operators such as `site:`, quotes and `-term` work; `intitle:` and `inurl:` don't." },
+      { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text. Operators such as `site:`, quotes and `-term` work; `intitle:`, `inurl:`, `intext:` and `inanchor:` don't." },
       { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"], default: "us", description: "Country to search from." },
       { name: "safe_search", flag: "safe-search", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["strict", "moderate", "off"], default: "moderate", description: "Adult-content filter." },
       { name: "freshness", flag: "freshness", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["any", "past_day", "past_week", "past_month", "past_year"], default: "any", description: "Only pages from the past day, week, month or year." },
@@ -223,7 +223,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first. Send it with the same filters. Brave serves 6 pages on `/search` and 2 on `/news` and `/videos`." },
-      { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text. Operators such as `site:`, quotes and `-term` work; `intitle:` and `inurl:` don't." },
+      { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text. Operators such as `site:`, quotes and `-term` work; `intitle:`, `inurl:`, `intext:` and `inanchor:` don't." },
       { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"], default: "us", description: "Country to search from." },
       { name: "safe_search", flag: "safe-search", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["strict", "moderate", "off"], default: "moderate", description: "Adult-content filter." },
       { name: "freshness", flag: "freshness", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["any", "past_day", "past_week", "past_month", "past_year"], default: "any", description: "Only videos from the past day, week, month or year." },
