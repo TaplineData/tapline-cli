@@ -6,23 +6,53 @@ import type { Command } from '../../runtime/types.js';
 import { COMMANDS } from './spec.js';
 
 const RUNNERS: Record<string, Command['run']> = {
+  activity: (client, { params }) =>
+    client.expedia.getActivity({
+      activity_id: params.activity_id as string,
+      start_date: params.start_date as (string | null) | undefined,
+      end_date: params.end_date as (string | null) | undefined,
+    }),
   hotel: (client, { params }) =>
     client.expedia.getHotel({
       hotel_id: params.hotel_id as string,
+    }),
+  "hotel-calendar": (client, { params }) =>
+    client.expedia.getHotelCalendar({
+      hotel_id: params.hotel_id as string,
+      check_in: params.check_in as (string | null) | undefined,
+      check_out: params.check_out as (string | null) | undefined,
+    }),
+  "list-hotel-activities": (client, { params }) =>
+    client.expedia.listHotelActivities({
+      hotel_id: params.hotel_id as string,
+      sort: params.sort as expedia.ExpediaActivitySort | undefined,
+      cursor: params.cursor as string | undefined,
+      start_date: params.start_date as string,
+      end_date: params.end_date as string,
     }),
   "list-hotel-reviews": (client, { params }) =>
     client.expedia.listHotelReviews({
       hotel_id: params.hotel_id as string,
       sort: params.sort as expedia.ExpediaReviewSort | undefined,
+      traveler_type: params.traveler_type as expedia.ExpediaTravelerType | undefined,
       cursor: params.cursor as string | undefined,
     }),
   "list-hotel-rooms": (client, { params }) =>
     client.expedia.listHotelRooms({
       hotel_id: params.hotel_id as string,
+      region_id: params.region_id as (string | null) | undefined,
       check_in: params.check_in as string,
       check_out: params.check_out as string,
       adults: params.adults as number | undefined,
       children_ages: params.children_ages as (number[] | null) | undefined,
+    }),
+  "search-activities": (client, { params }) =>
+    client.expedia.searchActivities({
+      region_id: params.region_id as string,
+      sort: params.sort as expedia.ExpediaActivitySort | undefined,
+      cursor: params.cursor as string | undefined,
+      start_date: params.start_date as string,
+      end_date: params.end_date as string,
     }),
   "search-hotels": (client, { params }) =>
     client.expedia.searchHotels({
