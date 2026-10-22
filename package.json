@@ -1,6 +1,6 @@
 {
   "name": "@tapline/cli",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Command-line access to Tapline's web scraping APIs for YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Instagram, Pumpfun, TikTok, Birdeye, LinkedIn, imovelweb and Expedia.",
   "license": "MIT",
   "type": "module",
@@ -63,7 +63,7 @@
     "dist"
   ],
   "dependencies": {
-    "@tapline/client": "^0.2.9"
+    "@tapline/client": "^0.2.10"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
