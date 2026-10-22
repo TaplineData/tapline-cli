@@ -54,8 +54,8 @@ tapline linkedin profile https://www.linkedin.com/in/williamhgates/
 tapline linkedin search-jobs --keywords "data engineer" --location "New York, United States" --posted-within past_week
 tapline imovelweb list-locations pinheiros
 tapline imovelweb list-listings --operation rent --location-id V1-Z-52 --min-bedrooms 2
-tapline brave_search search "rust async runtime" --freshness past_month
-tapline brave_search search-places ramen 35.6762 139.6503
+tapline brave-search search "rust async runtime" --freshness past_month
+tapline brave-search search-places ramen 35.6762 139.6503
 tapline airbnb search "Rio de Janeiro" --check-in 2026-11-01 --check-out 2026-11-05 --adults 2 --currency BRL
 ```
 

@@ -34,5 +34,5 @@ export const SERVICES: Service[] = [
   { name: 'zillow', commands: zillowCommands },
   { name: 'linkedin', commands: linkedinCommands },
   { name: 'imovelweb', commands: imovelwebCommands },
-  { name: 'brave_search', commands: braveSearchCommands },
+  { name: 'brave-search', commands: braveSearchCommands },
 ];

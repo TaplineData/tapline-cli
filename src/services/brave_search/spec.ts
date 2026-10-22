@@ -24,9 +24,9 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "origin", flag: "origin", in: "query", kind: "string", list: false, required: true, positional: true, description: "`latitude,longitude`." },
       { name: "destination", flag: "destination", in: "query", kind: "string", list: false, required: true, positional: true, description: "`latitude,longitude`." },
-      { name: "via", flag: "via", in: "query", kind: "string", list: true, required: false, positional: false, commaSeparated: false, default: "[]", description: "A stop on the way, `latitude,longitude`; repeat the parameter for several." },
+      { name: "via", flag: "via", in: "query", kind: "string", list: true, required: false, positional: false, commaSeparated: false, description: "A stop on the way, `latitude,longitude`; repeat the parameter for several." },
       { name: "profile", flag: "profile", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["driving", "walking", "bicycle"], default: "driving", description: "How you travel." },
-      { name: "avoid", flag: "avoid", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["highways", "tolls", "ferries"], default: "[]", description: "Features to avoid; walking and cycling routes take only `ferries`, which they otherwise may use. Repeat for several." },
+      { name: "avoid", flag: "avoid", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["highways", "tolls", "ferries"], description: "Features to avoid; walking and cycling routes take only `ferries`, which they otherwise may use. Repeat for several." },
       { name: "departure_time", flag: "departure-time", in: "query", kind: "string", list: false, required: false, positional: false, description: "Local departure time, `YYYY-MM-DDTHH:MM`. Not with `arrival_time`." },
       { name: "arrival_time", flag: "arrival-time", in: "query", kind: "string", list: false, required: false, positional: false, description: "Local arrival time, `YYYY-MM-DDTHH:MM`. Not with `departure_time`." },
     ],
@@ -147,7 +147,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "spellcheck", flag: "spellcheck", in: "query", kind: "boolean", list: false, required: false, positional: false, default: "true", description: "Correct misspelt queries." },
       { name: "goggle_url", flag: "goggle-url", in: "query", kind: "string", list: false, required: false, positional: false, description: "A Goggle's `url` from `/goggles` to re-rank results. A Goggle the search has not indexed is ignored; check one with `/goggles/profile`." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "", description: "`pagination.next_cursor` from the previous page; empty for the first. Send it with the same filters. Brave serves 6 pages on `/search` and 2 on `/news` and `/videos`." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first. Send it with the same filters. Brave serves 6 pages on `/search` and 2 on `/news` and `/videos`." },
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text. Operators such as `site:`, quotes and `-term` work." },
       { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"], default: "us", description: "Country to search from." },
       { name: "safe_search", flag: "safe-search", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["strict", "moderate", "off"], default: "moderate", description: "Adult-content filter." },
@@ -190,7 +190,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "", description: "`pagination.next_cursor` from the previous page; empty for the first. Send it with the same filters. Brave serves 6 pages on `/search` and 2 on `/news` and `/videos`." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first. Send it with the same filters. Brave serves 6 pages on `/search` and 2 on `/news` and `/videos`." },
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text. Operators such as `site:`, quotes and `-term` work." },
       { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"], default: "us", description: "Country to search from." },
       { name: "safe_search", flag: "safe-search", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["strict", "moderate", "off"], default: "moderate", description: "Adult-content filter." },
@@ -222,7 +222,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "", description: "`pagination.next_cursor` from the previous page; empty for the first. Send it with the same filters. Brave serves 6 pages on `/search` and 2 on `/news` and `/videos`." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first. Send it with the same filters. Brave serves 6 pages on `/search` and 2 on `/news` and `/videos`." },
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text. Operators such as `site:`, quotes and `-term` work." },
       { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"], default: "us", description: "Country to search from." },
       { name: "safe_search", flag: "safe-search", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["strict", "moderate", "off"], default: "moderate", description: "Adult-content filter." },
@@ -240,8 +240,8 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "fixture_id", flag: "fixture-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "A game `id` from a games answer." },
       { name: "sport", flag: "sport", in: "query", kind: "string", list: false, required: true, positional: true, choices: ["football", "american_football"], description: "The game's sport." },
-      { name: "league_id", flag: "league-id", in: "query", kind: "string", list: false, required: true, positional: true, description: "League id: `39` Premier League, `12` NBA, `1` MLB, `57` NHL, `nfl` NFL." },
-      { name: "season", flag: "season", in: "query", kind: "string", list: false, required: true, positional: true, description: "Season by its start year, `2026`. NBA and other basketball leagues that span two years take `2026-2027`." },
+      { name: "league_id", flag: "league-id", in: "query", kind: "string", list: false, required: true, positional: true, description: "League id: `39` Premier League or another football league, `nfl` NFL." },
+      { name: "season", flag: "season", in: "query", kind: "string", list: false, required: true, positional: true, description: "Season by its start year, `2026`." },
     ],
   },
   {
@@ -267,7 +267,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "origin", flag: "origin", in: "query", kind: "string", list: false, required: true, positional: true, description: "`latitude,longitude`." },
       { name: "destination", flag: "destination", in: "query", kind: "string", list: false, required: true, positional: true, description: "`latitude,longitude`." },
-      { name: "exclude_modes", flag: "exclude-modes", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["bus", "subway", "train", "light_rail", "ferry"], default: "[]", description: "Transit modes to leave out; repeat for several." },
+      { name: "exclude_modes", flag: "exclude-modes", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["bus", "subway", "train", "light_rail", "ferry"], description: "Transit modes to leave out; repeat for several." },
       { name: "max_changes", flag: "max-changes", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Most changes between vehicles." },
       { name: "max_walking_meters", flag: "max-walking-meters", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Longest walk in meters." },
       { name: "wheelchair_accessible", flag: "wheelchair-accessible", in: "query", kind: "boolean", list: false, required: false, positional: false, default: "false", description: "Only wheelchair-accessible routes." },
