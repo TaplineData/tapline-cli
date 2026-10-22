@@ -1,5 +1,7 @@
 import { UsageError } from './errors.js';
 
+const NEGATIVE_NUMBER = /^-\d/;
+
 export interface OptionSpec {
   flag: string;
   takesValue: boolean;
@@ -48,7 +50,7 @@ export function parseArgv(argv: string[], options: OptionSpec[], usage: string):
 
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i]!;
-    if (onlyPositionals || arg === '-' || !arg.startsWith('-')) {
+    if (onlyPositionals || arg === '-' || !arg.startsWith('-') || NEGATIVE_NUMBER.test(arg)) {
       positionals.push(arg);
       continue;
     }

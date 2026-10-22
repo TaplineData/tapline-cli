@@ -16,6 +16,7 @@ import { COMMAND_LIST as birdeyeCommands } from './services/birdeye/commands.js'
 import { COMMAND_LIST as zillowCommands } from './services/zillow/commands.js';
 import { COMMAND_LIST as linkedinCommands } from './services/linkedin/commands.js';
 import { COMMAND_LIST as imovelwebCommands } from './services/imovelweb/commands.js';
+import { COMMAND_LIST as braveSearchCommands } from './services/brave_search/commands.js';
 
 export const SERVICES: Service[] = [
   { name: 'airbnb', commands: airbnbCommands },
@@ -33,4 +34,5 @@ export const SERVICES: Service[] = [
   { name: 'zillow', commands: zillowCommands },
   { name: 'linkedin', commands: linkedinCommands },
   { name: 'imovelweb', commands: imovelwebCommands },
+  { name: 'brave_search', commands: braveSearchCommands },
 ];

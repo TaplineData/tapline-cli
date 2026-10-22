@@ -60,7 +60,8 @@ function scalar(param: ParamSpec, raw: string): unknown {
 
 function coerce(param: ParamSpec, raws: string[]): unknown {
   if (!param.list) return scalar(param, raws[raws.length - 1]!);
-  const members = param.kind === 'json' ? raws : raws.flatMap((raw) => raw.split(',').map((part) => part.trim()));
+  const isSplit = param.kind !== 'json' && param.commaSeparated !== false;
+  const members = isSplit ? raws.flatMap((raw) => raw.split(',').map((part) => part.trim())) : raws;
   return members.map((member) => scalar(param, member));
 }
 

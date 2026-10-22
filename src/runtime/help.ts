@@ -47,7 +47,7 @@ function describe(param: ParamSpec): string {
   if (param.choices && param.choices.length > MAX_INLINE_CHOICES) {
     parts.push(`One of: ${param.choices.join(', ')}.`);
   }
-  if (param.list) parts.push('Repeatable, or comma-separated.');
+  if (param.list) parts.push(param.commaSeparated === false ? 'Repeatable.' : 'Repeatable, or comma-separated.');
   if (param.kind === 'json') parts.push('A JSON value, or @file to read one.');
   if (param.default !== undefined) parts.push(`The API defaults to ${param.default}.`);
   return parts.join(' ');

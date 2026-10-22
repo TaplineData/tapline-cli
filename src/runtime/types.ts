@@ -12,6 +12,8 @@ export interface ParamSpec {
   in: ParamLocation;
   kind: ParamKind;
   list: boolean;
+  /** False when a list's items may hold commas themselves, as `lat,lng` pairs do. */
+  commaSeparated?: false;
   required: boolean;
   /** Whether this parameter can also be given as a positional argument. */
   positional: boolean;
