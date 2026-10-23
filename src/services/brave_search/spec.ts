@@ -139,7 +139,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "search",
     method: "search",
-    summary: "Search the web: 20 ranked results per page with the news, videos, places, answers and cards shown beside them.",
+    summary: "Search the web: 20 ranked results per page with the news, videos, places, answers and cards shown beside them. `site:linkedin.com/in` is refused upstream; send `site:www.linkedin.com/in`.",
     credits: 5,
     route: "GET /v1/brave-search/search",
     hasBody: false,
