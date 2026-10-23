@@ -1,6 +1,6 @@
 # @tapline/cli
 
-`tapline` puts Tapline's YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Instagram, Pumpfun, TikTok, Birdeye, LinkedIn, imovelweb, and Brave Search APIs on your command line.
+`tapline` puts Tapline's YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Instagram, Pumpfun, TikTok, Birdeye, LinkedIn, imovelweb, Expedia, and Brave Search APIs on your command line.
 Every endpoint the [TypeScript client](https://www.npmjs.com/package/@tapline/client) exposes is a
 command, generated from the same API spec, so the two never drift apart.
 
@@ -54,6 +54,12 @@ tapline linkedin profile https://www.linkedin.com/in/williamhgates/
 tapline linkedin search-jobs --keywords "data engineer" --location "New York, United States" --posted-within past_week
 tapline imovelweb list-locations pinheiros
 tapline imovelweb list-listings --operation rent --location-id V1-Z-52 --min-bedrooms 2
+tapline expedia search-locations "new york"
+tapline expedia search-hotels 2621 --check-in 2026-12-14 --check-out 2026-12-16 --sort price_low_to_high
+tapline expedia list-hotel-rooms 19681371 --check-in 2026-12-14 --check-out 2026-12-16 --adults 2
+tapline expedia hotel-calendar 105590218
+tapline expedia search-activities 2621 --start-date 2026-12-14 --end-date 2026-12-16
+tapline expedia search-flights JFK CDG 2026-12-14 --return-date 2026-12-21 --max-stops 0
 tapline brave-search search "rust async runtime" --freshness past_month
 tapline brave-search search-places ramen 35.6762 139.6503
 tapline airbnb search "Rio de Janeiro" --check-in 2026-11-01 --check-out 2026-11-05 --adults 2 --currency BRL
