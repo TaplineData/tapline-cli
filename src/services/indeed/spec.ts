@@ -7,7 +7,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "company",
     method: "get_company",
     summary: "Get a company's profile, employee ratings, happiness scores and average pay in the country.",
-    credits: 1,
+    credits: 2,
     route: "GET /v1/indeed/companies/{company_key}",
     hasBody: false,
     params: [
@@ -20,7 +20,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "job",
     method: "get_job",
     summary: "Get one job posting's full record by its key.",
-    credits: 1,
+    credits: 2,
     route: "GET /v1/indeed/jobs/{job_key}",
     hasBody: false,
     params: [
@@ -32,7 +32,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "list-company-directory",
     method: "list_company_directory",
     summary: "List companies by name, industry or the job titles they hire for, optionally in one place, with their ratings.",
-    credits: 1,
+    credits: 2,
     route: "GET /v1/indeed/companies/directory",
     hasBody: false,
     params: [
@@ -46,7 +46,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "list-company-jobs",
     method: "list_company_jobs",
     summary: "List a company's job postings, up to 25 per call, with the filters job search takes.",
-    credits: 7,
+    credits: 10,
     route: "GET /v1/indeed/companies/{company_key}/jobs",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
@@ -75,7 +75,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "list-job-title-suggestions",
     method: "list_job_title_suggestions",
     summary: "Suggest job searches for partly typed text.",
-    credits: 1,
+    credits: 2,
     route: "GET /v1/indeed/suggestions/job-titles",
     hasBody: false,
     params: [
@@ -89,7 +89,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "list-location-suggestions",
     method: "list_location_suggestions",
     summary: "Suggest places for partly typed text.",
-    credits: 1,
+    credits: 2,
     route: "GET /v1/indeed/suggestions/locations",
     hasBody: false,
     params: [
@@ -103,7 +103,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "list-popular-searches",
     method: "list_popular_searches",
     summary: "List the searches run most on a country site.",
-    credits: 1,
+    credits: 2,
     route: "GET /v1/indeed/popular-searches",
     hasBody: false,
     params: [
@@ -116,7 +116,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "salaries",
     method: "get_salaries",
     summary: "Get average reported pay per pay period for a place, optionally one job title or company.",
-    credits: 1,
+    credits: 2,
     route: "GET /v1/indeed/salaries",
     hasBody: false,
     params: [
@@ -129,7 +129,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "search-companies",
     method: "search_companies",
     summary: "Find companies by name, with the keys the company routes take.",
-    credits: 1,
+    credits: 2,
     route: "GET /v1/indeed/companies/search",
     hasBody: false,
     params: [
@@ -143,7 +143,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "search-jobs",
     method: "search_jobs",
     summary: "Search job postings by keywords, place and filters, up to 25 per call; every result carries the full job record.",
-    credits: 7,
+    credits: 10,
     route: "GET /v1/indeed/jobs/search",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
