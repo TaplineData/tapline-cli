@@ -1,7 +1,7 @@
 {
   "name": "@tapline/cli",
   "version": "0.1.10",
-  "description": "Command-line access to Tapline's web scraping APIs for YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Instagram, Pumpfun, TikTok, Birdeye, LinkedIn, imovelweb, Expedia and Brave Search.",
+  "description": "Command-line access to Tapline's web scraping APIs for YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Instagram, Pumpfun, TikTok, Birdeye, LinkedIn, imovelweb, Expedia, Brave Search and Indeed.",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -38,6 +38,7 @@
     "flights",
     "airfare",
     "brave-search",
+    "indeed",
     "api",
     "client",
     "sdk",
@@ -53,6 +54,8 @@
     "ponsfamily-api",
     "search-api",
     "serp-api",
+    "jobs-api",
+    "job-postings",
     "crypto-data",
     "dex-data"
   ],

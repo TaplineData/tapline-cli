@@ -18,6 +18,7 @@ import { COMMAND_LIST as linkedinCommands } from './services/linkedin/commands.j
 import { COMMAND_LIST as imovelwebCommands } from './services/imovelweb/commands.js';
 import { COMMAND_LIST as expediaCommands } from './services/expedia/commands.js';
 import { COMMAND_LIST as braveSearchCommands } from './services/brave_search/commands.js';
+import { COMMAND_LIST as indeedCommands } from './services/indeed/commands.js';
 
 export const SERVICES: Service[] = [
   { name: 'airbnb', commands: airbnbCommands },
@@ -37,4 +38,5 @@ export const SERVICES: Service[] = [
   { name: 'imovelweb', commands: imovelwebCommands },
   { name: 'expedia', commands: expediaCommands },
   { name: 'brave-search', commands: braveSearchCommands },
+  { name: 'indeed', commands: indeedCommands },
 ];
