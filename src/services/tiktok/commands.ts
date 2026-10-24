@@ -58,34 +58,10 @@ const RUNNERS: Record<string, Command['run']> = {
       cursor: params.cursor as (number | null) | undefined,
       trim: params.trim as (boolean | null) | undefined,
     }),
-  "search-keyword": (client, { params }) =>
-    client.tiktok.searchKeyword({
-      query: params.query as string,
-      date_posted: params.date_posted as (tiktok.SearchKeywordParamsDatePosted | null) | undefined,
-      sort_by: params.sort_by as (tiktok.SearchKeywordParamsSortBy | null) | undefined,
-      region: params.region as (string | null) | undefined,
-      cursor: params.cursor as (number | null) | undefined,
-      trim: params.trim as (boolean | null) | undefined,
-    }),
   "search-suggestions": (client, { params }) =>
     client.tiktok.getSearchSuggestions({
       query: params.query as string,
       region: params.region as (string | null) | undefined,
-    }),
-  "search-top": (client, { params }) =>
-    client.tiktok.searchTop({
-      query: params.query as string,
-      publish_time: params.publish_time as (tiktok.SearchTopParamsPublishTime | null) | undefined,
-      sort_by: params.sort_by as (tiktok.SearchTopParamsSortBy | null) | undefined,
-      region: params.region as (string | null) | undefined,
-      cursor: params.cursor as (number | null) | undefined,
-    }),
-  "search-users": (client, { params }) =>
-    client.tiktok.searchUsers({
-      query: params.query as string,
-      region: params.region as (string | null) | undefined,
-      cursor: params.cursor as (number | null) | undefined,
-      trim: params.trim as (boolean | null) | undefined,
     }),
   song: (client, { params }) =>
     client.tiktok.getSong({
