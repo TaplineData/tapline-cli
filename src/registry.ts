@@ -19,6 +19,9 @@ import { COMMAND_LIST as imovelwebCommands } from './services/imovelweb/commands
 import { COMMAND_LIST as expediaCommands } from './services/expedia/commands.js';
 import { COMMAND_LIST as braveSearchCommands } from './services/brave_search/commands.js';
 import { COMMAND_LIST as indeedCommands } from './services/indeed/commands.js';
+import { COMMAND_LIST as facebookCommands } from './services/facebook/commands.js';
+import { COMMAND_LIST as facebookAdLibraryCommands } from './services/facebook_ad_library/commands.js';
+import { COMMAND_LIST as facebookMarketplaceCommands } from './services/facebook_marketplace/commands.js';
 
 export const SERVICES: Service[] = [
   { name: 'airbnb', commands: airbnbCommands },
@@ -39,4 +42,7 @@ export const SERVICES: Service[] = [
   { name: 'expedia', commands: expediaCommands },
   { name: 'brave-search', commands: braveSearchCommands },
   { name: 'indeed', commands: indeedCommands },
+  { name: 'facebook', commands: facebookCommands },
+  { name: 'facebook-ad-library', commands: facebookAdLibraryCommands },
+  { name: 'facebook-marketplace', commands: facebookMarketplaceCommands },
 ];
