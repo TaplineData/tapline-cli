@@ -119,6 +119,21 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
+    name: "search-keyword",
+    method: "search_keyword",
+    summary: "The first page of videos matching a keyword, usually about 10 results. US, all-time, relevance order only. Pagination is not supported.",
+    credits: 2,
+    route: "GET /v1/tiktok/search/keyword",
+    hasBody: false,
+    params: [
+      { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "What to search TikTok for." },
+      { name: "date_posted", flag: "date-posted", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all-time"], description: "Only all-time search is supported." },
+      { name: "sort_by", flag: "sort-by", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["relevance"], description: "Only relevance order is supported." },
+      { name: "region", flag: "region", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["US"], description: "Search from the US. Other regions are not supported." },
+      { name: "trim", flag: "trim", in: "query", kind: "boolean", list: false, required: false, positional: false, description: "Set to `true` to return fewer fields per item." },
+    ],
+  },
+  {
     name: "search-suggestions",
     method: "get_search_suggestions",
     summary: "Autocomplete suggestions for a search, with `text`, `position`, `language`, and `score` for each.",
@@ -128,6 +143,20 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "What to search TikTok for." },
       { name: "region", flag: "region", in: "query", kind: "string", list: false, required: false, positional: false, description: "Two-letter country code for the proxy, such as `US`, `GB` or `PH`. TikTok answers as it does to a viewer in that country; it does not filter results to that country." },
+    ],
+  },
+  {
+    name: "search-top",
+    method: "search_top",
+    summary: "The first page of top videos and photo carousels for a query, usually about 10 results. US, all-time, relevance order only. Pagination is not supported.",
+    credits: 2,
+    route: "GET /v1/tiktok/search/top",
+    hasBody: false,
+    params: [
+      { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "What to search TikTok for." },
+      { name: "publish_time", flag: "publish-time", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all-time"], description: "Only all-time search is supported." },
+      { name: "sort_by", flag: "sort-by", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["relevance"], description: "Only relevance order is supported." },
+      { name: "region", flag: "region", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["US"], description: "Search from the US. Other regions are not supported." },
     ],
   },
   {
