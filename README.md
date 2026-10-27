@@ -48,8 +48,6 @@ tapline instagram post https://www.instagram.com/reel/Dd9Etk7R91I/
 tapline tiktok profile --handle stoolpresidente
 tapline tiktok video https://www.tiktok.com/@stoolpresidente/video/7517114944362499342
 tapline tiktok trending-feed US
-tapline tiktok search-keyword "pizza" --trim
-tapline tiktok search-top "coffee"
 tapline birdeye token-overview solana JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN
 tapline birdeye list-leaderboard base --interval 7d
 tapline linkedin profile https://www.linkedin.com/in/williamhgates/
@@ -127,7 +125,3 @@ tapline youtube comments jNQXAC9IVRw --cursor Ei0SC2...
 ## License
 
 MIT
-
-TikTok `search-keyword` and `search-top` return the first page only, from the US in
-relevance order across all time. They have no cursor or pagination options. Keyword
-search supports `--trim`; other regions, date filters, and sort orders are rejected.

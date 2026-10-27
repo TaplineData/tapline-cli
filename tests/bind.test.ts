@@ -77,15 +77,3 @@ test('a list of coordinate pairs keeps each pair whole and a negative number bin
   });
   assert.match(commandHelp('maps', command), /Repeatable\.(?! or)/);
 });
-
-test('TikTok first-page search rejects cursor flags and has no pagination metadata', async () => {
-  const { COMMANDS } = await import('../src/services/tiktok/spec.js');
-  for (const name of ['search-keyword', 'search-top']) {
-    const command = COMMANDS.find((candidate) => candidate.name === name)!;
-    assert.equal(command.pagination, undefined);
-    assert.throws(
-      () => parseArgv(['pizza', '--cursor', '0'], commandOptions(command), `tapline tiktok ${name}`),
-      UsageError,
-    );
-  }
-});
