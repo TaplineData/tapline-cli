@@ -67,6 +67,7 @@ const RUNNERS: Record<string, Command['run']> = {
     client.youtube.getSubtitles({
       video_id: params.video_id as string,
       language: params.language as string | undefined,
+      fallback_languages: params.fallback_languages as (string[] | null) | undefined,
       subtitle_format: params.subtitle_format as youtube.SubtitleFormat | undefined,
       source: params.source as youtube.SubtitleSource | undefined,
       country: params.country as (string | null) | undefined,

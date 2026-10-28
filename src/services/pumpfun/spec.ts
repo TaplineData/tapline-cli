@@ -6,7 +6,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "achievement-catalog",
     method: "achievement_catalog",
-    summary: "Every achievement pump.fun awards: family, tier, name, threshold and display data.",
+    summary: "Every achievement with its family, tier, name, threshold, and display data.",
     credits: 1,
     route: "GET /v1/pumpfun/achievements",
     hasBody: false,
@@ -16,7 +16,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "approved-creator",
     method: "approved_creator",
-    summary: "Whether the coin's creator is approved to livestream on pump.fun.",
+    summary: "Whether the coin's creator is approved to livestream.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/{mint}/approved-creator",
     hasBody: false,
@@ -62,7 +62,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "bounty-feed-recent",
     method: "bounty_feed_recent",
-    summary: "The most recent submissions in the pump.fun go feed. Pass `cursor` from the previous page for more.",
+    summary: "The most recent bounty submissions. Pass `cursor` from the previous page for more.",
     credits: 1,
     route: "GET /v1/pumpfun/bounties/feed/recent",
     hasBody: false,
@@ -75,7 +75,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "bounty-feed-trending",
     method: "bounty_feed_trending",
-    summary: "The trending tab of the pump.fun go feed.",
+    summary: "Returns the trending bounty feed.",
     credits: 1,
     route: "GET /v1/pumpfun/bounties/feed/trending",
     hasBody: false,
@@ -107,7 +107,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "bounty-submission-count",
     method: "bounty_submission_count",
-    summary: "Total bounty submissions pump.fun has received.",
+    summary: "Returns the total number of bounty submissions.",
     credits: 1,
     route: "GET /v1/pumpfun/bounties/submissions/count",
     hasBody: false,
@@ -131,7 +131,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "bounty-tasks",
     method: "bounty_tasks",
-    summary: "Bounty tasks posted on pump.fun go, with filters for phase, reward, expiry, engagement and distance. Sorting by `distance` needs `lat` and `lng`, which go together. Pass `cursor` from the previous page for more.",
+    summary: "Bounty tasks with filters for phase, reward, expiry, engagement and distance. Sorting by `distance` needs `lat` and `lng`, which go together. Pass `cursor` from the previous page for more.",
     credits: 1,
     route: "GET /v1/pumpfun/bounties/tasks",
     hasBody: false,
@@ -289,7 +289,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "candles",
     method: "candles",
-    summary: "OHLC candles for a coin from pump.fun's swap API, the newest `limit` bars ending now. For bars further back, or every chain and resolution in one shape, see `/chains/{chain}/coins/{address}/candles`, which pages back with `to`.",
+    summary: "OHLC candles for a coin, the newest `limit` bars ending now. For bars further back, or every chain and resolution in one shape, see `/chains/{chain}/coins/{address}/candles`, which pages back with `to`.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/{mint}/candles",
     hasBody: false,
@@ -305,7 +305,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "chain-candles",
     method: "chain_candles",
-    summary: "OHLCV bars for a coin on any chain pump.fun trades, oldest first: Solana, the EVM chains, and HyperCore perps (`hypercore`, address = coin name such as `BTC`; perps serve `price_usd` and `price_quote` only). Prices are decimal strings.",
+    summary: "OHLCV bars for a coin on any supported chain, oldest first: Solana, the EVM chains, and HyperCore perps (`hypercore`, address = coin name such as `BTC`; perps serve `price_usd` and `price_quote` only). Prices are decimal strings.",
     credits: 1,
     route: "GET /v1/pumpfun/chains/{chain}/coins/{address}/candles",
     hasBody: false,
@@ -351,7 +351,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "chain-trades",
     method: "chain_trades",
-    summary: "A coin's trade tape on any chain, newest first, with running buy and sell aggregates. Pass `cursor` from `nextCursor` for older trades, or page around one trade with `before`/`after` and its `ordinalKey`. A token queried on a chain it does not trade on answers 503 (not charged): pump.fun sends the same answer as a lane outage, so check the coin's `chain_id` on `/coins/{mint}` before retrying.",
+    summary: "Returns a coin's trades, newest first, with running buy and sell totals. Pass `nextCursor` as `cursor`, or use `before` and `after` with a trade's `ordinalKey`. A token queried on a chain it does not trade on answers 503 (not charged).",
     credits: 1,
     route: "GET /v1/pumpfun/chains/{chain}/coins/{address}/trades",
     hasBody: false,
@@ -394,7 +394,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "coin",
     method: "coin",
-    summary: "Full record for a single coin on any chain pump.fun supports: a Solana mint or an EVM token address. `chain_id` in the answer is the coin's CAIP-2 chain. An address pump.fun cannot resolve answers 404.",
+    summary: "Full record for a single coin on a supported chain: a Solana mint or an EVM token address. `chain_id` in the answer is the coin's CAIP-2 chain. An unresolved address answers 404.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/{mint}",
     hasBody: false,
@@ -407,7 +407,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "coin-board",
     method: "coin_board",
-    summary: "One of pump.fun's ranked coin boards (new, graduating, graduated, movers, charity), across every chain unless `chains` narrows it.",
+    summary: "One ranked coin board (new, graduating, graduated, movers, or charity), across every chain unless `chains` narrows it.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/boards/{board}",
     hasBody: false,
@@ -474,7 +474,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "coin-narratives",
     method: "coin_narratives",
-    summary: "pump.fun's written narratives for trending, moving and new coins. Pass the answer's `cursor` back while `hasMore` is true. pump.fun answered an empty list for every source and locale in every capture since 2026-10-08.",
+    summary: "Written narratives for trending, moving, and new coins. Pass the answer's `cursor` back while `hasMore` is true. The endpoint answered an empty list for every source and locale in every capture since 2026-10-08.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/narratives",
     hasBody: false,
@@ -516,7 +516,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "coins",
     method: "coins",
-    summary: "The paginated coin list behind pump.fun's board views.",
+    summary: "The paginated coin list behind the board views.",
     credits: 1,
     route: "GET /v1/pumpfun/coins",
     hasBody: false,
@@ -535,7 +535,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "coins-batch",
     method: "coins_batch",
-    summary: "Resolve many mints to full coin records in one call. pump.fun leaves out addresses it cannot resolve. Today it answers the same records as `/coins/raw-batch`.",
+    summary: "Resolve many mints to full coin records in one call. Unresolved addresses are omitted. Returns the same records as `/coins/raw-batch`.",
     credits: 1,
     route: "POST /v1/pumpfun/coins/batch",
     hasBody: true,
@@ -547,7 +547,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "coins-raw-batch",
     method: "coins_raw_batch",
-    summary: "Resolve many mints to their raw indexer records. Today pump.fun answers the same records as `/coins/batch`; this route needs at least one mint.",
+    summary: "Resolve many mints to their raw indexer records. Returns the same records as `/coins/batch`; this route needs at least one mint.",
     credits: 1,
     route: "POST /v1/pumpfun/coins/raw-batch",
     hasBody: true,
@@ -609,7 +609,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "competitions",
     method: "competitions",
-    summary: "pump.fun's trading competitions in three buckets: upcoming, live (registration open or running, with the current top entries) and past (the 50 latest, with winners).",
+    summary: "Trading competitions in three buckets: upcoming, live (registration open or running, with the current top entries) and past (the 50 latest, with winners).",
     credits: 1,
     route: "GET /v1/pumpfun/competitions",
     hasBody: false,
@@ -619,7 +619,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "creator-fees",
     method: "creator_fees",
-    summary: "A creator's fee earnings per quote token, whether any are claimable, and the earnings series over `period` in `interval` buckets. `5m` buckets allow period `1d`; `30m` buckets allow `1d` or `7d`; any other pairing answers 400, not charged. EVM wallets answer with no earnings.",
+    summary: "Returns a creator's fee earnings per quote token, claimable status, and an earnings series grouped by `interval` over `period`.",
     credits: 1,
     route: "GET /v1/pumpfun/creators/{address}/fees",
     hasBody: false,
@@ -633,7 +633,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "creator-fees-total",
     method: "creator_fees_total",
-    summary: "Deprecated: pump.fun retired its lifetime-total read. This route now answers what `/creators/{address}/fees` answers for 30 days; `earned` holds the totals per quote token.",
+    summary: "Deprecated: the lifetime-total read was retired. This route now answers what `/creators/{address}/fees` answers for 30 days; `earned` holds the totals per quote token.",
     credits: 1,
     route: "GET /v1/pumpfun/creators/{address}/fees/total",
     hasBody: false,
@@ -652,13 +652,13 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Solana wallet address. pump.fun refuses EVM wallets here." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "20", description: "Maximum shares to return." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "", description: "Cursor from a previous page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "Cursor from a previous page." },
     ],
   },
   {
     name: "fee-sharing-totals",
     method: "fee_sharing_totals",
-    summary: "Deprecated: pump.fun retired this read. This route now answers what `/shareholders/{address}/fees` answers: per-coin fee-sharing earnings with wallet totals.",
+    summary: "Deprecated: this read was retired. This route now answers what `/shareholders/{address}/fees` answers: per-coin fee-sharing earnings with wallet totals.",
     credits: 1,
     route: "GET /v1/pumpfun/accounts/{address}/fee-sharing/totals",
     hasBody: false,
@@ -682,7 +682,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "follow-suggestions",
     method: "follow_suggestions",
-    summary: "A random sample of traders from the PnL leaderboard, as pump.fun suggests them to follow.",
+    summary: "A random sample of traders from the PnL leaderboard to follow.",
     credits: 1,
     route: "GET /v1/pumpfun/leaderboards/pnl/follow-suggestions",
     hasBody: false,
@@ -693,7 +693,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "followers",
     method: "followers",
-    summary: "Profiles following a wallet. Without `limit`, `offset` or `sort` this is pump.fun's legacy list, which stops at 50 profiles; set any of them to page through every profile (the same row shape).",
+    summary: "Profiles following a wallet. Without `limit`, `offset`, or `sort`, this is the legacy list, which stops at 50 profiles; set any of them to page through every profile (the same row shape).",
     credits: 1,
     route: "GET /v1/pumpfun/users/{address}/followers",
     hasBody: false,
@@ -719,7 +719,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "following",
     method: "following",
-    summary: "Profiles a wallet follows. Without `limit`, `offset` or `sort` this is pump.fun's legacy list, which stops at 50 profiles; set any of them to page through every profile (the same row shape).",
+    summary: "Profiles a wallet follows. Without `limit`, `offset`, or `sort`, this is the legacy list, which stops at 50 profiles; set any of them to page through every profile (the same row shape).",
     credits: 1,
     route: "GET /v1/pumpfun/users/{address}/following",
     hasBody: false,
@@ -745,7 +745,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "global-params",
     method: "global_params",
-    summary: "Bonding-curve constants of the pump.fun program at a point in time.",
+    summary: "Returns bonding-curve constants at a point in time.",
     credits: 1,
     route: "GET /v1/pumpfun/global-params",
     hasBody: false,
@@ -770,7 +770,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "group-members-pnl",
     method: "group_members_pnl",
-    summary: "A squad's active members ranked by PnL over the window. `rows` is empty until pump.fun publishes the window's ranking.",
+    summary: "A squad's active members ranked by PnL over the window. `rows` is empty until the window's ranking is published.",
     credits: 1,
     route: "GET /v1/pumpfun/groups/{group_id}/members/pnl",
     hasBody: false,
@@ -796,7 +796,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "holder-rewards",
     method: "holder_rewards",
-    summary: "pump.fun's holder-rewards book: per coin, the fees accrued to its holder vault, the payouts made and the book totals. Page with `page`: pump.fun answered `next: null` in every probe since 2026-10-08, even with 141,934 matching coins. A `cursor` from `next` would continue a listing and replace every other parameter.",
+    summary: "Returns holder-reward fees and payouts per coin, plus totals. Page with `page`, or pass a `cursor` from `next` to continue a previous result set.",
     credits: 1,
     route: "GET /v1/pumpfun/fees/holder-rewards",
     hasBody: false,
@@ -825,7 +825,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "home-feed",
     method: "home_feed",
-    summary: "The ranked feed on the pump.fun home page: trending coins with the callout position that put each one there, across Solana and the EVM chains. Page with `page`, from 0.",
+    summary: "The ranked home feed: trending coins with the callout position that put each one there, across Solana and the EVM chains. Page with `page`, from 0.",
     credits: 1,
     route: "GET /v1/pumpfun/home-feed",
     hasBody: false,
@@ -840,7 +840,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "hot-coin",
     method: "hot_coin",
-    summary: "The coin pump.fun is surfacing as hot right now; `hotCoin` is `null` most of the time.",
+    summary: "The coin currently surfaced as hot; `hotCoin` is usually `null`.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/hot",
     hasBody: false,
@@ -1029,7 +1029,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "movers-board",
     method: "movers_board",
-    summary: "The live movers board from pump.fun's advanced indexer, the most current trending signal.",
+    summary: "Returns the live movers board with ranked coin, market, and activity data.",
     credits: 1,
     route: "GET /v1/pumpfun/boards/movers",
     hasBody: false,
@@ -1041,7 +1041,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "new-callouts-count",
     method: "new_callouts_count",
-    summary: "How many new callouts arrived after `since` under the same filters. `capped` is true once the count reaches pump.fun's ceiling.",
+    summary: "How many new callouts arrived after `since` under the same filters. `capped` is true once the count reaches the response limit.",
     credits: 1,
     route: "GET /v1/pumpfun/home-feed/new/count",
     hasBody: false,
@@ -1079,7 +1079,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "onboarding-suggestions",
     method: "onboarding_suggestions",
-    summary: "The scored traders pump.fun's mobile app suggests at onboarding.",
+    summary: "The scored traders suggested during onboarding.",
     credits: 1,
     route: "GET /v1/pumpfun/leaderboards/pnl/onboarding-suggestions",
     hasBody: false,
@@ -1156,7 +1156,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "pnl-leaderboard",
     method: "pnl_leaderboard",
-    summary: "Trader PnL leaderboard: the top 100 traders. pump.fun has no paging past them.",
+    summary: "Trader PnL leaderboard with the top 100 traders and no further pages.",
     credits: 1,
     route: "GET /v1/pumpfun/leaderboards/pnl",
     hasBody: false,
@@ -1170,7 +1170,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "pnl-leaderboard-positions",
     method: "pnl_leaderboard_positions",
-    summary: "The positions behind each PnL leaderboard entry: the top 25 at most. pump.fun has no paging past them.",
+    summary: "The positions behind each PnL leaderboard entry, limited to the top 25.",
     credits: 1,
     route: "GET /v1/pumpfun/leaderboards/pnl/positions",
     hasBody: false,
@@ -1245,7 +1245,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "resolve-identifiers",
     method: "resolve_identifiers",
-    summary: "Classify up to five identifiers in one call: whether each is a coin (by mint, bonding curve or pool), a Solana wallet, an EVM address or a pump.fun user id, which chain it is on, and its coin or account record.",
+    summary: "Classify up to five identifiers in one call: whether each is a coin (by mint, bonding curve or pool), a Solana wallet, an EVM address, or a user ID, which chain it is on, and its coin or account record.",
     credits: 1,
     route: "GET /v1/pumpfun/search/resolve",
     hasBody: false,
@@ -1351,7 +1351,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "similar-coins",
     method: "similar_coins",
-    summary: "Coins pump.fun considers similar to the given mint.",
+    summary: "Coins similar to the given mint.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/similar",
     hasBody: false,
@@ -1366,7 +1366,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "sol-price",
     method: "sol_price",
-    summary: "Current SOL price in USD as pump.fun quotes it.",
+    summary: "Returns the current SOL price in USD.",
     credits: 1,
     route: "GET /v1/pumpfun/sol-price",
     hasBody: false,
@@ -1376,7 +1376,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "token-holder-count",
     method: "token_holder_count",
-    summary: "Number of wallets currently holding the coin. pump.fun counts this in a different service from `/coins/{mint}/holder-stats` and the top-holder routes, so the figures can differ by a few percent at the same moment.",
+    summary: "Number of wallets currently holding the coin. This is counted separately from `/coins/{mint}/holder-stats` and the top-holder routes, so the figures can differ by a few percent at the same moment.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/{mint}/holder-count",
     hasBody: false,
@@ -1387,7 +1387,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "top-clips",
     method: "top_clips",
-    summary: "Most watched clips across pump.fun in a window.",
+    summary: "Most watched clips in a window.",
     credits: 1,
     route: "GET /v1/pumpfun/clips/top",
     hasBody: false,
@@ -1413,7 +1413,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "top-profiles",
     method: "top_profiles",
-    summary: "The ten top daily PnL profiles pump.fun shows on its follow screen.",
+    summary: "The ten top daily PnL profiles from the follow screen.",
     credits: 1,
     route: "GET /v1/pumpfun/profiles/top",
     hasBody: false,
@@ -1434,7 +1434,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "top-token-mints",
     method: "top_token_mints",
-    summary: "Addresses of the coins pump.fun treats as top tokens, Solana mints and EVM tokens alike. `/coins/top-mints/chains` adds the chains each one was vetted on.",
+    summary: "Addresses of the top tokens, including Solana mints and EVM tokens alike. `/coins/top-mints/chains` adds the chains each one was vetted on.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/top-mints",
     hasBody: false,
@@ -1445,7 +1445,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "top-trader-trades",
     method: "top_trader_trades",
-    summary: "A coin's trades by accounts ranked in the top 50 of any pump.fun PnL leaderboard, across all their wallets: the marks pump.fun draws on its chart. Pass `cursor` from `page.nextCursor` for older trades.",
+    summary: "A coin's trades by accounts ranked in the top 50 of any PnL leaderboard, across all their wallets. Pass `cursor` from `page.nextCursor` for older trades.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/{mint}/top-trader-trades",
     hasBody: false,
@@ -1461,7 +1461,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "trades",
     method: "trades",
-    summary: "Recent trades for a Solana pump.fun coin, newest first. `baseAmount` and `quoteAmount` are decimal strings in whole units of the coin and its quote token. For any chain, see `/chains/{chain}/coins/{address}/trades`.",
+    summary: "Recent trades for a Solana coin, newest first. `baseAmount` and `quoteAmount` are decimal strings in whole units of the coin and its quote token. For any chain, see `/chains/{chain}/coins/{address}/trades`.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/{mint}/trades",
     hasBody: false,
@@ -1476,7 +1476,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "trades-batch",
     method: "trades_batch",
-    summary: "Trades on one coin for several wallets at once. Amounts are raw integer strings, unlike `/coins/{mint}/trades`: `baseAmount` is in the coin's smallest unit (6 decimals on pump.fun coins) and `quoteAmount` in the quote token's smallest unit (lamports for SOL).",
+    summary: "Trades on one coin for several wallets at once. Amounts are raw integer strings, unlike `/coins/{mint}/trades`: `baseAmount` is in the coin's smallest unit (6 decimals for these coins) and `quoteAmount` in the quote token's smallest unit (lamports for SOL).",
     credits: 1,
     route: "POST /v1/pumpfun/coins/{mint}/trades/batch",
     hasBody: true,
@@ -1489,7 +1489,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "trending-board",
     method: "trending_board",
-    summary: "The trending board from pump.fun's advanced indexer, in the movers board's compact entry format. pump.fun labels this body `board: movers` too.",
+    summary: "Returns the trending board with ranked coin, market, and activity data. The body is labelled `board: movers`.",
     credits: 1,
     route: "GET /v1/pumpfun/boards/trending",
     hasBody: false,
@@ -1501,7 +1501,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "trending-coins",
     method: "trending_coins",
-    summary: "Trending coins, the `great-coins` ranking that powers the pump.fun trending rail.",
+    summary: "Trending coins from the `great-coins` ranking.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/trending",
     hasBody: false,
@@ -1512,7 +1512,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "user",
     method: "user",
-    summary: "Profile for a single wallet (Solana or EVM), pump.fun user id or username.",
+    summary: "Profile for a single wallet, user ID, or username.",
     credits: 1,
     route: "GET /v1/pumpfun/users/{address}",
     hasBody: false,
@@ -1577,7 +1577,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "user-created-coins",
     method: "user_created_coins",
-    summary: "Coins a wallet has launched. pump.fun serves the first 250 at most.",
+    summary: "Coins a wallet has launched, up to 250.",
     credits: 1,
     route: "GET /v1/pumpfun/users/{address}/created-coins",
     hasBody: false,
@@ -1592,7 +1592,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "user-overview",
     method: "user_overview",
-    summary: "A profile header in one read: profile, follower and following counts, verified and achievement badges, ban state and created-coin count. Takes a Solana wallet or a pump.fun user id; a wallet with no account is served as an external wallet.",
+    summary: "A profile header in one read: profile, follower and following counts, verified and achievement badges, ban state and created-coin count. Takes a Solana wallet or a user ID; a wallet with no account is served as an external wallet.",
     credits: 1,
     route: "GET /v1/pumpfun/users/{address}/overview",
     hasBody: false,
@@ -1603,7 +1603,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "user-portfolio",
     method: "user_portfolio",
-    summary: "A wallet's open or closed positions with net PnL, across Solana and its linked EVM wallets. Takes a wallet, a pump.fun user id or a squad id.",
+    summary: "A wallet's open or closed positions with net PnL, across Solana and its linked EVM wallets. Takes a wallet, user ID, or squad ID.",
     credits: 1,
     route: "GET /v1/pumpfun/users/{address}/portfolio",
     hasBody: false,
@@ -1651,7 +1651,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "user-trades",
     method: "user_trades",
-    summary: "An account's token trades, newest first. Takes a wallet or a pump.fun user id. pump.fun documents squad ids as the union of their members' trades, but a squad id answered no trades in our tests. Pass `cursor` from `nextCursor` for older trades.",
+    summary: "An account's token trades, newest first. Takes a wallet or user ID. Squad IDs may return no trades. Pass `cursor` from `nextCursor` for older trades.",
     credits: 1,
     route: "GET /v1/pumpfun/users/{address}/trades",
     hasBody: false,
@@ -1668,7 +1668,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "username-exists",
     method: "username_exists",
-    summary: "Whether a pump.fun username is taken.",
+    summary: "Whether a username is taken.",
     credits: 1,
     route: "GET /v1/pumpfun/usernames/{username}/exists",
     hasBody: false,
@@ -1679,7 +1679,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "users",
     method: "users",
-    summary: "pump.fun's profile directory, one page at a time.",
+    summary: "Returns the profile directory one page at a time.",
     credits: 1,
     route: "GET /v1/pumpfun/users",
     hasBody: false,
@@ -1703,7 +1703,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "vanity-check",
     method: "vanity_check",
-    summary: "Whether the mint's key came from pump.fun's vanity key pool (`true` or `false`).",
+    summary: "Whether the mint's key came from the vanity key pool (`true` or `false`).",
     credits: 1,
     route: "GET /v1/pumpfun/coins/{mint}/vanity-check",
     hasBody: false,
@@ -1714,7 +1714,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "verified-profiles",
     method: "verified_profiles",
-    summary: "Whether pump.fun shows its KOL badge for each wallet or user id. This is the badge other routes report as `verifiedBadgeVisible`, not `isVerified`.",
+    summary: "Whether the KOL badge is shown for each wallet or user ID. This is the badge other routes report as `verifiedBadgeVisible`, not `isVerified`.",
     credits: 1,
     route: "POST /v1/pumpfun/profiles/verified",
     hasBody: true,
@@ -1725,7 +1725,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "video-feed",
     method: "video_feed",
-    summary: "pump.fun's curated video feed of livestream clips, with each clip's coin.",
+    summary: "Curated video feed of livestream clips, with each clip's coin.",
     credits: 1,
     route: "GET /v1/pumpfun/clips/feed",
     hasBody: false,
@@ -1785,7 +1785,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "wallet-screening",
     method: "wallet_screening",
-    summary: "pump.fun's blocklist screen for a Solana or EVM wallet. The verdict is in the body: `statusCode` 200 (`OK`) means the wallet passes, 405 (`Wallet not allowed`) means pump.fun blocks it.",
+    summary: "Returns the blocklist result for a Solana or EVM wallet. The verdict is in the body: `statusCode` 200 (`OK`) means the wallet passes, 405 (`Wallet not allowed`) means the wallet is blocked.",
     credits: 1,
     route: "GET /v1/pumpfun/wallets/{address}/screening",
     hasBody: false,
@@ -1808,7 +1808,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "wallet-trades",
     method: "wallet_trades",
-    summary: "A wallet's trades in one coin from pump.fun's PnL service, each with its PnL effect. Pass `cursor` from `pagination.nextCursor` while `pagination.hasMore` is true. `chain` and `nativeUnit` appear for EVM wallets only.",
+    summary: "A wallet's trades in one coin, each with its PnL effect. Pass `cursor` from `pagination.nextCursor` while `pagination.hasMore` is true. `chain` and `nativeUnit` appear for EVM wallets only.",
     credits: 1,
     route: "GET /v1/pumpfun/wallets/{address}/trades",
     hasBody: false,

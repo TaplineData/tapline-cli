@@ -6,7 +6,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "evm-token-security",
     method: "get_evm_token_security",
-    summary: "GoPlus token security for one EVM token: honeypot, tax, owner and mint flags, top holders and liquidity. The GoPlus envelope comes back unchanged. `code` 1 means complete data and 2 partial, and code 3 also passes through. GoPlus keys `result` by the lowercased address and leaves it empty when it has no token at that address on that chain. Powered by GoPlus Security.",
+    summary: "Returns security checks for an EVM token, including honeypot, tax, ownership, mint, holder, and liquidity data.",
     credits: 3,
     route: "GET /v1/goplus/evm/{chain_id}/tokens/{address}/security",
     hasBody: false,
@@ -18,7 +18,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "solana-token-security",
     method: "get_solana_token_security",
-    summary: "GoPlus token security for one Solana mint: mint, freeze, close and metadata authorities, Token-2022 transfer fee and hook, top holders and liquidity. The GoPlus envelope comes back unchanged. `code` 1 means complete data and 2 partial, and code 3 also passes through. GoPlus keys `result` by the mint. Powered by GoPlus Security.",
+    summary: "Returns security checks for a Solana token, including authority, Token-2022, holder, and liquidity data.",
     credits: 3,
     route: "GET /v1/goplus/solana/tokens/{mint}/security",
     hasBody: false,
@@ -29,7 +29,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "tron-token-security",
     method: "get_tron_token_security",
-    summary: "GoPlus token security for one Tron TRC-20 token: honeypot, tax, owner and mint flags, blacklist, top holders and CEX listings. The GoPlus envelope comes back unchanged. `code` 1 means complete data and 2 partial, and code 3 also passes through. GoPlus keys `result` by the base58 address in its original case. Powered by GoPlus Security.",
+    summary: "Returns security checks for a Tron TRC-20 token, including honeypot, tax, ownership, mint, blacklist, holder, and exchange data.",
     credits: 3,
     route: "GET /v1/goplus/tron/tokens/{address}/security",
     hasBody: false,

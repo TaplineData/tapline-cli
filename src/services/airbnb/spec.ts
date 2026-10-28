@@ -6,7 +6,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "calendar",
     method: "get_calendar",
-    summary: "Check the availability of an Airbnb listing by month.",
+    summary: "Check a listing's availability by month.",
     credits: 1,
     route: "POST /v1/airbnb/calendar",
     hasBody: true,
@@ -21,7 +21,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "details",
     method: "get_details",
-    summary: "Get details about an Airbnb listing.",
+    summary: "Get details about a listing.",
     credits: 5,
     route: "POST /v1/airbnb/details",
     hasBody: true,
@@ -32,7 +32,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "price",
     method: "get_price",
-    summary: "Get the price for an Airbnb listing over a date range.",
+    summary: "Get the price for a listing over a date range.",
     credits: 2,
     route: "POST /v1/airbnb/price",
     hasBody: true,
@@ -47,7 +47,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "reviews",
     method: "get_reviews",
-    summary: "Get reviews for an Airbnb listing.",
+    summary: "Get reviews for a listing.",
     credits: 2,
     route: "POST /v1/airbnb/reviews",
     hasBody: true,
@@ -62,7 +62,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "search",
     method: "search",
-    summary: "Search for Airbnb listings within a radius, by place ID, or by text query.",
+    summary: "Search listings within a radius, by place ID, or by text query.",
     credits: 5,
     route: "POST /v1/airbnb/search",
     hasBody: true,
@@ -74,7 +74,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "check_out", flag: "check-out", in: "body", kind: "string", list: false, required: false, positional: false, description: "Check-out date (YYYY-MM-DD)" },
       { name: "children", flag: "children", in: "body", kind: "integer", list: false, required: false, positional: false, description: "Number of children" },
       { name: "currency", flag: "currency", in: "body", kind: "string", list: false, required: false, positional: false, default: "USD", description: "ISO 4217 currency code (default USD). Any valid ISO 4217 code is accepted, but Airbnb only renders prices natively in a subset and silently falls back to USD for the rest, so the response `currency` field is authoritative and may differ from the request. The natively-supported codes are enumerated in the `SupportedCurrency` schema (and machine-readably under this field's `x-supported-currencies`)." },
-      { name: "cursor", flag: "cursor", in: "body", kind: "string", list: false, required: false, positional: false, default: "", description: "Pagination cursor from previous response" },
+      { name: "cursor", flag: "cursor", in: "body", kind: "string", list: false, required: false, positional: false, description: "Pagination cursor from previous response" },
       { name: "free_cancellation", flag: "free-cancellation", in: "body", kind: "boolean", list: false, required: false, positional: false, default: "false", description: "Filter for free cancellation listings" },
       { name: "infants", flag: "infants", in: "body", kind: "integer", list: false, required: false, positional: false, description: "Number of infants" },
       { name: "lat", flag: "lat", in: "body", kind: "number", list: false, required: false, positional: false, description: "Center latitude for radius search" },
@@ -97,7 +97,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "search-locations",
     method: "search_locations",
-    summary: "Find Airbnb locations matching a text query.",
+    summary: "Find locations matching a text query.",
     credits: 1,
     route: "GET /v1/airbnb/locations",
     hasBody: false,

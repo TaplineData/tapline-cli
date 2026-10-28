@@ -6,7 +6,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "analytics",
     method: "get_analytics",
-    summary: "Protocol-wide launch, volume, trade and revenue totals plus the daily series behind them.",
+    summary: "Protocol-wide daily launches, volume, trades, fees and revenue, with today's running numbers, monthly fee flows, creator and protocol earnings, indexer counts, the top tokens by volume, and the stocks those coins trade against.",
     credits: 2,
     route: "GET /v1/ponsfamily/analytics",
     hasBody: false,
@@ -39,7 +39,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "eth-price",
     method: "get_eth_price",
-    summary: "The ETH/USD rate pons prices every launch with.",
+    summary: "Returns the ETH/USD rate used to price each launch.",
     credits: 2,
     route: "GET /v1/ponsfamily/eth-price",
     hasBody: false,
@@ -160,7 +160,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "list-graduations",
     method: "list_graduations",
-    summary: "Every graduation event pons has observed, as token address and graduation block.",
+    summary: "Every observed graduation event, as token address and graduation block.",
     credits: 2,
     route: "GET /v1/ponsfamily/launches/graduations",
     hasBody: false,
@@ -170,7 +170,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "list-launches",
     method: "list_launches",
-    summary: "The pons launchpad explore board: tokens still climbing the bonding curve plus a page of graduated tokens.",
+    summary: "Returns the launchpad explore board with tokens still climbing the bonding curve. The response fills `graduated.total` and `graduatedTotal` but sends `graduated.items` empty; use the graduated-launches endpoint for full records.",
     credits: 2,
     route: "GET /v1/ponsfamily/launches",
     hasBody: false,
@@ -181,9 +181,9 @@ export const COMMANDS: CommandSpec[] = [
       { name: "version", flag: "version", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "v1", "v2"], default: "all", description: "Restrict to a launchpad version." },
       { name: "page", flag: "page", in: "query", kind: "integer", list: false, required: false, positional: false, default: "1", description: "Page of active launches." },
       { name: "page_size", flag: "page-size", in: "query", kind: "integer", list: false, required: false, positional: false, default: "50", description: "Active launches per page." },
-      { name: "include_graduated", flag: "include-graduated", in: "query", kind: "boolean", list: false, required: false, positional: false, default: "true", description: "Include the graduated board in the response." },
-      { name: "graduated_page", flag: "graduated-page", in: "query", kind: "integer", list: false, required: false, positional: false, default: "1", description: "Page of graduated launches." },
-      { name: "graduated_page_size", flag: "graduated-page-size", in: "query", kind: "integer", list: false, required: false, positional: false, default: "10", description: "Graduated launches per page." },
+      { name: "include_graduated", flag: "include-graduated", in: "query", kind: "boolean", list: false, required: false, positional: false, default: "true", description: "Include the graduated block (counts only; pons sends no graduated items)." },
+      { name: "graduated_page", flag: "graduated-page", in: "query", kind: "integer", list: false, required: false, positional: false, default: "1", description: "Page number echoed in the graduated block." },
+      { name: "graduated_page_size", flag: "graduated-page-size", in: "query", kind: "integer", list: false, required: false, positional: false, default: "10", description: "Page size echoed in the graduated block." },
     ],
   },
   {
@@ -246,7 +246,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "market-holders",
     method: "get_market_holders",
-    summary: "Ranked token holders with balance, supply share and per-holder PnL where pons can compute it.",
+    summary: "Ranked token holders with balance, supply share, and per-holder PnL when available.",
     credits: 2,
     route: "GET /v1/ponsfamily/markets/{token}/holders",
     hasBody: false,
@@ -302,7 +302,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "profile",
     method: "get_profile",
-    summary: "The launches a wallet deployed or earns fees from, with its claimed and claimable fees on each, alongside the ETH/USD rate pons priced them with.",
+    summary: "The launches a wallet deployed or earns fees from, with its claimed and claimable fees on each, alongside the ETH/USD rate used to price them.",
     credits: 2,
     route: "GET /v1/ponsfamily/wallets/{address}/profile",
     hasBody: false,
@@ -313,13 +313,13 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "search-launches",
     method: "search_launches",
-    summary: "Search every pons launch by name, symbol or contract address.",
+    summary: "Search launches by name, symbol, or contract address.",
     credits: 2,
     route: "GET /v1/ponsfamily/launches/search",
     hasBody: false,
     pagination: { flag: "page" },
     params: [
-      { name: "q", flag: "q", in: "query", kind: "string", list: false, required: false, positional: true, default: "", description: "Free-text query matched against token name, symbol and address." },
+      { name: "q", flag: "q", in: "query", kind: "string", list: false, required: false, positional: true, description: "Free-text query matched against token name, symbol and address." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["relevance", "marketCap", "volume", "newest", "oldest"], default: "relevance", description: "Ranking column for the result set." },
       { name: "age", flag: "age", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "24h", "7d"], default: "all", description: "Only include launches from this window." },
       { name: "page", flag: "page", in: "query", kind: "integer", list: false, required: false, positional: false, default: "1", description: "Result page." },
@@ -406,7 +406,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "wallet-identities",
     method: "get_wallet_identities",
-    summary: "Public pons profiles (username, avatar, bio) for the given wallets.",
+    summary: "Returns profiles with username, avatar, and bio for the given wallets.",
     credits: 2,
     route: "GET /v1/ponsfamily/wallets/identities",
     hasBody: false,

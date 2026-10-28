@@ -118,7 +118,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "networks",
     method: "networks",
-    summary: "Every chain GeckoTerminal indexes, with its identifier, image and native currency.",
+    summary: "Every indexed chain, with its identifier, image, and native currency.",
     credits: 2,
     route: "GET /v1/gecko-terminal/networks",
     hasBody: false,
@@ -350,7 +350,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "trending-links",
     method: "trending_links",
-    summary: "The curated shortcuts GeckoTerminal pins above its trending table.",
+    summary: "Returns the curated shortcuts pinned above the trending table.",
     credits: 2,
     route: "GET /v1/gecko-terminal/trending-links",
     hasBody: false,
