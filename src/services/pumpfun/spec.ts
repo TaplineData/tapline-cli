@@ -287,22 +287,6 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
-    name: "candles",
-    method: "candles",
-    summary: "OHLC candles for a coin, the newest `limit` bars ending now. For bars further back, or every chain and resolution in one shape, see `/chains/{chain}/coins/{address}/candles`, which pages back with `to`.",
-    credits: 1,
-    route: "GET /v1/pumpfun/coins/{mint}/candles",
-    hasBody: false,
-    params: [
-      { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
-      { name: "created_ts", flag: "created-ts", in: "query", kind: "integer", list: false, required: true, positional: true, description: "Coin creation timestamp in milliseconds, as returned by the coin endpoints. pump.fun does not use it to pick the window: any value returns the same series." },
-      { name: "interval", flag: "interval", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1s", "15s", "30s", "1m", "5m", "15m", "30m", "1h", "4h", "6h", "12h", "24h"], default: "1m", description: "Candle width." },
-      { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "300", description: "Maximum candles to return." },
-      { name: "currency", flag: "currency", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["USD", "SOL", "BASE", "QUOTE"], default: "USD", description: "Quote currency for the candle values." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc"], description: "Chain of the coin. Omit for a Solana pump.fun coin, the original behaviour; set it for an EVM token or to pin a coin to one chain." },
-    ],
-  },
-  {
     name: "chain-candles",
     method: "chain_candles",
     summary: "OHLCV bars for a coin on any supported chain, oldest first: Solana, the EVM chains, and HyperCore perps (`hypercore`, address = coin name such as `BTC`; perps serve `price_usd` and `price_quote` only). Prices are decimal strings.",
@@ -540,8 +524,8 @@ export const COMMANDS: CommandSpec[] = [
     route: "POST /v1/pumpfun/coins/batch",
     hasBody: true,
     params: [
-      { name: "include_nsfw", flag: "include-nsfw", in: "body", kind: "boolean", list: false, required: false, positional: false, default: "false", description: "Has no effect: pump.fun returns flagged coins on this read either way." },
       { name: "mints", flag: "mints", in: "body", kind: "string", list: true, required: true, positional: true, description: "Coin addresses (Solana mints or EVM tokens), at most 500." },
+      { name: "include_nsfw", flag: "include-nsfw", in: "body", kind: "boolean", list: false, required: false, positional: false, default: "false", description: "Has no effect: pump.fun returns flagged coins on this read either way." },
     ],
   },
   {
@@ -859,20 +843,6 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
-    name: "line-chart",
-    method: "line_chart",
-    summary: "Downsampled price series used for the sparkline on coin cards. Takes Solana mints and EVM token addresses.",
-    credits: 1,
-    route: "GET /v1/pumpfun/coins/{mint}/line-chart",
-    hasBody: false,
-    params: [
-      { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
-      { name: "created_ts", flag: "created-ts", in: "query", kind: "integer", list: false, required: true, positional: true, description: "Coin creation timestamp in milliseconds, as returned by the coin endpoints. pump.fun does not use it to pick the window: any value returns the same series." },
-      { name: "timeframe", flag: "timeframe", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1m", "5m", "15m", "30m", "1h", "6h", "12h", "24h", "1w", "1mo", "3mo", "1y"], default: "24h", description: "Series window." },
-      { name: "width", flag: "width", in: "query", kind: "integer", list: false, required: false, positional: false, default: "64", description: "Points pump.fun aims for. It treats this as a hint: the count it returns varies with the timeframe and can exceed `width`." },
-    ],
-  },
-  {
     name: "live-coins",
     method: "live_coins",
     summary: "Coins whose creator is livestreaming right now.",
@@ -931,9 +901,9 @@ export const COMMANDS: CommandSpec[] = [
     route: "POST /v1/pumpfun/coins/market-activity/batch",
     hasBody: true,
     params: [
+      { name: "mints", flag: "mints", in: "body", kind: "string", list: true, required: true, positional: true, description: "Coin addresses (Solana mints or EVM tokens), 1 to 50." },
       { name: "intervals", flag: "intervals", in: "body", kind: "string", list: true, required: false, positional: false, choices: ["1m", "5m", "15m", "30m", "1h", "6h", "24h"], description: "Rolling windows to aggregate. Defaults to 5m, 1h, 6h and 24h." },
       { name: "metrics", flag: "metrics", in: "body", kind: "string", list: true, required: false, positional: false, choices: ["numTxs", "volumeUSD", "numUsers", "numBuys", "numSells", "buyVolumeUSD", "sellVolumeUSD", "numBuyers", "numSellers", "priceChangePercent"], description: "Metrics to return per window. Defaults to every metric." },
-      { name: "mints", flag: "mints", in: "body", kind: "string", list: true, required: true, positional: true, description: "Coin addresses (Solana mints or EVM tokens), 1 to 50." },
     ],
   },
   {
@@ -1400,17 +1370,6 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
-    name: "top-holders",
-    method: "top_holders",
-    summary: "Largest holders of a Solana coin with their balances and funding sources. For EVM coins use `/chains/{chain}/coins/{address}/top-holders`.",
-    credits: 1,
-    route: "GET /v1/pumpfun/coins/{mint}/top-holders",
-    hasBody: false,
-    params: [
-      { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
-    ],
-  },
-  {
     name: "top-profiles",
     method: "top_profiles",
     summary: "The ten top daily PnL profiles from the follow screen.",
@@ -1459,21 +1418,6 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
-    name: "trades",
-    method: "trades",
-    summary: "Recent trades for a Solana coin, newest first. `baseAmount` and `quoteAmount` are decimal strings in whole units of the coin and its quote token. For any chain, see `/chains/{chain}/coins/{address}/trades`.",
-    credits: 1,
-    route: "GET /v1/pumpfun/coins/{mint}/trades",
-    hasBody: false,
-    pagination: { flag: "cursor" },
-    params: [
-      { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
-      { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "50", description: "Maximum trades to return." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "Cursor from a previous page." },
-      { name: "min_sol_amount", flag: "min-sol-amount", in: "query", kind: "number", list: false, required: false, positional: false, description: "Drop trades below this SOL size." },
-    ],
-  },
-  {
     name: "trades-batch",
     method: "trades_batch",
     summary: "Trades on one coin for several wallets at once. Amounts are raw integer strings, unlike `/coins/{mint}/trades`: `baseAmount` is in the coin's smallest unit (6 decimals for these coins) and `quoteAmount` in the quote token's smallest unit (lamports for SOL).",
@@ -1482,8 +1426,8 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: true,
     params: [
       { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
-      { name: "created_ts", flag: "created-ts", in: "body", kind: "integer", list: false, required: true, positional: true, description: "Coin creation timestamp in milliseconds." },
       { name: "user_addresses", flag: "user-addresses", in: "body", kind: "string", list: true, required: true, positional: true, description: "Wallet addresses (Solana or EVM) to fetch trades for, 1 to 30." },
+      { name: "created_ts", flag: "created-ts", in: "body", kind: "integer", list: false, required: true, positional: true, description: "Coin creation timestamp in milliseconds." },
     ],
   },
   {

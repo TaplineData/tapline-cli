@@ -125,15 +125,6 @@ const RUNNERS: Record<string, Command['run']> = {
     client.pumpfun.calloutStats({
       address: params.address as string,
     }),
-  candles: (client, { params }) =>
-    client.pumpfun.candles({
-      mint: params.mint as string,
-      created_ts: params.created_ts as number,
-      interval: params.interval as pumpfun.CandleInterval | undefined,
-      limit: params.limit as number | undefined,
-      currency: params.currency as pumpfun.AthCurrency | undefined,
-      chain: params.chain as (pumpfun.TokenChain | null) | undefined,
-    }),
   "chain-candles": (client, { params }) =>
     client.pumpfun.chainCandles({
       chain: params.chain as pumpfun.MarketChain,
@@ -248,8 +239,8 @@ const RUNNERS: Record<string, Command['run']> = {
     }),
   "coins-batch": (client, { body }) =>
     client.pumpfun.coinsBatch({
-      include_nsfw: body.include_nsfw as boolean | undefined,
       mints: body.mints as string[],
+      include_nsfw: body.include_nsfw as boolean | undefined,
     }),
   "coins-raw-batch": (client, { body }) =>
     client.pumpfun.coinsRawBatch({
@@ -381,13 +372,6 @@ const RUNNERS: Record<string, Command['run']> = {
     client.pumpfun.inMemoryCoin({
       mint: params.mint as string,
     }),
-  "line-chart": (client, { params }) =>
-    client.pumpfun.lineChart({
-      mint: params.mint as string,
-      created_ts: params.created_ts as number,
-      timeframe: params.timeframe as pumpfun.ChartTimeframe | undefined,
-      width: params.width as number | undefined,
-    }),
   "live-coins": (client, { params }) =>
     client.pumpfun.liveCoins({
       limit: params.limit as number | undefined,
@@ -411,9 +395,9 @@ const RUNNERS: Record<string, Command['run']> = {
     }),
   "market-activity-batch": (client, { body }) =>
     client.pumpfun.marketActivityBatch({
+      mints: body.mints as string[],
       intervals: body.intervals as (pumpfun.MarketActivityInterval[] | null) | undefined,
       metrics: body.metrics as (pumpfun.MarketActivityMetric[] | null) | undefined,
-      mints: body.mints as string[],
     }),
   "mayhem-coin-top-traders": (client, { params }) =>
     client.pumpfun.mayhemCoinTopTraders({
@@ -625,10 +609,6 @@ const RUNNERS: Record<string, Command['run']> = {
       clip_type: params.clip_type as pumpfun.ClipType | undefined,
       timestamp: params.timestamp as (number | null) | undefined,
     }),
-  "top-holders": (client, { params }) =>
-    client.pumpfun.topHolders({
-      mint: params.mint as string,
-    }),
   "top-profiles": (client) =>
     client.pumpfun.topProfiles(),
   "top-token-mint-chains": (client, { params }) =>
@@ -647,19 +627,12 @@ const RUNNERS: Record<string, Command['run']> = {
       cursor: params.cursor as (string | null) | undefined,
       limit: params.limit as number | undefined,
     }),
-  trades: (client, { params }) =>
-    client.pumpfun.trades({
-      mint: params.mint as string,
-      limit: params.limit as number | undefined,
-      cursor: params.cursor as (string | null) | undefined,
-      min_sol_amount: params.min_sol_amount as (number | null) | undefined,
-    }),
   "trades-batch": (client, { params, body }) =>
     client.pumpfun.tradesBatch({
       mint: params.mint as string,
     }, {
-      created_ts: body.created_ts as number,
       user_addresses: body.user_addresses as string[],
+      created_ts: body.created_ts as number,
     }),
   "trending-board": (client, { params }) =>
     client.pumpfun.trendingBoard({
