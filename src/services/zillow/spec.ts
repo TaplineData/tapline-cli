@@ -6,7 +6,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "list-comparables",
     method: "list_comparables",
-    summary: "The comparable homes Zillow uses for a home's Zestimate, usually 5: integer zpid, address, price, beds, baths, living area, lot, status, coordinates, a photo and the listing attribution. `lotSize` is square feet; `lotAreaValue` is in `lotAreaUnits`, which Zillow spells `Acres`, `Square Feet` or `sqft`. Zillow sends no sale date or distance for comparables. An empty `items` list means Zillow lists no comparables, which is charged. An unknown zpid answers 404, or for some ids an empty `items` list.",
+    summary: "Returns comparable homes used for a property's value estimate, including price, beds, baths, area, lot, status, location, photo, and listing attribution.",
     credits: 1,
     route: "GET /v1/zillow/properties/{zpid}/comparables",
     hasBody: false,
@@ -17,8 +17,8 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "property",
     method: "get_property",
-    summary: "One home on Zillow by zpid, as Zillow's own `property` object. How much it carries depends on the home's status (`FOR_SALE`, `FOR_RENT`, `RECENTLY_SOLD`, `OTHER` for off market): rentals carry about 180 `resoFacts` (facts and features), `priceHistory` with events and sources, `nearbyHomes` and rental fees; for-sale, sold and off-market homes carry about 20 `resoFacts`, and only some for-sale homes carry `priceHistory`, as date and price pairs. Every status carries the address, Zestimate and Rent Zestimate, beds, baths, living area, lot, year built, photos, listing attribution and MLS, and coordinates. `price` is the list price for sale, the monthly rent for rentals, the last sale price when sold, and the Zestimate off market. Tax history is not on this route; the `history` route gives yearly tax paid and assessed value. `zpid` is an integer here. An unknown zpid answers 404, which is charged.",
-    credits: 3,
+    summary: "Returns one property by `zpid`, including its status, price, home and rent estimates, facts, features, photos, location, listing attribution, available price history, and property insight phrases.",
+    credits: 2,
     route: "GET /v1/zillow/properties/{zpid}",
     hasBody: false,
     params: [
@@ -28,7 +28,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "property-history",
     method: "get_property_history",
-    summary: "A home's value and tax history as Zillow charts it: monthly Zestimate or Rent Zestimate, monthly year-over-year Zestimate change, yearly property tax paid, or yearly assessed value split into `Land` and `Structure` series. Each series is a list of points with `x` (epoch milliseconds) and `y` (USD, or a fraction for `zestimate_change`). Yearly tax points carry 1 January (UTC) of the tax year as `x` and amounts rounded to cents. `series` is empty when Zillow has no data for the metric, which is charged. An unknown zpid answers 404, or for some ids an empty `series`.",
+    summary: "Returns a property's home estimate, rent estimate, value change, property tax, or assessed-value history as timestamped series. Select the series with `metric`.",
     credits: 1,
     route: "GET /v1/zillow/properties/{zpid}/history",
     hasBody: false,
@@ -39,15 +39,26 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
+    name: "property-records",
+    method: "get_property_records",
+    summary: "Returns a property's price and tax history, last sale, schools, nearby homes, and listing, buyer and co-agent attribution.",
+    credits: 1,
+    route: "GET /v1/zillow/properties/{zpid}/records",
+    hasBody: false,
+    params: [
+      { name: "zpid", flag: "zpid", in: "path", kind: "integer", list: false, required: true, positional: true, description: "Zillow property id: the digits before `_zpid` in a home's Zillow URL, or the `zpid` of a property, comparable or address suggestion. Search listings carry it as a string." },
+    ],
+  },
+  {
     name: "search-homes",
     method: "search_homes",
-    summary: "Searches Zillow homes for sale, for rent or recently sold in a state, county, city, ZIP code, neighborhood or borough, with Zillow's price, size, age, HOA, home-type and keyword filters. Name the area with `location` (free text, Zillow's first match), or with `region_id` and `region_type` from `/v1/zillow/locations` to search exactly that region. Each item is Zillow's own search card: `zpid` (a string here), address, `price` as display text with `unformattedPrice` as a number (sold cards carry `soldPrice` text instead), beds, baths (every bathroom counts as one, half baths included), area, `latLong`, status, photos, broker and `hdpData.homeInfo` with the Zestimate, Rent Zestimate, tax assessed value and days on Zillow. Rental results can be whole buildings (`isBuilding`, with `units`, no `hdpData`); a building's `zpid` is a coordinate key such as `30.43495--97.67558`, which the property routes do not take. 41 homes per page, at most 20 pages; `total_results` counts every match. A search with no matches answers an empty page, which is charged; a cursor past the last page answers 400 `invalid_cursor`, not charged. Priced per page, not per home.",
+    summary: "Searches homes for sale, rent, or recently sold by place or region ID. Returns up to 41 homes per page with price, property details, location, photos, broker, valuation data, region bounds, and available MLS or IDX disclosures.",
     credits: 3,
     route: "GET /v1/zillow/search",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "", description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a page number, so send it with the same location and filters. `pagination.completion` is `exhausted` at the last page and `depth_limit` at page 20, the deepest Zillow serves; narrow the filters to reach more homes." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a page number, so send it with the same location and filters. `pagination.completion` is `exhausted` at the last page and `depth_limit` at page 20, the deepest Zillow serves; narrow the filters to reach more homes." },
       { name: "location", flag: "location", in: "query", kind: "string", list: false, required: false, positional: false, description: "Where to search, as you would type it into Zillow: a state, county, city, ZIP code, neighborhood or borough (`Austin, TX`, `94110`, `Brooklyn`). Zillow's first matching region is used and the response's `region` says which; a custom area such as `Bay Area` answers 404. Send this, or `region_id` with `region_type`." },
       { name: "region_id", flag: "region-id", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Zillow region id, the `metaData.regionId` of a `/v1/zillow/locations` region suggestion. Send with `region_type`, instead of `location`, to search exactly that region." },
       { name: "region_type", flag: "region-type", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["state", "county", "city", "zipcode", "neighborhood", "borough"], description: "The region suggestion's `metaData.regionType`; required with `region_id`." },
@@ -73,7 +84,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "search-locations",
     method: "search_locations",
-    summary: "Zillow's search-box suggestions for a partial address or place. Region results carry `regionId` and `regionType` (`state`, `county`, `city`, `zipcode`, `neighborhood`, `borough`); address results carry the home's `zpid`, which the property routes take. Zillow returns at most 12 suggestions. No match answers an empty `items` list, which is charged.",
+    summary: "Returns location suggestions for a partial address or place. Region results include `regionId` and `regionType`; address results include the property's `zpid`.",
     credits: 1,
     route: "GET /v1/zillow/locations",
     hasBody: false,

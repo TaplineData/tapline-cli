@@ -20,6 +20,10 @@ const RUNNERS: Record<string, Command['run']> = {
       metric: params.metric as zillow.ZillowHistoryMetric | undefined,
       period: params.period as zillow.ZillowHistoryPeriod | undefined,
     }),
+  "property-records": (client, { params }) =>
+    client.zillow.getPropertyRecords({
+      zpid: params.zpid as number,
+    }),
   "search-homes": (client, { params }) =>
     client.zillow.searchHomes({
       cursor: params.cursor as string | undefined,

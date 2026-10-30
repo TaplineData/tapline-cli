@@ -12,7 +12,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     params: [
       { name: "ad_id", flag: "ad-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "The ad's `ad_archive_id`." },
-      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "US", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
+      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "ALL", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
     ],
   },
   {
@@ -23,7 +23,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/facebook/ad-library/report",
     hasBody: false,
     params: [
-      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "US", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
+      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "US", description: "ISO 3166-1 alpha-2 country, upper case." },
       { name: "period", flag: "period", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["yesterday", "last_7_days", "last_30_days", "last_90_days", "lifelong"], default: "last_7_days", description: "Time window; a report Facebook is still building answers 503 with `Retry-After`." },
       { name: "date", flag: "date", in: "query", kind: "string", list: false, required: false, positional: false, description: "Report day; defaults to the newest published day, two days ago." },
     ],
@@ -38,7 +38,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "ad_id", flag: "ad-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "The ad's `ad_archive_id`." },
       { name: "page_id", flag: "page-id", in: "query", kind: "string", list: false, required: true, positional: true, description: "The ad's `page.page_id`; Facebook needs a page id but answers the same for any valid one." },
-      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "US", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
+      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "ALL", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
     ],
   },
   {
@@ -50,7 +50,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     params: [
       { name: "page_id", flag: "page-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "The advertiser's `page_id`: `page.page_id` of an ad or `advertisers[].page.page_id` from `/ad-library/advertisers/search`." },
-      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "US", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
+      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "ALL", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
     ],
   },
   {
@@ -74,7 +74,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "US", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
+      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "US", description: "ISO 3166-1 alpha-2 country, upper case." },
       { name: "period", flag: "period", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["yesterday", "last_7_days", "last_30_days", "last_90_days", "lifelong"], default: "last_7_days", description: "Time window." },
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: false, positional: true, description: "Search text." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["spend", "ads"], default: "spend", description: "Order by spend or by number of ads." },
@@ -92,7 +92,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
       { name: "collation_id", flag: "collation-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "`collation.id` of an ad." },
-      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "US", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
+      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "ALL", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
     ],
   },
@@ -109,7 +109,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: false, positional: true, description: "Search text." },
       { name: "page_id", flag: "page-id", in: "query", kind: "string", list: false, required: false, positional: false, description: "Only this advertiser's ads: `advertisers[].page.page_id` from `/ad-library/advertisers/search`. Send this or `query`." },
       { name: "match", flag: "match", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["any_words", "exact_phrase"], default: "any_words", description: "Match any of the words or the exact phrase." },
-      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "US", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
+      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "ALL", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
       { name: "status", flag: "status", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["active", "inactive", "all"], default: "active", description: "Running, stopped or both." },
       { name: "ad_type", flag: "ad-type", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "political_and_issue", "housing", "employment", "credit", "financial_products_and_services", "uncategorized"], default: "all", description: "Ad category." },
       { name: "media_type", flag: "media-type", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "image", "video", "meme", "image_and_meme", "none"], default: "all", description: "Creative format." },
@@ -129,7 +129,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     params: [
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text." },
-      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "US", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
+      { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "ALL", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
       { name: "ad_type", flag: "ad-type", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "political_and_issue", "housing", "employment", "credit", "financial_products_and_services", "uncategorized"], default: "all", description: "Ad category." },
     ],
   },
