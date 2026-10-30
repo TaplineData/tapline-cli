@@ -1,6 +1,6 @@
 # @tapline/cli
 
-`tapline` puts Tapline's YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Instagram, Pumpfun, TikTok, Birdeye, LinkedIn, imovelweb, Expedia, Brave Search, Indeed, Facebook Ad Library, Facebook Marketplace, and Facebook APIs on your command line.
+`tapline` puts Tapline's YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Instagram, Pumpfun, TikTok, Birdeye, LinkedIn, imovelweb, Zillow, Expedia, Brave Search, Indeed, Facebook Ad Library, Facebook Marketplace, and Facebook APIs on your command line.
 Every endpoint the [TypeScript client](https://www.npmjs.com/package/@tapline/client) exposes is a
 command, generated from the same API spec, so the two never drift apart.
 
@@ -43,6 +43,8 @@ tapline twitter tweet https://x.com/Seahawks/status/2106870968048386134
 tapline pinterest search-pins "italian pot roast"
 tapline pinterest pin https://pin.it/2u9bHtUx6
 tapline pinterest board /broadstbullycom/nhl-hockey/
+tapline pinterest-v2 search-pins "italian pot roast"
+tapline pinterest-v2 pin https://pin.it/2u9bHtUx6
 tapline instagram profile nike
 tapline instagram post https://www.instagram.com/reel/Dd9Etk7R91I/
 tapline tiktok profile --handle stoolpresidente
@@ -54,6 +56,8 @@ tapline linkedin profile https://www.linkedin.com/in/williamhgates/
 tapline linkedin search-jobs --keywords "data engineer" --location "New York, United States" --posted-within past_week
 tapline imovelweb list-locations pinheiros
 tapline imovelweb list-listings --operation rent --location-id V1-Z-52 --min-bedrooms 2
+tapline zillow search-homes --location "Austin, TX" --status sold
+tapline zillow property-records 15067360
 tapline expedia search-locations "new york"
 tapline expedia search-hotels 2621 --check-in 2026-12-14 --check-out 2026-12-16 --sort price_low_to_high
 tapline expedia list-hotel-rooms 19681371 --check-in 2026-12-14 --check-out 2026-12-16 --adults 2
