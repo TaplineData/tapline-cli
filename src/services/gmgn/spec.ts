@@ -612,13 +612,12 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "top-callers",
     method: "top_callers",
-    summary: "Wallets ranked by the multiple their public token calls returned, with the tokens they called.",
+    summary: "Wallets ranked by the multiple their public token calls returned over the last 24 hours, with the tokens they called.",
     credits: 2,
     route: "GET /v1/gmgn/{chain}/top-callers",
     hasBody: false,
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
-      { name: "window", flag: "window", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1h", "24h"], default: "24h", description: "Window the call multiples are scored over." },
     ],
   },
   {
