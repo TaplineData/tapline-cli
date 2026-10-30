@@ -580,7 +580,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
-      { name: "maker", flag: "maker", in: "query", kind: "string", list: false, required: false, positional: false, description: "Restrict to a single maker wallet." },
+      { name: "maker", flag: "maker", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "Restrict to a single maker wallet." },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "Pagination token from the previous page's `data.next`." },
     ],
   },
@@ -662,7 +662,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
-      { name: "maker", flag: "maker", in: "query", kind: "string", list: false, required: false, positional: false },
+      { name: "maker", flag: "maker", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"" },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "Opaque pagination token. trades returns a fixed page (~50) with no page-size control; paginate by passing the previous response's `data.next` token here." },
     ],
   },

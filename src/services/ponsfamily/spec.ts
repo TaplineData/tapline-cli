@@ -319,7 +319,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "page" },
     params: [
-      { name: "q", flag: "q", in: "query", kind: "string", list: false, required: false, positional: true, description: "Free-text query matched against token name, symbol and address." },
+      { name: "q", flag: "q", in: "query", kind: "string", list: false, required: false, positional: true, default: "\"\"", description: "Free-text query matched against token name, symbol and address." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["relevance", "marketCap", "volume", "newest", "oldest"], default: "relevance", description: "Ranking column for the result set." },
       { name: "age", flag: "age", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "24h", "7d"], default: "all", description: "Only include launches from this window." },
       { name: "page", flag: "page", in: "query", kind: "integer", list: false, required: false, positional: false, default: "1", description: "Result page." },

@@ -28,7 +28,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "sort_by", flag: "sort-by", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["total_pnl", "realized_pnl", "volume_usd"], default: "total_pnl", description: "Ranking field." },
       { name: "order", flag: "order", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["asc", "desc"], default: "desc", description: "Sort direction." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "20", description: "Traders per page." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
     ],
   },
   {
@@ -81,7 +81,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token address on the chosen chain: a base58 mint on Solana, 0x plus 40 hex characters on an EVM chain." },
       { name: "side", flag: "side", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "buy", "sell", "add", "remove", "trade", "liquidity"], default: "all", description: "Keep one kind of event: `buy`, `sell`, `trade` (buys and sells), `add`, `remove`, `liquidity` (adds and removes), or `all`." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "50", description: "Trades per page." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
     ],
   },
   {
@@ -98,7 +98,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "sort_by", flag: "sort-by", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["total_pnl", "realized_pnl", "unrealized_pnl"], default: "total_pnl", description: "Ranking field." },
       { name: "order", flag: "order", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["asc", "desc"], default: "desc", description: "Sort direction." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "20", description: "Traders per page." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
     ],
   },
   {
@@ -123,7 +123,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "wallet", flag: "wallet", in: "path", kind: "string", list: false, required: true, positional: true, description: "Solana wallet address, base58." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "50", description: "Holdings per page." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
     ],
   },
   {
@@ -140,7 +140,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "sort_by", flag: "sort-by", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["last_trade", "tx_count", "total_pnl"], default: "last_trade", description: "Token ordering." },
       { name: "order", flag: "order", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["asc", "desc"], default: "desc", description: "Sort direction." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "20", description: "Tokens per page." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
     ],
   },
   {
@@ -156,7 +156,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "wallet", flag: "wallet", in: "path", kind: "string", list: false, required: true, positional: true, description: "Wallet address on the chosen chain: base58 on Solana, 0x plus 40 hex characters on an EVM chain." },
       { name: "token", flag: "token", in: "query", kind: "string", list: false, required: false, positional: false, description: "Keep swaps of this token address only, in the chain's address format." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "20", description: "Swaps per page." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page. A cursor holds only a position, so send it with the same sort and filters as the page it came from. `pagination.completion` is `exhausted` at the last page and `depth_limit` where birdeye stops serving deeper pages." },
     ],
   },
   {

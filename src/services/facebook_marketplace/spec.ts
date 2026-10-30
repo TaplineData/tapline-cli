@@ -13,7 +13,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
       { name: "category", flag: "category", in: "path", kind: "string", list: false, required: true, positional: true, description: "A category `slug` from `/marketplace/categories`, such as `electronics` or `tools`." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
       { name: "latitude", flag: "latitude", in: "query", kind: "number", list: false, required: true, positional: true, description: "Latitude of the search centre." },
       { name: "longitude", flag: "longitude", in: "query", kind: "number", list: false, required: true, positional: true, description: "Longitude of the search centre." },
       { name: "radius_km", flag: "radius-km", in: "query", kind: "integer", list: false, required: false, positional: false, default: "65", description: "Search radius in kilometres." },
@@ -30,7 +30,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
       { name: "latitude", flag: "latitude", in: "query", kind: "number", list: false, required: true, positional: true, description: "Latitude of the search centre." },
       { name: "longitude", flag: "longitude", in: "query", kind: "number", list: false, required: true, positional: true, description: "Longitude of the search centre." },
       { name: "radius_km", flag: "radius-km", in: "query", kind: "integer", list: false, required: false, positional: false, default: "65", description: "Search radius in kilometres." },
@@ -93,13 +93,13 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
       { name: "latitude", flag: "latitude", in: "query", kind: "number", list: false, required: true, positional: true, description: "Latitude of the search centre." },
       { name: "longitude", flag: "longitude", in: "query", kind: "number", list: false, required: true, positional: true, description: "Longitude of the search centre." },
       { name: "radius_km", flag: "radius-km", in: "query", kind: "integer", list: false, required: false, positional: false, default: "65", description: "Search radius in kilometres." },
       { name: "min_price", flag: "min-price", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Lowest price, in whole units of the local currency." },
       { name: "max_price", flag: "max-price", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Highest price, in whole units of the local currency." },
-      { name: "condition", flag: "condition", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["new", "used_like_new", "used_good", "used_fair"], description: "Only listings in these conditions; repeat the parameter for several." },
+      { name: "condition", flag: "condition", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["new", "used_like_new", "used_good", "used_fair"], default: "[]", description: "Only listings in these conditions; repeat the parameter for several." },
       { name: "days_since_listed", flag: "days-since-listed", in: "query", kind: "integer", list: false, required: false, positional: false, choices: ["1", "7", "30"], description: "Only listings posted in the last 1, 7 or 30 days." },
       { name: "delivery", flag: "delivery", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "local_pickup", "shipping"], default: "all", description: "Local pickup, shipping or both." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["best_match", "creation_time_descend", "creation_time_ascend", "price_ascend", "price_descend", "distance_ascend", "distance_descend", "vehicle_year_ascend", "vehicle_year_descend", "vehicle_mileage_ascend", "vehicle_mileage_descend"], default: "best_match", description: "Result order." },

@@ -652,7 +652,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Solana wallet address. pump.fun refuses EVM wallets here." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "20", description: "Maximum shares to return." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "Cursor from a previous page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "Cursor from a previous page." },
     ],
   },
   {

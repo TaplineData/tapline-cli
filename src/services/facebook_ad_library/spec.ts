@@ -78,7 +78,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "period", flag: "period", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["yesterday", "last_7_days", "last_30_days", "last_90_days", "lifelong"], default: "last_7_days", description: "Time window." },
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: false, positional: true, description: "Search text." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["spend", "ads"], default: "spend", description: "Order by spend or by number of ads." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
       { name: "date", flag: "date", in: "query", kind: "string", list: false, required: false, positional: false, description: "Report day; defaults to the newest published day, two days ago." },
     ],
   },
@@ -93,7 +93,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "collation_id", flag: "collation-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "`collation.id` of an ad." },
       { name: "country", flag: "country", in: "query", kind: "string", list: false, required: false, positional: false, default: "ALL", description: "ISO 3166-1 alpha-2 country, upper case, or `ALL`." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
     ],
   },
   {
@@ -105,7 +105,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: false, positional: true, description: "Search text." },
       { name: "page_id", flag: "page-id", in: "query", kind: "string", list: false, required: false, positional: false, description: "Only this advertiser's ads: `advertisers[].page.page_id` from `/ad-library/advertisers/search`. Send this or `query`." },
       { name: "match", flag: "match", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["any_words", "exact_phrase"], default: "any_words", description: "Match any of the words or the exact phrase." },
@@ -113,8 +113,8 @@ export const COMMANDS: CommandSpec[] = [
       { name: "status", flag: "status", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["active", "inactive", "all"], default: "active", description: "Running, stopped or both." },
       { name: "ad_type", flag: "ad-type", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "political_and_issue", "housing", "employment", "credit", "financial_products_and_services", "uncategorized"], default: "all", description: "Ad category." },
       { name: "media_type", flag: "media-type", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "image", "video", "meme", "image_and_meme", "none"], default: "all", description: "Creative format." },
-      { name: "platforms", flag: "platforms", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["facebook", "instagram", "audience_network", "messenger", "threads"], description: "Only ads shown on these platforms; repeat the parameter for several." },
-      { name: "languages", flag: "languages", in: "query", kind: "string", list: true, required: false, positional: false, description: "Only ads in these ISO 639-1 languages, such as `en`; repeat for several." },
+      { name: "platforms", flag: "platforms", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["facebook", "instagram", "audience_network", "messenger", "threads"], default: "[]", description: "Only ads shown on these platforms; repeat the parameter for several." },
+      { name: "languages", flag: "languages", in: "query", kind: "string", list: true, required: false, positional: false, default: "[]", description: "Only ads in these ISO 639-1 languages, such as `en`; repeat for several." },
       { name: "delivered_after", flag: "delivered-after", in: "query", kind: "string", list: false, required: false, positional: false, description: "Only ads shown on this day or later." },
       { name: "delivered_before", flag: "delivered-before", in: "query", kind: "string", list: false, required: false, positional: false, description: "Only ads shown on this day or earlier." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["relevance", "time_active", "relevancy_monthly_grouped"], default: "relevance", description: "Result order." },

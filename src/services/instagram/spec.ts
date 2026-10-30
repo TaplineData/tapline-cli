@@ -75,7 +75,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "region", flag: "region", in: "query", kind: "string", list: false, required: false, positional: false, description: "Two-letter country code for the exit the request leaves from. Defaults to US, where Instagram shows licensed music." },
       { name: "trim", flag: "trim", in: "query", kind: "boolean", list: false, required: false, positional: false, default: "false", description: "Set to true to return fewer fields per item." },
       { name: "download_media", flag: "download-media", in: "query", kind: "boolean", list: false, required: false, positional: false, choices: ["false"], description: "Must be false. Tapline does not re-host media." },
-      { name: "include_play_count", flag: "include-play-count", in: "query", kind: "boolean", list: false, required: false, positional: false, default: "true", description: "Set to false to omit `video_play_count` and skip the extra lookup it needs. Defaults to true. Only videos carry a play count." },
+      { name: "include_play_count", flag: "include-play-count", in: "query", kind: "boolean", list: false, required: false, positional: false, default: "true", description: "Set to false to return the `metrics` play and view counts as null and skip the extra lookup they need. Defaults to true. Only videos carry a play count." },
       { name: "cache_max_age", flag: "cache-max-age", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1d", "3d", "7d", "14d", "30d"], description: "Ignored. Every request fetches a fresh response and is charged." },
     ],
   },
@@ -141,7 +141,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "next-max-id", nextPath: "pagination.next_cursor" },
     params: [
       { name: "handle", flag: "handle", in: "query", kind: "string", list: false, required: true, positional: true, description: "Instagram handle, with or without a leading @." },
-      { name: "next_max_id", flag: "next-max-id", in: "query", kind: "string", list: false, required: false, positional: false, description: "The `next_max_id` from the previous page (`timeline:AQHT\u2026`), or the `end_cursor` of `/v1/instagram/profile`'s timeline (`mobile:AQHT\u2026`). The bare `AQHT\u2026` cursor works too. Omit it for the first page." },
+      { name: "next_max_id", flag: "next-max-id", in: "query", kind: "string", list: false, required: false, positional: false, description: "The `pagination.next_cursor` from the previous page, or `recent_posts.pagination.next_cursor` from `/v1/instagram/profile`. Omit it for the first page." },
       { name: "trim", flag: "trim", in: "query", kind: "boolean", list: false, required: false, positional: false, default: "false", description: "Set to true to return fewer fields per item." },
     ],
   },
@@ -155,7 +155,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "max-id", nextPath: "pagination.next_cursor" },
     atLeastOne: [["handle", "user_id"]],
     params: [
-      { name: "max_id", flag: "max-id", in: "query", kind: "string", list: false, required: false, positional: false, description: "The `paging_info.max_id` (or trimmed `max_id`) from the previous page. Omit it for the first page. It is base64, so percent-encode `+` and `/` in a hand-built URL." },
+      { name: "max_id", flag: "max-id", in: "query", kind: "string", list: false, required: false, positional: false, description: "The `pagination.next_cursor` from the previous page. Omit it for the first page. It is base64, so percent-encode `+` and `/` in a hand-built URL." },
       { name: "trim", flag: "trim", in: "query", kind: "boolean", list: false, required: false, positional: false, default: "false", description: "Set to true to return fewer fields per item." },
       { name: "user_id", flag: "user-id", in: "query", kind: "string", list: false, required: false, positional: false, description: "Numeric Instagram user id. Send this or `handle`; when both are sent, `user_id` wins." },
       { name: "handle", flag: "handle", in: "query", kind: "string", list: false, required: false, positional: false, description: "Instagram handle, with or without a leading @. Send this or `user_id`." },

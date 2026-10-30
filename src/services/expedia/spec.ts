@@ -66,7 +66,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "hotel_id", flag: "hotel-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Hotel ID from a `/hotels` result or the number after `.h` in an Expedia URL." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["recommended", "price_low_to_high", "price_high_to_low", "discount"], default: "recommended", description: "Activity order." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "Previous response's `pagination.next_cursor`. Keep all other parameters unchanged." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "Previous response's `pagination.next_cursor`. Keep all other parameters unchanged." },
       { name: "start_date", flag: "start-date", in: "query", kind: "string", list: false, required: true, positional: true, description: "First day. Today or within 500 days." },
       { name: "end_date", flag: "end-date", in: "query", kind: "string", list: false, required: true, positional: true, description: "Last day, on or after `start_date`." },
     ],
@@ -83,7 +83,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "hotel_id", flag: "hotel-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Hotel ID from a `/hotels` result or the number after `.h` in an Expedia URL." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["most_relevant", "most_recent", "highest_rating", "lowest_rating"], default: "most_recent", description: "Review order." },
       { name: "traveler_type", flag: "traveler-type", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "business", "couples", "families", "families_with_young_children", "groups", "solo", "with_pets"], default: "all", description: "Only reviews from this kind of traveler." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "Previous response's `pagination.next_cursor`. Keep all other parameters unchanged." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "Previous response's `pagination.next_cursor`. Keep all other parameters unchanged." },
     ],
   },
   {
@@ -113,7 +113,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "region_id", flag: "region-id", in: "query", kind: "string", list: false, required: true, positional: true, description: "`region_id` from `/v1/expedia/locations`." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["recommended", "price_low_to_high", "price_high_to_low", "discount"], default: "recommended", description: "Activity order." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "Previous response's `pagination.next_cursor`. Keep all other parameters unchanged." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "Previous response's `pagination.next_cursor`. Keep all other parameters unchanged." },
       { name: "start_date", flag: "start-date", in: "query", kind: "string", list: false, required: true, positional: true, description: "First day. Today or within 500 days." },
       { name: "end_date", flag: "end-date", in: "query", kind: "string", list: false, required: true, positional: true, description: "Last day, on or after `start_date`." },
     ],
@@ -162,7 +162,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "Previous response's `pagination.next_cursor`. Keep all other parameters unchanged." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "Previous response's `pagination.next_cursor`. Keep all other parameters unchanged." },
       { name: "region_id", flag: "region-id", in: "query", kind: "string", list: false, required: true, positional: true, description: "`region_id` from `/v1/expedia/locations`." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["recommended", "price_low_to_high", "price_high_to_low", "star_rating"], default: "recommended", description: "Sort order. Price sorts use the stay total, including taxes." },
       { name: "min_price", flag: "min-price", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Lowest nightly price in USD." },

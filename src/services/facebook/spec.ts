@@ -57,7 +57,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
       { name: "city_id", flag: "city-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "A city page id: `locations[].city_id` from `/marketplace/locations`." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
     ],
   },
   {
@@ -84,7 +84,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "feedback_id", flag: "feedback-id", in: "query", kind: "string", list: false, required: true, positional: true, description: "`feedback_id` of a post, photo, video or reel." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["relevant", "newest", "all"], default: "relevant", description: "Most relevant, newest first, or all comments." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
     ],
   },
   {
@@ -108,7 +108,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
       { name: "group_id", flag: "group-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Numeric group id; `/resolve` turns a group URL into one." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
     ],
   },
   {
@@ -122,7 +122,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "group_id", flag: "group-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Numeric group id; `/resolve` turns a group URL into one." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["top", "newest"], default: "top", description: "Top posts or newest first." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
     ],
   },
   {
@@ -157,7 +157,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "profile_id", flag: "profile-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "The page or profile's `profile_id`, such as `100044561550831`, from `/resolve` on its URL or `page.profile_id` in any answer." },
       { name: "collection_id", flag: "collection-id", in: "query", kind: "string", list: false, required: false, positional: false, description: "Another collection of the tab, from `/resolve` on its URL or the page's `tabs[].collections`; the tab's default when empty." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
     ],
   },
   {
@@ -194,7 +194,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "profile_id", flag: "profile-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "The page or profile's `profile_id`, such as `100044561550831`, from `/resolve` on its URL or `page.profile_id` in any answer." },
       { name: "collection_id", flag: "collection-id", in: "query", kind: "string", list: false, required: false, positional: false, description: "Another collection of the tab, from `/resolve` on its URL or the page's `tabs[].collections`; the tab's default when empty." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
     ],
   },
   {
@@ -207,7 +207,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
       { name: "profile_id", flag: "profile-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "The page or profile's `profile_id`, such as `100044561550831`, from `/resolve` on its URL or `page.profile_id` in any answer." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
     ],
   },
   {
@@ -220,7 +220,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
       { name: "page_id", flag: "page-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "The page's `page_id`, such as `54971236771`, from `page_id` on `/pages/{profile_id}` or `page.page_id` in an Ad Library answer." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
     ],
   },
   {
@@ -321,7 +321,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text." },
       { name: "date", flag: "date", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["today", "tomorrow", "this_week", "this_weekend", "next_week", "next_weekend", "next_month"], description: "A day range counted from today, as in the `date` options of the answer's `filters[]`. Send this or `start_date` and `end_date`." },
       { name: "start_date", flag: "start-date", in: "query", kind: "string", list: false, required: false, positional: false, description: "First day of a custom range." },
@@ -340,7 +340,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
       { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "Search text." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`pagination.next_cursor` from the previous page; empty for the first page." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
     ],
   },
   {
