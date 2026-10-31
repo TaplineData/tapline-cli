@@ -280,7 +280,6 @@ const RUNNERS: Record<string, Command['run']> = {
   "top-callers": (client, { params }) =>
     client.gmgn.topCallers({
       chain: params.chain as gmgn.Chain,
-      window: params.window as gmgn.TimeWindow | undefined,
     }),
   "trader-stat": (client, { params }) =>
     client.gmgn.traderStat({

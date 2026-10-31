@@ -91,7 +91,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "map-listings",
     method: "map_listings",
-    summary: "Returns map markers for the 100 most relevant listings, plus the matching count, viewport, and area boundary when available. Uses the filters from `/listings`.",
+    summary: "Returns map markers for the 100 most relevant listings, plus the matching count, viewport, and area boundary when available. Uses the filters from `/listings`; a search that matches a few million listings fails, so add a location.",
     credits: 1,
     route: "GET /v1/imovelweb/listings/map",
     hasBody: false,
