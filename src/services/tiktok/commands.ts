@@ -63,6 +63,13 @@ const RUNNERS: Record<string, Command['run']> = {
       query: params.query as string,
       region: params.region as (string | null) | undefined,
     }),
+  "search-users": (client, { params }) =>
+    client.tiktok.searchUsers({
+      query: params.query as string,
+      region: params.region as (string | null) | undefined,
+      cursor: params.cursor as (number | null) | undefined,
+      trim: params.trim as (boolean | null) | undefined,
+    }),
   song: (client, { params }) =>
     client.tiktok.getSong({
       clipId: params.clipId as string,

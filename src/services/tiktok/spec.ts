@@ -131,6 +131,21 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
+    name: "search-users",
+    method: "search_users",
+    summary: "Accounts matching a query, 10 per page. Pass `cursor` back while `has_more` is true.",
+    credits: 1,
+    route: "GET /v1/tiktok/search/users",
+    hasBody: false,
+    pagination: { flag: "cursor", nextPath: "cursor" },
+    params: [
+      { name: "query", flag: "query", in: "query", kind: "string", list: false, required: true, positional: true, description: "What to search TikTok for." },
+      { name: "region", flag: "region", in: "query", kind: "string", list: false, required: false, positional: false, description: "Two-letter country code TikTok searches from, `US` by default. Supported: `AR`, `AT`, `AU`, `BD`, `BR`, `CA`, `CH`, `CL`, `DE`, `ES`, `FR`, `GB`, `IE`, `IT`, `JP`, `NL`, `PL`, `PT`, `SE`, `SG`, `TR`, `US`, `ZA`." },
+      { name: "cursor", flag: "cursor", in: "query", kind: "integer", list: false, required: false, positional: false, description: "The `cursor` from the previous page of the same search. It expires 30 minutes after it is issued. Omit it for the first page." },
+      { name: "trim", flag: "trim", in: "query", kind: "boolean", list: false, required: false, positional: false, description: "Retained for compatibility. Both values return the same complete cleaned response." },
+    ],
+  },
+  {
     name: "song",
     method: "get_song",
     summary: "Returns a sound as `music`.",
