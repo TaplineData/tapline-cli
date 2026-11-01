@@ -1,6 +1,6 @@
 # @tapline/cli
 
-`tapline` puts Tapline's YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Pinterest v2, Instagram, Pumpfun, TikTok, Birdeye, LinkedIn, imovelweb, Zillow, Expedia, Brave Search, Indeed, Facebook Ad Library, Facebook Marketplace, and Facebook APIs on your command line.
+`tapline` puts Tapline's YouTube, Airbnb, GMGN, GeckoTerminal, GoPlus Security, Pons Family, Twitter (X), Pinterest, Pinterest v2, Instagram, Pumpfun, TikTok, Birdeye, LinkedIn, imovelweb, Zillow, Expedia, Brave Search, Indeed, Facebook Ad Library, Facebook Marketplace, Facebook, and Google Maps APIs on your command line.
 Every endpoint the [TypeScript client](https://www.npmjs.com/package/@tapline/client) exposes is a
 command, generated from the same API spec, so the two never drift apart.
 
@@ -71,6 +71,8 @@ tapline indeed company d5cd619626c9f6f7
 tapline facebook-ad-library search-ads "running shoes" --country GB --status active
 tapline facebook-marketplace search-marketplace bike 30.2672 -97.7431 --max-price 300
 tapline facebook resolve-url https://www.facebook.com/NASA
+tapline google-maps search "coffee in Austin TX" --open-now --min-rating 4.5
+tapline google-maps list-reviews 0x8644b4fda2c12fd5:0x66b58cb4722b37b --sort newest
 tapline airbnb search "Rio de Janeiro" --check-in 2026-11-01 --check-out 2026-11-05 --adults 2 --currency BRL
 ```
 

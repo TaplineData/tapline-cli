@@ -23,6 +23,7 @@ import { COMMAND_LIST as indeedCommands } from './services/indeed/commands.js';
 import { COMMAND_LIST as facebookCommands } from './services/facebook/commands.js';
 import { COMMAND_LIST as facebookAdLibraryCommands } from './services/facebook_ad_library/commands.js';
 import { COMMAND_LIST as facebookMarketplaceCommands } from './services/facebook_marketplace/commands.js';
+import { COMMAND_LIST as googleMapsCommands } from './services/google_maps/commands.js';
 
 export const SERVICES: Service[] = [
   { name: 'airbnb', commands: airbnbCommands },
@@ -47,4 +48,5 @@ export const SERVICES: Service[] = [
   { name: 'facebook', commands: facebookCommands },
   { name: 'facebook-ad-library', commands: facebookAdLibraryCommands },
   { name: 'facebook-marketplace', commands: facebookMarketplaceCommands },
+  { name: 'google-maps', commands: googleMapsCommands },
 ];
