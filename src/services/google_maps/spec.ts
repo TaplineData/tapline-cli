@@ -215,7 +215,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "search",
     method: "search",
     summary: "Search Google Maps places by text, optionally around a point. Google reranks between calls, so later pages leave out places earlier pages returned and can miss a few that moved.",
-    credits: 3,
+    credits: 2,
     route: "GET /v1/google-maps/search",
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
