@@ -484,6 +484,18 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
+    name: "coin-top-callouts",
+    method: "coin_top_callouts",
+    summary: "Top callouts on a coin, Solana mint or EVM token, each with the caller's position.",
+    credits: 1,
+    route: "GET /v1/pumpfun/coins/{mint}/callouts/top",
+    hasBody: false,
+    params: [
+      { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
+      { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "20", description: "Maximum callouts to return." },
+    ],
+  },
+  {
     name: "coins",
     method: "coins",
     summary: "The paginated coin list behind the board views.",
@@ -913,7 +925,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "offset" },
     params: [
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "60", description: "Maximum coins to return. pump.fun serves 60 at most." },
-      { name: "mayhem_state", flag: "mayhem-state", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["active", "paused"], description: "Restrict to one agent state. Omit for active and paused coins." },
+      { name: "mayhem_state", flag: "mayhem-state", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["active", "paused", "completed"], description: "Restrict to one agent state. Omit for active and paused coins." },
       { name: "offset", flag: "offset", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Rows to skip." },
       { name: "include_nsfw", flag: "include-nsfw", in: "query", kind: "boolean", list: false, required: false, positional: false, description: "Include coins flagged not-safe-for-work." },
     ],

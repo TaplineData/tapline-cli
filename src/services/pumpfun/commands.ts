@@ -219,6 +219,11 @@ const RUNNERS: Record<string, Command['run']> = {
       limit: params.limit as number | undefined,
       cursor: params.cursor as (string | null) | undefined,
     }),
+  "coin-top-callouts": (client, { params }) =>
+    client.pumpfun.coinTopCallouts({
+      mint: params.mint as string,
+      limit: params.limit as number | undefined,
+    }),
   coins: (client, { params }) =>
     client.pumpfun.coins({
       offset: params.offset as number | undefined,
