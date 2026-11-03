@@ -300,7 +300,6 @@ export const COMMANDS: CommandSpec[] = [
       { name: "measure", flag: "measure", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["price_usd", "price_quote", "price_native", "market_cap_usd"], default: "price_usd", description: "What each bar measures. `market_cap_usd` multiplies the USD price by the current circulating supply." },
       { name: "to", flag: "to", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Unix time in milliseconds of the newest bar. Omit for now, forming bar included." },
       { name: "count", flag: "count", in: "query", kind: "integer", list: false, required: false, positional: false, default: "200", description: "Bars ending at `to`." },
-      { name: "pool", flag: "pool", in: "query", kind: "string", list: false, required: false, positional: false, description: "One pool of the coin. Omit to stitch curve and AMM bars together." },
     ],
   },
   {
@@ -485,19 +484,6 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
-    name: "coin-top-callouts",
-    method: "coin_top_callouts",
-    summary: "Top callouts on a coin, Solana mint or EVM token.",
-    credits: 1,
-    route: "GET /v1/pumpfun/coins/{mint}/callouts/top",
-    hasBody: false,
-    params: [
-      { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
-      { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "20", description: "Maximum callouts to return." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc"], description: "Chain of the coin, to pin an EVM token." },
-    ],
-  },
-  {
     name: "coins",
     method: "coins",
     summary: "The paginated coin list behind the board views.",
@@ -508,7 +494,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "offset", flag: "offset", in: "query", kind: "integer", list: false, required: false, positional: false, default: "0", description: "Rows to skip." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "50", description: "Maximum coins to return. pump.fun serves 70 at most." },
-      { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["created_timestamp", "market_cap", "ath_market_cap", "reply_count", "last_reply", "last_trade_timestamp"], default: "created_timestamp", description: "Ranking column." },
+      { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["created_timestamp", "market_cap", "ath_market_cap", "last_trade_timestamp"], default: "created_timestamp", description: "Ranking column." },
       { name: "order", flag: "order", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["ASC", "DESC"], default: "DESC", description: "Sort direction." },
       { name: "include_nsfw", flag: "include-nsfw", in: "query", kind: "boolean", list: false, required: false, positional: false, default: "false", description: "Include coins flagged not-safe-for-work." },
       { name: "creator", flag: "creator", in: "query", kind: "string", list: false, required: false, positional: false, description: "Only coins launched by this wallet, Solana or EVM (0x)." },
@@ -927,7 +913,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "offset" },
     params: [
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "60", description: "Maximum coins to return. pump.fun serves 60 at most." },
-      { name: "mayhem_state", flag: "mayhem-state", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["active", "paused", "completed"], description: "Restrict to one agent state. Omit for active and paused coins." },
+      { name: "mayhem_state", flag: "mayhem-state", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["active", "paused"], description: "Restrict to one agent state. Omit for active and paused coins." },
       { name: "offset", flag: "offset", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Rows to skip." },
       { name: "include_nsfw", flag: "include-nsfw", in: "query", kind: "boolean", list: false, required: false, positional: false, description: "Include coins flagged not-safe-for-work." },
     ],
@@ -1515,7 +1501,6 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Wallet address (Solana or EVM) or pump.fun user id (UUID)." },
       { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token mint address." },
-      { name: "quotes_limit", flag: "quotes-limit", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Quote posts of the callout to include." },
     ],
   },
   {
