@@ -37,6 +37,8 @@ export interface CommandSpec {
   method: string;
   summary: string;
   credits: number | null;
+  /** Set when the price is `credits` per this many results rather than per request. */
+  perResults?: number;
   route: string;
   params: ParamSpec[];
   /** Parameter names grouped so each group requires at least one non-null value. */

@@ -69,9 +69,16 @@ export function usageFor(service: string, command: CommandSpec): string {
   return `tapline ${service} ${command.name} ${[...shapes, '[options]'].join(' ')}`.replace(/\s+/g, ' ');
 }
 
+export function describeCost(command: CommandSpec): string | null {
+  if (command.credits === null) return null;
+  const credits = `${command.credits} credit${command.credits === 1 ? '' : 's'}`;
+  return command.perResults === undefined ? credits : `${credits} per ${command.perResults} results`;
+}
+
 export function commandHelp(service: string, command: CommandSpec): string {
   const out: string[] = [`Usage: ${usageFor(service, command)}`, ''];
-  const credits = command.credits === null ? '' : ` Costs ${command.credits} credit${command.credits === 1 ? '' : 's'}.`;
+  const cost = describeCost(command);
+  const credits = cost === null ? '' : ` Costs ${cost}.`;
   if (command.summary || credits) out.push(...wrap(`${command.summary}${credits}`.trim(), WIDTH), '');
   out.push(command.route, '');
 
@@ -128,7 +135,8 @@ export function serviceHelp(service: Service): string {
     'Commands:',
     ...columns(
       service.commands.map((command) => {
-        const credits = command.credits === null ? '' : ` (${command.credits} credits)`;
+        const cost = describeCost(command);
+        const credits = cost === null ? '' : ` (${cost})`;
         return [command.name, `${command.summary}${credits}`.trim()] as [string, string];
       }),
     ),
