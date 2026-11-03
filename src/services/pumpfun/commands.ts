@@ -133,7 +133,6 @@ const RUNNERS: Record<string, Command['run']> = {
       measure: params.measure as pumpfun.PriceMeasure | undefined,
       to: params.to as (number | null) | undefined,
       count: params.count as number | undefined,
-      pool: params.pool as (string | null) | undefined,
     }),
   "chain-price-line": (client, { params }) =>
     client.pumpfun.chainPriceLine({
@@ -224,13 +223,12 @@ const RUNNERS: Record<string, Command['run']> = {
     client.pumpfun.coinTopCallouts({
       mint: params.mint as string,
       limit: params.limit as number | undefined,
-      chain: params.chain as (pumpfun.TokenChain | null) | undefined,
     }),
   coins: (client, { params }) =>
     client.pumpfun.coins({
       offset: params.offset as number | undefined,
       limit: params.limit as number | undefined,
-      sort: params.sort as pumpfun.CoinSort | undefined,
+      sort: params.sort as pumpfun.CoinListSort | undefined,
       order: params.order as pumpfun.CoinSortDirection | undefined,
       include_nsfw: params.include_nsfw as boolean | undefined,
       creator: params.creator as (string | null) | undefined,
@@ -671,7 +669,6 @@ const RUNNERS: Record<string, Command['run']> = {
     client.pumpfun.userCoinCallout({
       address: params.address as string,
       mint: params.mint as string,
-      quotes_limit: params.quotes_limit as (number | null) | undefined,
     }),
   "user-created-coins": (client, { params }) =>
     client.pumpfun.userCreatedCoins({
