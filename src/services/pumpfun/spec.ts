@@ -1148,6 +1148,19 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
+    name: "pool-stats",
+    method: "pool_stats",
+    summary: "Market and holder stats for one trading pool.",
+    credits: 1,
+    route: "GET /v1/pumpfun/chains/{chain}/pools/{pool}",
+    hasBody: false,
+    params: [
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "base", "bsc", "ethereum", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "avalanche", "optimism", "sei"], description: "Chain the pool trades on." },
+      { name: "pool", flag: "pool", in: "path", kind: "string", list: false, required: true, positional: true, description: "Pool address: a base58 address on Solana; on an EVM chain a 0x pair address, or a 32-byte 0x pool id for Uniswap v4 pools. `poolAddress` on `/tokens/batch`." },
+      { name: "token_address", flag: "token-address", in: "query", kind: "string", list: false, required: false, positional: false, description: "Token the pool is read for. On Solana pump.fun then answers that token's main pool whatever `pool` says; EVM chains ignore it." },
+    ],
+  },
+  {
     name: "portfolio-summary",
     method: "portfolio_summary",
     summary: "A wallet's PnL curve and totals over a window.",
@@ -1350,6 +1363,18 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     params: [
       { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
+    ],
+  },
+  {
+    name: "token-metadata-batch",
+    method: "token_metadata_batch",
+    summary: "Look up metadata for up to 50 tokens across chains in one call.",
+    credits: 1,
+    route: "POST /v1/pumpfun/tokens/batch",
+    hasBody: true,
+    params: [
+      { name: "addresses", flag: "addresses", in: "body", kind: "string", list: true, required: true, positional: true, description: "Token addresses (Solana mints or EVM tokens) on any mix of chains, 1 to 50. EVM addresses come back lowercased; addresses pump.fun cannot resolve are left out." },
+      { name: "chain", flag: "chain", in: "body", kind: "string", list: false, required: false, positional: false, choices: ["solana", "base", "bsc", "ethereum", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "avalanche", "optimism", "sei"], description: "Look every address up on this chain and leave out those not on it. Omit to let pump.fun pick each address's chain." },
     ],
   },
   {

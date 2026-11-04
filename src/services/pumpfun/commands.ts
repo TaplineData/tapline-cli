@@ -508,6 +508,12 @@ const RUNNERS: Record<string, Command['run']> = {
       period: params.period as pumpfun.PositionsPeriod | undefined,
       limit: params.limit as (number | null) | undefined,
     }),
+  "pool-stats": (client, { params }) =>
+    client.pumpfun.poolStats({
+      chain: params.chain as pumpfun.MultichainTokenChain,
+      pool: params.pool as string,
+      token_address: params.token_address as (string | null) | undefined,
+    }),
   "portfolio-summary": (client, { params }) =>
     client.pumpfun.portfolioSummary({
       address: params.address as string,
@@ -598,6 +604,11 @@ const RUNNERS: Record<string, Command['run']> = {
   "token-holder-count": (client, { params }) =>
     client.pumpfun.tokenHolderCount({
       mint: params.mint as string,
+    }),
+  "token-metadata-batch": (client, { body }) =>
+    client.pumpfun.tokenMetadataBatch({
+      addresses: body.addresses as string[],
+      chain: body.chain as (pumpfun.MultichainTokenChain | null) | undefined,
     }),
   "top-clips": (client, { params }) =>
     client.pumpfun.topClips({
