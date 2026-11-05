@@ -42,6 +42,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "ath_batch",
     summary: "All-time-high market caps for many coins at once.",
     credits: 1,
+    perResults: 20,
     route: "POST /v1/pumpfun/coins/ath/batch",
     hasBody: true,
     params: [
@@ -64,6 +65,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "bounty_feed_recent",
     summary: "The most recent bounty submissions. Pass `cursor` from the previous page for more.",
     credits: 1,
+    perResults: 40,
     route: "GET /v1/pumpfun/bounties/feed/recent",
     hasBody: false,
     pagination: { flag: "cursor" },
@@ -76,7 +78,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "bounty-feed-trending",
     method: "bounty_feed_trending",
     summary: "Returns the trending bounty feed.",
-    credits: 1,
+    credits: 2,
     route: "GET /v1/pumpfun/bounties/feed/trending",
     hasBody: false,
     params: [
@@ -368,6 +370,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "clips_batch",
     summary: "Resolve clips by their room and clip id pairs.",
     credits: 1,
+    perResults: 20,
     route: "POST /v1/pumpfun/clips/batch",
     hasBody: true,
     params: [
@@ -392,6 +395,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "coin_board",
     summary: "One ranked coin board (new, graduating, graduated, movers, or charity), across every chain unless `chains` narrows it.",
     credits: 1,
+    perResults: 75,
     route: "GET /v1/pumpfun/coins/boards/{board}",
     hasBody: false,
     pagination: { flag: "offset" },
@@ -519,6 +523,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "coins_batch",
     summary: "Resolve many mints to full coin records in one call. Unresolved addresses are omitted. Returns the same records as `/coins/raw-batch`.",
     credits: 1,
+    perResults: 20,
     route: "POST /v1/pumpfun/coins/batch",
     hasBody: true,
     params: [
@@ -531,6 +536,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "coins_raw_batch",
     summary: "Resolve many mints to their raw indexer records. Returns the same records as `/coins/batch`; this route needs at least one mint.",
     credits: 1,
+    perResults: 20,
     route: "POST /v1/pumpfun/coins/raw-batch",
     hasBody: true,
     params: [
@@ -677,6 +683,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "followers",
     summary: "Profiles following a wallet. Without `limit`, `offset`, or `sort`, this is the legacy list, which stops at 50 profiles; set any of them to page through every profile (the same row shape).",
     credits: 1,
+    perResults: 100,
     route: "GET /v1/pumpfun/users/{address}/followers",
     hasBody: false,
     pagination: { flag: "offset" },
@@ -703,6 +710,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "following",
     summary: "Profiles a wallet follows. Without `limit`, `offset`, or `sort`, this is the legacy list, which stops at 50 profiles; set any of them to page through every profile (the same row shape).",
     credits: 1,
+    perResults: 100,
     route: "GET /v1/pumpfun/users/{address}/following",
     hasBody: false,
     pagination: { flag: "offset" },
@@ -765,7 +773,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "group-pnl-leaderboard",
     method: "group_pnl_leaderboard",
     summary: "Squad (group) PnL leaderboard: each squad's combined PnL over its counted members, with its top positions.",
-    credits: 1,
+    credits: 2,
     route: "GET /v1/pumpfun/leaderboards/pnl/groups",
     hasBody: false,
     params: [
@@ -779,7 +787,8 @@ export const COMMANDS: CommandSpec[] = [
     name: "holder-rewards",
     method: "holder_rewards",
     summary: "Returns holder-reward fees and payouts per coin, plus totals. Page with `page`, or pass a `cursor` from `next` to continue a previous result set.",
-    credits: 1,
+    credits: 8,
+    perResults: 250,
     route: "GET /v1/pumpfun/fees/holder-rewards",
     hasBody: false,
     pagination: { flag: "cursor" },
@@ -808,7 +817,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "home-feed",
     method: "home_feed",
     summary: "The ranked home feed: trending coins with the callout position that put each one there, across Solana and the EVM chains. Page with `page`, from 0.",
-    credits: 1,
+    credits: 3,
     route: "GET /v1/pumpfun/home-feed",
     hasBody: false,
     pagination: { flag: "page" },
@@ -896,6 +905,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "market_activity_batch",
     summary: "Rolling market activity for many coins at once.",
     credits: 1,
+    perResults: 20,
     route: "POST /v1/pumpfun/coins/market-activity/batch",
     hasBody: true,
     params: [
@@ -999,6 +1009,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "movers_board",
     summary: "Returns the live movers board with ranked coin, market, and activity data.",
     credits: 1,
+    perResults: 80,
     route: "GET /v1/pumpfun/boards/movers",
     hasBody: false,
     params: [
@@ -1101,6 +1112,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "perps",
     summary: "The HyperCore perpetuals screener: mark price, funding, open interest and 24h change per perp. Pass a perp's `mint` (such as `BTC`) with chain `hypercore` to the `/chains/{chain}/coins/{address}` routes for its candles and trades.",
     credits: 1,
+    perResults: 75,
     route: "GET /v1/pumpfun/coins/perps",
     hasBody: false,
     pagination: { flag: "offset" },
@@ -1115,17 +1127,18 @@ export const COMMANDS: CommandSpec[] = [
     method: "playlist_map",
     summary: "HLS playlist URLs for the given mints, keyed by mint.",
     credits: 1,
+    perResults: 20,
     route: "POST /v1/pumpfun/livestreams/playlist-map",
     hasBody: true,
     params: [
-      { name: "mints", flag: "mints", in: "body", kind: "string", list: true, required: true, positional: true, description: "Token mint addresses, at least one." },
+      { name: "mints", flag: "mints", in: "body", kind: "string", list: true, required: true, positional: true, description: "Token mint addresses, 1 to 500." },
     ],
   },
   {
     name: "pnl-leaderboard",
     method: "pnl_leaderboard",
     summary: "Trader PnL leaderboard with the top 100 traders and no further pages.",
-    credits: 1,
+    credits: 2,
     route: "GET /v1/pumpfun/leaderboards/pnl",
     hasBody: false,
     params: [
@@ -1370,6 +1383,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "token_metadata_batch",
     summary: "Look up metadata for up to 50 tokens across chains in one call.",
     credits: 1,
+    perResults: 20,
     route: "POST /v1/pumpfun/tokens/batch",
     hasBody: true,
     params: [
@@ -1406,7 +1420,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "top-token-mint-chains",
     method: "top_token_mint_chains",
     summary: "The top-token list plus, for each address, the CAIP-2 chains it was vetted on (`eip155:8453`, `solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp`).",
-    credits: 1,
+    credits: 2,
     route: "GET /v1/pumpfun/coins/top-mints/chains",
     hasBody: false,
     params: [
@@ -1445,6 +1459,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "trades_batch",
     summary: "Trades on one coin for several wallets at once. Amounts are raw integer strings, unlike `/coins/{mint}/trades`: `baseAmount` is in the coin's smallest unit (6 decimals for these coins) and `quoteAmount` in the quote token's smallest unit (lamports for SOL).",
     credits: 1,
+    perResults: 20,
     route: "POST /v1/pumpfun/coins/{mint}/trades/batch",
     hasBody: true,
     params: [
@@ -1458,6 +1473,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "trending_board",
     summary: "Returns the trending board with ranked coin, market, and activity data. The body is labelled `board: movers`.",
     credits: 1,
+    perResults: 80,
     route: "GET /v1/pumpfun/boards/trending",
     hasBody: false,
     params: [
@@ -1516,7 +1532,7 @@ export const COMMANDS: CommandSpec[] = [
     name: "user-callouts",
     method: "user_callouts",
     summary: "Callouts a wallet has posted. Pass `page_token` from `nextPageToken` for the next page, with the same `window`.",
-    credits: 1,
+    credits: 2,
     route: "GET /v1/pumpfun/users/{address}/callouts",
     hasBody: false,
     params: [
@@ -1591,6 +1607,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "user_positions",
     summary: "A wallet's positions in specific coins.",
     credits: 1,
+    perResults: 20,
     route: "GET /v1/pumpfun/users/{address}/positions",
     hasBody: false,
     params: [
@@ -1619,6 +1636,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "user_trades",
     summary: "An account's token trades, newest first. Takes a wallet or user ID. Squad IDs may return no trades. Pass `cursor` from `nextCursor` for older trades.",
     credits: 1,
+    perResults: 150,
     route: "GET /v1/pumpfun/users/{address}/trades",
     hasBody: false,
     pagination: { flag: "cursor" },
@@ -1660,6 +1678,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "users_batch",
     summary: "Resolve many wallet addresses to profiles in one call.",
     credits: 1,
+    perResults: 20,
     route: "POST /v1/pumpfun/users/batch",
     hasBody: true,
     params: [
@@ -1682,6 +1701,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "verified_profiles",
     summary: "Whether the KOL badge is shown for each wallet or user ID. This is the badge other routes report as `verifiedBadgeVisible`, not `isVerified`.",
     credits: 1,
+    perResults: 20,
     route: "POST /v1/pumpfun/profiles/verified",
     hasBody: true,
     params: [
@@ -1715,6 +1735,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "wallet_balances",
     summary: "Token balances held by a Solana wallet.",
     credits: 1,
+    perResults: 150,
     route: "GET /v1/pumpfun/wallets/{address}/balances",
     hasBody: false,
     pagination: { flag: "page" },
@@ -1730,6 +1751,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "wallet_overview",
     summary: "Total value and holdings summary for several Solana wallets.",
     credits: 1,
+    perResults: 20,
     route: "POST /v1/pumpfun/wallets/overview",
     hasBody: true,
     params: [
@@ -1741,6 +1763,7 @@ export const COMMANDS: CommandSpec[] = [
     method: "wallet_pnl_batch",
     summary: "A Solana wallet's PnL across many Solana coins at once.",
     credits: 1,
+    perResults: 20,
     route: "POST /v1/pumpfun/wallets/{address}/pnl/batch",
     hasBody: true,
     params: [
