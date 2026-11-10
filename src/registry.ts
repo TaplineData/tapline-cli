@@ -24,6 +24,7 @@ import { COMMAND_LIST as facebookCommands } from './services/facebook/commands.j
 import { COMMAND_LIST as facebookAdLibraryCommands } from './services/facebook_ad_library/commands.js';
 import { COMMAND_LIST as facebookMarketplaceCommands } from './services/facebook_marketplace/commands.js';
 import { COMMAND_LIST as googleMapsCommands } from './services/google_maps/commands.js';
+import { COMMAND_LIST as accountCommands } from './services/account/commands.js';
 
 export const SERVICES: Service[] = [
   { name: 'airbnb', commands: airbnbCommands },
@@ -49,4 +50,5 @@ export const SERVICES: Service[] = [
   { name: 'facebook-ad-library', commands: facebookAdLibraryCommands },
   { name: 'facebook-marketplace', commands: facebookMarketplaceCommands },
   { name: 'google-maps', commands: googleMapsCommands },
+  { name: 'account', commands: accountCommands },
 ];

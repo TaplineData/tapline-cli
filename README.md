@@ -74,6 +74,7 @@ tapline facebook resolve-url https://www.facebook.com/NASA
 tapline google-maps search "coffee in Austin TX" --open-now --min-rating 4.5
 tapline google-maps list-reviews 0x8644b4fda2c12fd5:0x66b58cb4722b37b --sort newest
 tapline airbnb search "Rio de Janeiro" --check-in 2026-11-01 --check-out 2026-11-05 --adults 2 --currency BRL
+tapline account account-credits
 ```
 
 Every parameter has a flag named after the API's own field, and the parameters an endpoint
