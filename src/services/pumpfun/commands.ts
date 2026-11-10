@@ -438,7 +438,7 @@ const RUNNERS: Record<string, Command['run']> = {
   "movers-board": (client, { params }) =>
     client.pumpfun.moversBoard({
       limit: params.limit as number | undefined,
-      chains: params.chains as (pumpfun.NonMonadChain[] | null) | undefined,
+      chains: params.chains as (pumpfun.TokenChain[] | null) | undefined,
     }),
   "new-callouts-count": (client, { params }) =>
     client.pumpfun.newCalloutsCount({
@@ -646,7 +646,7 @@ const RUNNERS: Record<string, Command['run']> = {
   "trending-board": (client, { params }) =>
     client.pumpfun.trendingBoard({
       limit: params.limit as number | undefined,
-      chains: params.chains as (pumpfun.NonMonadChain[] | null) | undefined,
+      chains: params.chains as (pumpfun.TokenChain[] | null) | undefined,
     }),
   "trending-coins": (client, { params }) =>
     client.pumpfun.trendingCoins({
@@ -702,7 +702,7 @@ const RUNNERS: Record<string, Command['run']> = {
       total_only: params.total_only as (boolean | null) | undefined,
       filter_spam: params.filter_spam as (boolean | null) | undefined,
       spam_only: params.spam_only as (boolean | null) | undefined,
-      chain: params.chain as (pumpfun.NonMonadChain | null) | undefined,
+      chain: params.chain as (pumpfun.TokenChain | null) | undefined,
     }),
   "user-positions": (client, { params }) =>
     client.pumpfun.userPositions({
@@ -721,7 +721,7 @@ const RUNNERS: Record<string, Command['run']> = {
     client.pumpfun.userTrades({
       address: params.address as string,
       mint: params.mint as (string | null) | undefined,
-      chain: params.chain as (pumpfun.NonMonadChain | null) | undefined,
+      chain: params.chain as (pumpfun.TokenChain | null) | undefined,
       cursor: params.cursor as (string | null) | undefined,
       limit: params.limit as number | undefined,
       types: params.types as (pumpfun.UserTradeType[] | null) | undefined,
