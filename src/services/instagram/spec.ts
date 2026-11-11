@@ -96,13 +96,13 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "post-count",
     method: "get_post_count",
-    summary: "Returns the exact post count for a profile.",
+    summary: "Returns the post count for a profile. `is_estimated` is true when the profile shows only a rounded count, such as 32K.",
     credits: 1,
     route: "GET /v1/instagram/profile/post-count",
     hasBody: false,
     params: [
       { name: "handle", flag: "handle", in: "query", kind: "string", list: false, required: true, positional: true, description: "Instagram handle, with or without a leading @." },
-      { name: "allow_estimated", flag: "allow-estimated", in: "query", kind: "boolean", list: false, required: false, positional: false, description: "Ignored. Tapline always returns the exact count." },
+      { name: "allow_estimated", flag: "allow-estimated", in: "query", kind: "boolean", list: false, required: false, positional: false, description: "Ignored. `is_estimated` in the response marks a rounded count." },
     ],
   },
   {
