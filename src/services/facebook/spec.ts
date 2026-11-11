@@ -82,7 +82,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "feedback_id", flag: "feedback-id", in: "query", kind: "string", list: false, required: true, positional: true, description: "`feedback_id` of a post, photo, video or reel." },
+      { name: "feedback_id", flag: "feedback-id", in: "query", kind: "string", list: false, required: true, positional: true, description: "`feedback_id` of a post, photo, video or reel, as the posts routes return it." },
       { name: "sort", flag: "sort", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["relevant", "newest", "all"], default: "relevant", description: "Most relevant, newest first, or all comments." },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "`pagination.next_cursor` from the previous page; empty for the first page." },
     ],
