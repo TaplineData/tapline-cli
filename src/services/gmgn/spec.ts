@@ -11,7 +11,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/activity-rank-info",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
     ],
   },
   {
@@ -22,7 +22,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/agged-trades",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "period", flag: "period", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1m", "5m", "1h", "4h"], default: "1h", description: "Bucket size." },
       { name: "tag", flag: "tag", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["dev_team", "smart_degen", "insider", "sniper", "bundler", "fresh_wallet", "bluechip_owner", "renowned", "rat_trader"], description: "Wallet cohort to filter on. Omit for all wallets." },
@@ -36,7 +36,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/agged-token-transfers",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "query", kind: "string", list: false, required: true, positional: true },
       { name: "wallet_address", flag: "wallet-address", in: "query", kind: "string", list: false, required: true, positional: true, description: "Wallet whose transfers are aggregated." },
       { name: "period", flag: "period", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1m", "5m", "1h", "4h"], default: "1h", description: "Bucket size." },
@@ -50,7 +50,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/bluechip-rank",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "interval", flag: "interval", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1m", "5m", "1h", "6h", "24h"], default: "1h", description: "Ranking window." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "100", description: "Maximum tokens to return." },
       { name: "filters", flag: "filters", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["not_honeypot", "verified", "renounced", "frozen", "has_social", "burn"], description: "Security screens applied before ranking." },
@@ -64,7 +64,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/dev-created-tokens/{wallet_address}",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "wallet_address", flag: "wallet-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -76,7 +76,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/dex-trades-polling",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "window", flag: "window", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1h", "24h"], default: "24h" },
     ],
   },
@@ -98,7 +98,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/holder-stat",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -111,7 +111,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "data.next" },
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "100" },
       { name: "cost", flag: "cost", in: "query", kind: "integer", list: false, required: false, positional: false, default: "20" },
@@ -140,7 +140,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/launchpad-tax-policy",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
     ],
   },
   {
@@ -152,7 +152,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "data.next" },
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "100" },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false },
@@ -166,7 +166,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/live-preview",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -199,7 +199,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/mcap-candles",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "resolution", flag: "resolution", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1s", "15s", "30s", "1m", "3m", "5m", "15m", "30m", "1h", "4h", "12h", "1d", "1w", "1mo"], default: "1d" },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "501" },
@@ -213,7 +213,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "POST /v1/gmgn/{chain}/multi-token-full-info",
     hasBody: true,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "addresses", flag: "addresses", in: "body", kind: "string", list: true, required: true, positional: true },
     ],
   },
@@ -225,7 +225,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "POST /v1/gmgn/{chain}/multi-token-info",
     hasBody: true,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "addresses", flag: "addresses", in: "body", kind: "string", list: true, required: true, positional: true },
     ],
   },
@@ -237,7 +237,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "POST /v1/gmgn/{chain}/multi-window-token-info",
     hasBody: true,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "addresses", flag: "addresses", in: "body", kind: "string", list: true, required: true, positional: true },
     ],
   },
@@ -249,7 +249,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/native-transfer/{wallet_address}",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "wallet_address", flag: "wallet-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -261,7 +261,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/new-pairs",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "interval", flag: "interval", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1m", "5m", "1h", "6h", "24h"], default: "1h", description: "Age window \u2014 only pairs opened inside it are returned." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "100", description: "Maximum pairs to return." },
       { name: "order_by", flag: "order-by", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["open_timestamp", "creation_timestamp", "market_cap", "holder_count", "liquidity", "volume", "swaps", "progress", "price_change_percent1h"], default: "open_timestamp", description: "Column to sort on." },
@@ -277,7 +277,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/pool-fee-info",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -289,7 +289,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/recommend-slippage",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -301,7 +301,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/search",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "q", flag: "q", in: "query", kind: "string", list: false, required: true, positional: true, description: "Name, symbol, contract address or wallet address." },
     ],
   },
@@ -313,7 +313,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/security",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -325,7 +325,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/similar-coin-extremes",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "symbol", flag: "symbol", in: "query", kind: "string", list: false, required: true, positional: true },
       { name: "name", flag: "name", in: "query", kind: "string", list: false, required: true, positional: true },
       { name: "token_address", flag: "token-address", in: "query", kind: "string", list: false, required: true, positional: true },
@@ -339,7 +339,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/similar-coins",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "symbol", flag: "symbol", in: "query", kind: "string", list: false, required: true, positional: true },
       { name: "name", flag: "name", in: "query", kind: "string", list: false, required: true, positional: true },
       { name: "token_address", flag: "token-address", in: "query", kind: "string", list: false, required: true, positional: true },
@@ -349,12 +349,12 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "smart-money-wallet-info",
     method: "smart_money_wallet_info",
-    summary: "Smart-money profile for a wallet: labels, socials and aggregate performance. This data does not cover arbitrum, arc, robinhood, stable or xlayer; use /wallet-common-stat for those.",
+    summary: "Smart-money profile for a wallet: labels, socials and aggregate performance. This data does not cover arbitrum, arc, avalanche, elysium, robinhood, stable or xlayer; use /wallet-common-stat for those.",
     credits: 2,
     route: "GET /v1/gmgn/{chain}/smart-money-wallet/{wallet_address}",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "wallet_address", flag: "wallet-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -366,7 +366,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/socials",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -378,7 +378,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/stats",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -390,7 +390,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/swap-rankings",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "timeframe", flag: "timeframe", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1h", "24h"], default: "24h", description: "Activity window to rank over." },
       { name: "platforms", flag: "platforms", in: "query", kind: "string", list: true, required: false, positional: false, description: "Restrict to these exchanges/launchpads, e.g. `pump`, `raydium`, `meteora`." },
     ],
@@ -403,7 +403,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/ai-narrative",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -415,7 +415,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/bundler-stat",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -427,7 +427,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/candles",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "resolution", flag: "resolution", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1s", "15s", "30s", "1m", "3m", "5m", "15m", "30m", "1h", "4h", "12h", "1d", "1w", "1mo"], default: "1h", description: "Candle width." },
       { name: "from_timestamp", flag: "from-timestamp", in: "query", kind: "integer", list: false, required: false, positional: false, default: "0", description: "Unix milliseconds lower bound, inclusive." },
@@ -443,7 +443,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/community-messages",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "50", description: "Maximum messages." },
     ],
@@ -456,7 +456,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/dev-info",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -468,7 +468,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/fee-distribution",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -480,7 +480,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/fee-info",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -492,7 +492,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/holder-extra-info",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "wallet_addresses", flag: "wallet-addresses", in: "query", kind: "string", list: true, required: true, positional: true, description: "Holders to enrich. Repeat the param for more than one." },
     ],
@@ -505,7 +505,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "POST /v1/gmgn/{chain}/token-info-brief",
     hasBody: true,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "addresses", flag: "addresses", in: "body", kind: "string", list: true, required: true, positional: true },
     ],
   },
@@ -517,7 +517,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/liquidity-stats",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -529,7 +529,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/liquidity-trend",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -541,7 +541,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/logo-history",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -553,7 +553,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "POST /v1/gmgn/{chain}/token-prices",
     hasBody: true,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "addresses", flag: "addresses", in: "body", kind: "string", list: true, required: true, positional: true },
     ],
   },
@@ -565,7 +565,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "POST /v1/gmgn/{chain}/token-signals",
     hasBody: true,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "groups", flag: "groups", in: "body", kind: "json", list: false, required: true, positional: true, description: "Signal groups evaluated together; a token matching any group is returned." },
     ],
   },
@@ -578,7 +578,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "data.next" },
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "maker", flag: "maker", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "Restrict to a single maker wallet." },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "Pagination token from the previous page's `data.next`." },
@@ -592,7 +592,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/trends",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "trends_types", flag: "trends-types", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["avg_holding_balance", "holder_count", "top10_holder_percent", "top100_holder_percent", "bundler_percent", "insider_percent", "bot_degen_percent", "entrapment_percent"], default: "[\"holder_count\"]", description: "Series to return. Repeat the param for more than one." },
     ],
@@ -605,7 +605,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/top-buyers",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -617,7 +617,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/top-callers",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
     ],
   },
   {
@@ -628,7 +628,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/trader-stat",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -641,7 +641,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "data.next" },
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "100" },
       { name: "order_by", flag: "order-by", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["profit", "realized_profit", "unrealized_profit", "amount_percentage", "last_active_timestamp", "netflow_usd", "buy_volume_cur", "sell_volume_cur"], default: "profit" },
@@ -659,7 +659,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "data.next" },
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "maker", flag: "maker", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"" },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "Opaque pagination token. trades returns a fixed page (~50) with no page-size control; paginate by passing the previous response's `data.next` token here." },
@@ -685,7 +685,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "data.next" },
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "wallet_address", flag: "wallet-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "10" },
       { name: "type", flag: "type", in: "query", kind: "string", list: true, required: false, positional: false, description: "Event types to include; defaults to buy and sell." },
@@ -700,7 +700,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/wallet-chain-balances/{wallet_address}",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "wallet_address", flag: "wallet-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -712,19 +712,19 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/wallet-common-stat/{wallet_address}",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "wallet_address", flag: "wallet-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
   {
     name: "wallet-pnl",
     method: "wallet_pnl",
-    summary: "Full wallet P&L analytics: realized and unrealized profit, win rate, holding periods and risk flags. This data does not cover arbitrum, arc, robinhood, stable or xlayer; use /wallet-stat for those.",
+    summary: "Full wallet P&L analytics: realized and unrealized profit, win rate, holding periods and risk flags. This data does not cover arbitrum, arc, avalanche, elysium, robinhood, stable or xlayer; use /wallet-stat for those.",
     credits: 2,
     route: "GET /v1/gmgn/{chain}/wallet-pnl/{wallet_address}",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "wallet_address", flag: "wallet-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "period", flag: "period", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1d", "7d", "30d"], default: "7d", description: "Window the P&L is computed over." },
     ],
@@ -737,7 +737,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/wallet-rankings",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "period", flag: "period", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1d", "7d", "30d"], default: "7d", description: "Leaderboard window GMGN computes the rank over." },
       { name: "order_by", flag: "order-by", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["pnl_1d", "pnl_7d", "pnl_30d", "winrate_1d", "winrate_7d", "winrate_30d"], default: "pnl_7d", description: "Metric to sort on. Its window is independent of `period`." },
     ],
@@ -750,7 +750,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/wallet-stat/{wallet_address}",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "wallet_address", flag: "wallet-address", in: "path", kind: "string", list: false, required: true, positional: true },
       { name: "period", flag: "period", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1d", "7d", "all"], description: "P&L window. Omit for all-time." },
     ],
@@ -763,7 +763,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/wallet-tags-stat",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },
@@ -775,7 +775,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/gmgn/{chain}/token/{token_address}/website-info",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer"] },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["sol", "eth", "bsc", "base", "tron", "monad", "megaeth", "hyperevm", "robinhood", "arbitrum", "arc", "stable", "xlayer", "avalanche", "elysium"] },
       { name: "token_address", flag: "token-address", in: "path", kind: "string", list: false, required: true, positional: true },
     ],
   },

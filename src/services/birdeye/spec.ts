@@ -23,7 +23,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc"], description: "Chain of the wallet PnL data. birdeye computes PnL on these chains only." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon", "robinhood", "arc", "mantle", "monad", "unichain", "zksync", "hyperevm"], description: "Chain of the wallet PnL data. birdeye computes PnL on these chains only." },
       { name: "interval", flag: "interval", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1d", "7d", "30d"], default: "7d", description: "Ranking period." },
       { name: "sort_by", flag: "sort-by", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["total_pnl", "realized_pnl", "volume_usd"], default: "total_pnl", description: "Ranking field." },
       { name: "order", flag: "order", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["asc", "desc"], default: "desc", description: "Sort direction." },
@@ -39,7 +39,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/birdeye/chains/{chain}/new-listings",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon"], description: "Chain the token lives on, as birdeye names it." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon", "robinhood", "arc", "mantle", "megaeth", "monad", "unichain", "linea", "zksync", "plasma", "hyperevm"], description: "Chain the token lives on, as birdeye names it." },
       { name: "stage", flag: "stage", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["new", "migrated", "final_curve"], default: "new", description: "Launch stage." },
     ],
   },
@@ -62,7 +62,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/birdeye/chains/{chain}/tokens/{address}/markets",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon"], description: "Chain the token lives on, as birdeye names it." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon", "robinhood", "arc", "mantle", "megaeth", "monad", "unichain", "linea", "zksync", "plasma", "hyperevm"], description: "Chain the token lives on, as birdeye names it." },
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token address on the chosen chain: a base58 mint on Solana, 0x plus 40 hex characters on an EVM chain." },
       { name: "sort_by", flag: "sort-by", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["volume_24h", "liquidity"], default: "volume_24h", description: "Pool ordering." },
       { name: "order", flag: "order", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["asc", "desc"], default: "desc", description: "Sort direction." },
@@ -77,7 +77,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon"], description: "Chain the token lives on, as birdeye names it." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon", "robinhood", "arc", "mantle", "megaeth", "monad", "unichain", "linea", "zksync", "plasma", "hyperevm"], description: "Chain the token lives on, as birdeye names it." },
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token address on the chosen chain: a base58 mint on Solana, 0x plus 40 hex characters on an EVM chain." },
       { name: "side", flag: "side", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "buy", "sell", "add", "remove", "trade", "liquidity"], default: "all", description: "Keep one kind of event: `buy`, `sell`, `trade` (buys and sells), `add`, `remove`, `liquidity` (adds and removes), or `all`." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "50", description: "Trades per page." },
@@ -93,7 +93,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc"], description: "Chain of the wallet PnL data. birdeye computes PnL on these chains only." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon", "robinhood", "arc", "mantle", "monad", "unichain", "zksync", "hyperevm"], description: "Chain of the wallet PnL data. birdeye computes PnL on these chains only." },
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token address on the chosen chain: a base58 mint on Solana, 0x plus 40 hex characters on an EVM chain." },
       { name: "sort_by", flag: "sort-by", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["total_pnl", "realized_pnl", "unrealized_pnl"], default: "total_pnl", description: "Ranking field." },
       { name: "order", flag: "order", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["asc", "desc"], default: "desc", description: "Sort direction." },
@@ -104,12 +104,12 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "list-trending-tokens",
     method: "list_trending_tokens",
-    summary: "Returns 20 trending tokens on a chain, or across chains with `all`, with price, liquidity, volume and token metadata. `all` can include chains this API does not serve on other routes (such as `robinhood`); check each item's `network`.",
+    summary: "Returns 20 trending tokens on a chain, or across chains with `all`, with price, liquidity, volume and token metadata. `all` can include chains this API does not serve on other routes; check each item's `network`.",
     credits: 1,
     route: "GET /v1/birdeye/chains/{chain}/trending",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["all", "solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon"], description: "Chain to rank tokens on, or `all` for birdeye's multichain ranking." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["all", "solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon", "robinhood", "arc", "mantle", "megaeth", "monad", "unichain", "linea", "zksync", "plasma", "hyperevm"], description: "Chain to rank tokens on, or `all` for birdeye's multichain ranking." },
     ],
   },
   {
@@ -135,7 +135,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc"], description: "Chain of the wallet PnL data. birdeye computes PnL on these chains only." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon", "robinhood", "arc", "mantle", "monad", "unichain", "zksync", "hyperevm"], description: "Chain of the wallet PnL data. birdeye computes PnL on these chains only." },
       { name: "wallet", flag: "wallet", in: "path", kind: "string", list: false, required: true, positional: true, description: "Wallet address on the chosen chain: base58 on Solana, 0x plus 40 hex characters on an EVM chain." },
       { name: "sort_by", flag: "sort-by", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["last_trade", "tx_count", "total_pnl"], default: "last_trade", description: "Token ordering." },
       { name: "order", flag: "order", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["asc", "desc"], default: "desc", description: "Sort direction." },
@@ -152,7 +152,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc"], description: "Chain of the wallet PnL data. birdeye computes PnL on these chains only." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon", "robinhood", "arc", "mantle", "monad", "unichain", "zksync", "hyperevm"], description: "Chain of the wallet PnL data. birdeye computes PnL on these chains only." },
       { name: "wallet", flag: "wallet", in: "path", kind: "string", list: false, required: true, positional: true, description: "Wallet address on the chosen chain: base58 on Solana, 0x plus 40 hex characters on an EVM chain." },
       { name: "token", flag: "token", in: "query", kind: "string", list: false, required: false, positional: false, description: "Keep swaps of this token address only, in the chain's address format." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "20", description: "Swaps per page." },
@@ -180,7 +180,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/birdeye/chains/{chain}/tokens/{address}/ohlcv",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon"], description: "Chain the token lives on, as birdeye names it." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon", "robinhood", "arc", "mantle", "megaeth", "monad", "unichain", "linea", "zksync", "plasma", "hyperevm"], description: "Chain the token lives on, as birdeye names it." },
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token address on the chosen chain: a base58 mint on Solana, 0x plus 40 hex characters on an EVM chain." },
       { name: "interval", flag: "interval", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1s", "5s", "15s", "30s", "1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h", "1d", "1w", "1mo"], default: "15m", description: "Candle size." },
       { name: "count", flag: "count", in: "query", kind: "integer", list: false, required: false, positional: false, default: "300", description: "Number of candles." },
@@ -195,7 +195,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/birdeye/chains/{chain}/tokens/{address}/overview",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon"], description: "Chain the token lives on, as birdeye names it." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon", "robinhood", "arc", "mantle", "megaeth", "monad", "unichain", "linea", "zksync", "plasma", "hyperevm"], description: "Chain the token lives on, as birdeye names it." },
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token address on the chosen chain: a base58 mint on Solana, 0x plus 40 hex characters on an EVM chain." },
     ],
   },
@@ -207,7 +207,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/birdeye/chains/{chain}/tokens/{address}/security",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon"], description: "Chain the token lives on, as birdeye names it." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon", "robinhood", "arc", "mantle", "megaeth", "monad", "unichain", "linea", "zksync", "plasma", "hyperevm"], description: "Chain the token lives on, as birdeye names it." },
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Token address on the chosen chain: a base58 mint on Solana, 0x plus 40 hex characters on an EVM chain." },
     ],
   },
@@ -219,7 +219,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/birdeye/chains/{chain}/wallets/{wallet}/pnl-summary",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc"], description: "Chain of the wallet PnL data. birdeye computes PnL on these chains only." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "base", "bsc", "arbitrum", "avalanche", "optimism", "polygon", "robinhood", "arc", "mantle", "monad", "unichain", "zksync", "hyperevm"], description: "Chain of the wallet PnL data. birdeye computes PnL on these chains only." },
       { name: "wallet", flag: "wallet", in: "path", kind: "string", list: false, required: true, positional: true, description: "Wallet address on the chosen chain: base58 on Solana, 0x plus 40 hex characters on an EVM chain." },
       { name: "period", flag: "period", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["1d", "7d", "30d", "90d"], default: "30d", description: "Window the summary covers." },
     ],

@@ -34,7 +34,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
       { name: "currency", flag: "currency", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["USD", "SOL", "BASE", "QUOTE"], default: "USD", description: "Quote currency." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc"], description: "Chain of the coin. Omit for a Solana pump.fun coin, the original behaviour; set it for an EVM token or to pin a coin to one chain." },
+      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "Chain of the coin. Omit for a Solana pump.fun coin, the original behaviour; set it for an EVM token or to pin a coin to one chain." },
     ],
   },
   {
@@ -296,7 +296,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/pumpfun/chains/{chain}/coins/{address}/candles",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "hypercore"], description: "Chain the coin trades on; `hypercore` for HyperCore perps." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain", "hypercore"], description: "Chain the coin trades on; `hypercore` for HyperCore perps." },
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address on the chosen chain: a base58 mint on Solana, a 0x token on an EVM chain, or the coin name (such as BTC) on hypercore." },
       { name: "resolution", flag: "resolution", in: "query", kind: "string", list: false, required: true, positional: true, choices: ["1s", "15s", "30s", "1m", "5m", "15m", "1h", "4h", "1d"], description: "Bar width." },
       { name: "measure", flag: "measure", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["price_usd", "price_quote", "price_native", "market_cap_usd"], default: "price_usd", description: "What each bar measures. `market_cap_usd` multiplies the USD price by the current circulating supply." },
@@ -312,7 +312,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/pumpfun/chains/{chain}/coins/{address}/price-line",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "hypercore"], description: "Chain the coin trades on; `hypercore` for HyperCore perps." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain", "hypercore"], description: "Chain the coin trades on; `hypercore` for HyperCore perps." },
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address on the chosen chain: a base58 mint on Solana, a 0x token on an EVM chain, or the coin name (such as BTC) on hypercore." },
       { name: "resolution", flag: "resolution", in: "query", kind: "string", list: false, required: true, positional: true, choices: ["1s", "15s", "30s", "1m", "5m", "15m", "1h", "4h", "1d"], description: "Bar width." },
       { name: "measure", flag: "measure", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["price_usd", "price_quote", "price_native", "market_cap_usd"], default: "price_usd", description: "What each bar measures. `market_cap_usd` multiplies the USD price by the current circulating supply." },
@@ -329,7 +329,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/pumpfun/chains/{chain}/coins/{address}/top-holders",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc"], description: "Chain the coin lives on." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "Chain the coin lives on." },
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address on the chosen chain: a base58 mint on Solana, a 0x token on an EVM chain." },
     ],
   },
@@ -342,7 +342,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "cursor" },
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "hypercore"], description: "Chain the coin trades on; `hypercore` for HyperCore perps." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain", "hypercore"], description: "Chain the coin trades on; `hypercore` for HyperCore perps." },
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address on the chosen chain: a base58 mint on Solana, a 0x token on an EVM chain, or the coin name (such as BTC) on hypercore." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "100", description: "Maximum trades to return." },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`nextCursor` from the previous page; omit for the first page." },
@@ -387,7 +387,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
       { name: "include_livestream_info", flag: "include-livestream-info", in: "query", kind: "boolean", list: false, required: false, positional: false, default: "false", description: "Attach livestream metadata when the coin is streaming." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc"], description: "Pin an EVM address that exists on several chains to one of them. A coin that is not on this chain answers 404. Omit to let pump.fun pick." },
+      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "Pin an EVM address that exists on several chains to one of them. A coin that is not on this chain answers 404. Omit to let pump.fun pick." },
     ],
   },
   {
@@ -403,7 +403,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "board", flag: "board", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["new", "graduating", "graduated", "movers", "charity"], description: "Which ranked board to read." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "30", description: "Maximum coins to return." },
       { name: "offset", flag: "offset", in: "query", kind: "integer", list: false, required: false, positional: false, default: "0", description: "Rows to skip." },
-      { name: "chains", flag: "chains", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc"], description: "Keep only coins on these chains, at most 8: pump.fun refuses all nine at once. Repeat the parameter for several; omit it for every chain." },
+      { name: "chains", flag: "chains", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "Keep only coins on these chains, at most 8: pump.fun refuses more at once. Repeat the parameter for several; omit it for every chain." },
     ],
   },
   {
@@ -430,7 +430,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor" },
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc"], description: "Chain the coin lives on." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "Chain the coin lives on." },
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address on the chosen chain: a base58 mint on Solana, a 0x token on an EVM chain." },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`nextCursor` from the previous page; omit for the first page." },
     ],
@@ -823,7 +823,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "page" },
     params: [
       { name: "page_size", flag: "page-size", in: "query", kind: "integer", list: false, required: false, positional: false, default: "150", description: "Number of feed entries to return." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "solana", "ethereum", "base", "bsc", "robinhood", "hyperevm", "ink", "arc"], default: "all", description: "Restrict the feed to one chain. pump.fun's feed does not cover Monad." },
+      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "solana", "ethereum", "base", "bsc", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "monad", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain", "ton", "near", "starknet"], default: "all", description: "Restrict the feed to one chain." },
       { name: "page", flag: "page", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Page number, from 0." },
       { name: "updates_limit", flag: "updates-limit", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Author updates to include per callout." },
     ],
@@ -897,7 +897,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     params: [
       { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc"], description: "Chain of the coin. Omit for a Solana pump.fun coin, the original behaviour; set it for an EVM token or to pin a coin to one chain." },
+      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "Chain of the coin. Omit for a Solana pump.fun coin, the original behaviour; set it for an EVM token or to pin a coin to one chain." },
     ],
   },
   {
@@ -1001,7 +1001,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "include_profile", flag: "include-profile", in: "query", kind: "boolean", list: false, required: false, positional: false, description: "Embed each holder's full profile." },
       { name: "dust_floor_usd", flag: "dust-floor-usd", in: "query", kind: "number", list: false, required: false, positional: false, description: "Ignore positions below this USD value. Refused with `RANKED` and `CLOSED_PNL`." },
       { name: "page_token", flag: "page-token", in: "query", kind: "string", list: false, required: false, positional: false, description: "`RANKED` only: `nextPageToken` from the previous page. pump.fun answered `RANKED` in one page (`hasMore` false) with no `nextPageToken` in every probe since 2026-10-08." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc"], description: "`RANKED` only: chain of an EVM coin." },
+      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "`RANKED` only: chain of an EVM coin." },
     ],
   },
   {
@@ -1014,7 +1014,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     params: [
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "50", description: "Maximum board entries to return. pump.fun serves at most 150." },
-      { name: "chains", flag: "chains", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "robinhood", "hyperevm", "ink", "arc"], description: "Keep only coins on these chains. Repeat the parameter for several." },
+      { name: "chains", flag: "chains", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "Keep only coins on these chains. Repeat the parameter for several." },
     ],
   },
   {
@@ -1026,7 +1026,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     params: [
       { name: "since", flag: "since", in: "query", kind: "string", list: false, required: true, positional: true, description: "`headToken` from `/home-feed/new`, kept until you reload the feed." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "solana", "ethereum", "base", "bsc", "robinhood", "hyperevm", "ink", "arc"], default: "all", description: "Restrict the feed to one chain. pump.fun's feed does not cover Monad." },
+      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "solana", "ethereum", "base", "bsc", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "monad", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain", "ton", "near", "starknet"], default: "all", description: "Restrict the feed to one chain." },
       { name: "min_cost_basis_usd", flag: "min-cost-basis-usd", in: "query", kind: "number", list: false, required: false, positional: false, description: "Keep positions whose net USD cost basis is at least this." },
       { name: "max_cost_basis_usd", flag: "max-cost-basis-usd", in: "query", kind: "number", list: false, required: false, positional: false, description: "Keep positions whose net USD cost basis is at most this." },
       { name: "min_callout_market_cap_usd", flag: "min-callout-market-cap-usd", in: "query", kind: "number", list: false, required: false, positional: false, description: "Keep callouts made when the coin's market cap was at least this." },
@@ -1046,7 +1046,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "page_size", flag: "page-size", in: "query", kind: "integer", list: false, required: false, positional: false, default: "25", description: "Number of callouts to return." },
       { name: "page_token", flag: "page-token", in: "query", kind: "string", list: false, required: false, positional: false, description: "`nextPageToken` from the previous page." },
       { name: "updates_limit", flag: "updates-limit", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Author updates to include per callout." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "solana", "ethereum", "base", "bsc", "robinhood", "hyperevm", "ink", "arc"], default: "all", description: "Restrict the feed to one chain. pump.fun's feed does not cover Monad." },
+      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "solana", "ethereum", "base", "bsc", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "monad", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain", "ton", "near", "starknet"], default: "all", description: "Restrict the feed to one chain." },
       { name: "min_cost_basis_usd", flag: "min-cost-basis-usd", in: "query", kind: "number", list: false, required: false, positional: false, description: "Keep positions whose net USD cost basis is at least this." },
       { name: "max_cost_basis_usd", flag: "max-cost-basis-usd", in: "query", kind: "number", list: false, required: false, positional: false, description: "Keep positions whose net USD cost basis is at most this." },
       { name: "min_callout_market_cap_usd", flag: "min-callout-market-cap-usd", in: "query", kind: "number", list: false, required: false, positional: false, description: "Keep callouts made when the coin's market cap was at least this." },
@@ -1168,7 +1168,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/pumpfun/chains/{chain}/pools/{pool}",
     hasBody: false,
     params: [
-      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "base", "bsc", "ethereum", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "avalanche", "optimism", "sei"], description: "Chain the pool trades on." },
+      { name: "chain", flag: "chain", in: "path", kind: "string", list: false, required: true, positional: true, choices: ["solana", "base", "bsc", "ethereum", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "avalanche", "optimism", "sei", "tron", "elysium", "unichain"], description: "Chain the pool trades on." },
       { name: "pool", flag: "pool", in: "path", kind: "string", list: false, required: true, positional: true, description: "Pool address: a base58 address on Solana; on an EVM chain a 0x pair address, or a 32-byte 0x pool id for Uniswap v4 pools. `poolAddress` on `/tokens/batch`." },
       { name: "token_address", flag: "token-address", in: "query", kind: "string", list: false, required: false, positional: false, description: "Token the pool is read for. On Solana pump.fun then answers that token's main pool whatever `pool` says; EVM chains ignore it." },
     ],
@@ -1388,7 +1388,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: true,
     params: [
       { name: "addresses", flag: "addresses", in: "body", kind: "string", list: true, required: true, positional: true, description: "Token addresses (Solana mints or EVM tokens) on any mix of chains, 1 to 50. EVM addresses come back lowercased; addresses pump.fun cannot resolve are left out." },
-      { name: "chain", flag: "chain", in: "body", kind: "string", list: false, required: false, positional: false, choices: ["solana", "base", "bsc", "ethereum", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "avalanche", "optimism", "sei"], description: "Look every address up on this chain and leave out those not on it. Omit to let pump.fun pick each address's chain." },
+      { name: "chain", flag: "chain", in: "body", kind: "string", list: false, required: false, positional: false, choices: ["solana", "base", "bsc", "ethereum", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "avalanche", "optimism", "sei", "tron", "elysium", "unichain"], description: "Look every address up on this chain and leave out those not on it. Omit to let pump.fun pick each address's chain." },
     ],
   },
   {
@@ -1448,7 +1448,7 @@ export const COMMANDS: CommandSpec[] = [
     pagination: { flag: "cursor" },
     params: [
       { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc"], description: "Chain of an EVM coin. Omit for Solana, or to let pump.fun infer it." },
+      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "Chain of an EVM coin. Omit for Solana, or to let pump.fun infer it." },
       { name: "to", flag: "to", in: "query", kind: "integer", list: false, required: false, positional: false, description: "Unix time in ms of the newest trade. pump.fun honours it only while it pages the answer." },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`page.nextCursor` from the previous page; omit for the first page." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "500", description: "Maximum trades to return." },
@@ -1478,7 +1478,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     params: [
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "50", description: "Maximum board entries to return. pump.fun serves at most 150." },
-      { name: "chains", flag: "chains", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "robinhood", "hyperevm", "ink", "arc"], description: "Keep only coins on these chains. Repeat the parameter for several." },
+      { name: "chains", flag: "chains", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "Keep only coins on these chains. Repeat the parameter for several." },
     ],
   },
   {
@@ -1599,7 +1599,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "total_only", flag: "total-only", in: "query", kind: "boolean", list: false, required: false, positional: false, description: "Return the summary only (position count), without positions." },
       { name: "filter_spam", flag: "filter-spam", in: "query", kind: "boolean", list: false, required: false, positional: false, description: "Drop positions pump.fun groups as spam before paging." },
       { name: "spam_only", flag: "spam-only", in: "query", kind: "boolean", list: false, required: false, positional: false, description: "Return only the spam group. Cannot be combined with `filter_spam`." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "robinhood", "hyperevm", "ink", "arc"], description: "Only positions on this chain. pump.fun keeps no Monad portfolio." },
+      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "Only positions on this chain." },
     ],
   },
   {
@@ -1643,7 +1643,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Wallet address (Solana or EVM) or pump.fun user id (UUID)." },
       { name: "mint", flag: "mint", in: "query", kind: "string", list: false, required: false, positional: false, description: "Only trades in this coin (Solana mint or EVM token)." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "robinhood", "hyperevm", "ink", "arc"], description: "Only trades on this chain. pump.fun serves no Monad trades here." },
+      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "Only trades on this chain." },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`nextCursor` from the previous page; omit for the first page." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "50", description: "Maximum trades to return." },
       { name: "types", flag: "types", in: "query", kind: "string", list: true, required: false, positional: false, choices: ["trades", "transfers"], description: "Row kinds. Add `transfers` to interleave wallet transfers; each row then carries `kind`." },
@@ -1743,7 +1743,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Solana wallet address. pump.fun refuses EVM wallets here." },
       { name: "page", flag: "page", in: "query", kind: "integer", list: false, required: false, positional: false, default: "1", description: "One-based page index." },
       { name: "size", flag: "size", in: "query", kind: "integer", list: false, required: false, positional: false, default: "100", description: "Balances per page." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "solana", "ethereum", "base", "bsc", "robinhood", "hype", "ink", "arc"], description: "Restrict to one chain, or `all` for every chain. Omit for Solana tokens only. pump.fun spells HyperEVM `hype`." },
+      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["all", "solana", "ethereum", "base", "bsc", "robinhood", "hype", "ink", "arc", "megaeth", "xlayer", "monad", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron"], description: "Restrict to one chain, or `all` for every chain. Omit for Solana tokens only. pump.fun spells HyperEVM `hype`." },
     ],
   },
   {
@@ -1805,7 +1805,7 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Wallet address, Solana or EVM (0x)." },
       { name: "mint", flag: "mint", in: "query", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint, or an EVM token for an EVM wallet." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc"], description: "Chain of an EVM coin. Omit for Solana. When set, the wallet and the coin must both be addresses on that chain." },
+      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "Chain of an EVM coin. Omit for Solana. When set, the wallet and the coin must both be addresses on that chain." },
       { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "200", description: "Maximum trades to return." },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`nextCursor` from the previous page; omit for the first page." },
     ],
