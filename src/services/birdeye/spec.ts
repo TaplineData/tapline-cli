@@ -146,7 +146,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "list-wallet-transactions",
     method: "list_wallet_transactions",
-    summary: "A wallet's swaps, newest first, with both legs (token, amount, price) and USD value. A transaction that swaps through several tokens appears once per leg, so `tx_hash` can repeat. Pass `token` to keep swaps of one token. Empty values may be omitted.",
+    summary: "Returns a wallet's swaps, newest first, with amounts, prices, and USD values. Multi-token swaps may appear more than once.",
     credits: 2,
     route: "GET /v1/birdeye/chains/{chain}/wallets/{wallet}/transactions",
     hasBody: false,
@@ -162,7 +162,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "net-worth-history",
     method: "get_net_worth_history",
-    summary: "A Solana wallet's net worth over time, newest point first, one point per `interval` (at most 90). Points without a value carry only `timestamp`. `net_worth_change_percent` is 999999 when the window starts at zero. An unknown wallet answers an empty `history` list.",
+    summary: "Returns a Solana wallet's net worth over time, newest first. Unknown wallets return no history.",
     credits: 2,
     route: "GET /v1/birdeye/solana/wallets/{wallet}/net-worth-history",
     hasBody: false,
@@ -175,7 +175,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "token-ohlcv",
     method: "get_token_ohlcv",
-    summary: "USD candles as parallel arrays, oldest first: `o`, `h`, `l`, `c`, `v` and unix seconds in `t`. Up to `count` bars ending before `to` (exclusive), or now when `to` is omitted. Intervals with no trades have no bar. An unknown token answers empty arrays.",
+    summary: "Returns USD price and volume candles in oldest-first order. Periods with no trades are omitted, and unknown tokens return empty results.",
     credits: 1,
     route: "GET /v1/birdeye/chains/{chain}/tokens/{address}/ohlcv",
     hasBody: false,

@@ -216,7 +216,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "search-videos",
     method: "search_videos",
-    summary: "Search videos.",
+    summary: "Search videos: up to 50 per page.",
     credits: 5,
     route: "GET /v1/brave-search/videos",
     hasBody: false,

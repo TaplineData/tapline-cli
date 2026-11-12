@@ -128,7 +128,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "search-companies",
     method: "search_companies",
-    summary: "Find companies by name, with the keys the company routes take.",
+    summary: "Suggest companies for a partly typed name, with the keys the company routes take.",
     credits: 2,
     route: "GET /v1/indeed/companies/search",
     hasBody: false,

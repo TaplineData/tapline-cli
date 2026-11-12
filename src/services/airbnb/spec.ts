@@ -41,7 +41,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "check_in", flag: "check-in", in: "body", kind: "string", list: false, required: true, positional: true, description: "Check-in date (YYYY-MM-DD)" },
       { name: "check_out", flag: "check-out", in: "body", kind: "string", list: false, required: true, positional: true, description: "Check-out date (YYYY-MM-DD)" },
       { name: "adults", flag: "adults", in: "body", kind: "integer", list: false, required: false, positional: false, default: "1", description: "Number of adults" },
-      { name: "currency", flag: "currency", in: "body", kind: "string", list: false, required: false, positional: false, default: "USD", description: "ISO 4217 currency code (default USD). Any valid ISO 4217 code is accepted, but Airbnb only renders prices natively in a subset and silently falls back to USD for the rest, so the response `currency` field is authoritative and may differ from the request. The natively-supported codes are enumerated in the `SupportedCurrency` schema (and machine-readably under this field's `x-supported-currencies`)." },
+      { name: "currency", flag: "currency", in: "body", kind: "string", list: false, required: false, positional: false, default: "USD", description: "The currency used for prices. Airbnb may fall back to USD, so check the currency in the response." },
     ],
   },
   {
@@ -80,7 +80,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "query", flag: "query", in: "body", kind: "string", list: false, required: false, positional: true, description: "Text location query (e.g. 'London, United Kingdom')" },
       { name: "check_in", flag: "check-in", in: "body", kind: "string", list: false, required: false, positional: false, description: "Check-in date (YYYY-MM-DD)" },
       { name: "check_out", flag: "check-out", in: "body", kind: "string", list: false, required: false, positional: false, description: "Check-out date (YYYY-MM-DD)" },
-      { name: "currency", flag: "currency", in: "body", kind: "string", list: false, required: false, positional: false, default: "USD", description: "ISO 4217 currency code (default USD). Any valid ISO 4217 code is accepted, but Airbnb only renders prices natively in a subset and silently falls back to USD for the rest, so the response `currency` field is authoritative and may differ from the request. The natively-supported codes are enumerated in the `SupportedCurrency` schema (and machine-readably under this field's `x-supported-currencies`)." },
+      { name: "currency", flag: "currency", in: "body", kind: "string", list: false, required: false, positional: false, default: "USD", description: "The currency used for prices. Airbnb may fall back to USD, so check the currency in the response." },
       { name: "cursor", flag: "cursor", in: "body", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "Pagination cursor from previous response" },
       { name: "price_min", flag: "price-min", in: "body", kind: "integer", list: false, required: false, positional: false, description: "Minimum price filter" },
       { name: "price_max", flag: "price-max", in: "body", kind: "integer", list: false, required: false, positional: false, description: "Maximum price filter" },

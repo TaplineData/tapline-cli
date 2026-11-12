@@ -6,7 +6,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "board",
     method: "get_board",
-    summary: "A board's details and its pins in board order. Board details and counts can be up to 24 hours old. Pass `cursor` back until it is `null`. `trim` is accepted but does not change the response.",
+    summary: "Returns board details and pins in board order. Board information may be up to 24 hours old.",
     credits: 1,
     route: "GET /v2/pinterest/board",
     hasBody: false,

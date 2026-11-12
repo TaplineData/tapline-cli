@@ -6,7 +6,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "account-credits",
     method: "get_account_credits",
-    summary: "Return the credit balance of the account that owns the API key. `subscription_renews_at` is when the plan renews, or null without a plan. Works on every plan and costs no credits.",
+    summary: "Returns the account's remaining plan and prepaid credits, plus renewal details. This check is free and has no rate limit.",
     credits: null,
     route: "GET /v1/account/credits",
     hasBody: false,

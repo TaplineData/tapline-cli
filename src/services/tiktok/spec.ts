@@ -89,7 +89,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "profile-videos",
     method: "get_profile_videos",
-    summary: "Videos a user posted, newest first or most popular first, 35 per page. `create_time` is in Unix seconds and `media.duration_ms` in milliseconds. Pass `max_cursor` back for the next page while `has_more` is true.",
+    summary: "Returns up to 35 videos from a profile, sorted by newest or most popular.",
     credits: 1,
     route: "GET /v1/tiktok/profile/videos",
     hasBody: false,

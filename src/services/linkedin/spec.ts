@@ -6,7 +6,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "company",
     method: "get_company",
-    summary: "Returns a company, school, or showcase page with its profile details, follower and employee counts, specialties, related pages, featured employees, and latest posts.",
+    summary: "Returns a company, school, or showcase page.",
     credits: 1,
     route: "GET /v1/linkedin/company",
     hasBody: false,
@@ -17,7 +17,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "company-posts",
     method: "get_company_posts",
-    summary: "Returns posts from a company, school, or showcase page, 10 per page, newest first. Each item includes its text, publish time, engagement, author, and repost status.",
+    summary: "Lists a company, school, or showcase page's posts, 10 per page, newest first.",
     credits: 1,
     route: "GET /v1/linkedin/company/posts",
     hasBody: false,
@@ -30,7 +30,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "job",
     method: "get_job",
-    summary: "Returns one job with its company, location, posting age, applicant count, salary when available, full description, seniority, employment type, industries, and application method.",
+    summary: "Returns one job posting.",
     credits: 1,
     route: "GET /v1/linkedin/job",
     hasBody: false,
@@ -41,7 +41,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "post",
     method: "get_post",
-    summary: "Returns one post or article with its text, publish time, engagement, author, comments, images, and native video. Missing posts return 404.",
+    summary: "Returns one post or Pulse article. Missing posts return 404.",
     credits: 1,
     route: "GET /v1/linkedin/post",
     hasBody: false,
@@ -63,7 +63,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "profile",
     method: "get_profile",
-    summary: "Returns a member profile with its headline, bio, location, follower count, experience, education, recent activity, projects, publications, recommendations, and similar profiles. Missing or unavailable profiles return 404.",
+    summary: "Returns a public member profile. Missing or unavailable profiles return 404.",
     credits: 2,
     route: "GET /v1/linkedin/profile",
     hasBody: false,
@@ -74,7 +74,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "search-jobs",
     method: "search_jobs",
-    summary: "Searches jobs by keyword, location, company, posting window, distance, and application method. Returns 10 jobs per page. Pass `pagination.next_cursor` back for the next page.",
+    summary: "Returns matching jobs, including company and posting details, 10 at a time.",
     credits: 1,
     route: "GET /v1/linkedin/jobs/search",
     hasBody: false,

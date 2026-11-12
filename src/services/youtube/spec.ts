@@ -11,7 +11,7 @@ export const COMMANDS: CommandSpec[] = [
     route: "GET /v1/youtube/channels/{channel_id}",
     hasBody: false,
     params: [
-      { name: "channel_id", flag: "channel-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "YouTube channel ID, @handle, or full allowed channel URL. Full URLs may use /channel/, /@, /c/, or /user/ and cannot include a content tab or query string." },
+      { name: "channel_id", flag: "channel-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "YouTube channel ID, handle with or without @, or full allowed channel URL. Full URLs may use /channel/, /@, /c/, or /user/ and cannot include a content tab or query string." },
     ],
   },
   {
@@ -23,7 +23,7 @@ export const COMMANDS: CommandSpec[] = [
     hasBody: false,
     pagination: { flag: "cursor", nextPath: "pagination.next_cursor" },
     params: [
-      { name: "channel_id", flag: "channel-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "YouTube channel ID, @handle, or full allowed channel URL. Full URLs may use /channel/, /@, /c/, or /user/ and cannot include a content tab or query string." },
+      { name: "channel_id", flag: "channel-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "YouTube channel ID, handle with or without @, or full allowed channel URL. Full URLs may use /channel/, /@, /c/, or /user/ and cannot include a content tab or query string." },
       { name: "content_type", flag: "content-type", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["videos", "shorts", "streams"], default: "videos", description: "Channel tab: videos, shorts, or streams. Ignored when cursor is supplied because the cursor preserves the walk's tab." },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "Send the `pagination.next_cursor` from the last page to get the next one. Leave it empty for the first page. The cursor remembers its content type, so `content_type` is ignored. Each request returns one complete upstream page, usually 30 items. Use the same channel reference every time. Long runs stop once the cursor passes 8,000 characters, marked `completion=depth_limit`. Cursors can expire; bad or expired ones return `invalid_cursor` (400)." },
     ],
@@ -106,7 +106,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "search",
     method: "search",
-    summary: "Search for matching videos, channels, and playlists.",
+    summary: "Search for matching videos, channels, and playlists: about 20 per page.",
     credits: 3,
     route: "GET /v1/youtube/search",
     hasBody: false,

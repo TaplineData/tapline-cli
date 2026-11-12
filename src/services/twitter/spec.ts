@@ -54,7 +54,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "user-tweets",
     method: "get_user_tweets",
-    summary: "Returns an account's pinned post and newest original posts with text, engagement, media, links, and quoted-post data. The response contains about five posts and no cursor. Protected accounts return no posts.",
+    summary: "Returns the pinned post and up to five recent original posts from an account. Protected accounts return no posts, and there are no additional pages.",
     credits: 1,
     route: "GET /v1/twitter/user-tweets",
     hasBody: false,
