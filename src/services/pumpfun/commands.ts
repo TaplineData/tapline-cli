@@ -12,16 +12,6 @@ const RUNNERS: Record<string, Command['run']> = {
     client.pumpfun.approvedCreator({
       mint: params.mint as string,
     }),
-  ath: (client, { params }) =>
-    client.pumpfun.ath({
-      mint: params.mint as string,
-      currency: params.currency as pumpfun.AthCurrency | undefined,
-      chain: params.chain as (pumpfun.TokenChain | null) | undefined,
-    }),
-  "ath-batch": (client, { body }) =>
-    client.pumpfun.athBatch({
-      mints: body.mints as string[],
-    }),
   "ban-status": (client, { params }) =>
     client.pumpfun.banStatus({
       address: params.address as string,
@@ -213,12 +203,6 @@ const RUNNERS: Record<string, Command['run']> = {
       source: params.source as (pumpfun.NarrativeSource | null) | undefined,
       locale: params.locale as (string | null) | undefined,
     }),
-  "coin-timeline": (client, { params }) =>
-    client.pumpfun.coinTimeline({
-      mint: params.mint as string,
-      limit: params.limit as number | undefined,
-      cursor: params.cursor as (string | null) | undefined,
-    }),
   "coin-top-callouts": (client, { params }) =>
     client.pumpfun.coinTopCallouts({
       mint: params.mint as string,
@@ -280,20 +264,10 @@ const RUNNERS: Record<string, Command['run']> = {
     client.pumpfun.creatorFeesTotal({
       address: params.address as string,
     }),
-  "fee-sharing-shares": (client, { params }) =>
-    client.pumpfun.feeSharingShares({
-      address: params.address as string,
-      limit: params.limit as number | undefined,
-      cursor: params.cursor as string | undefined,
-    }),
   "fee-sharing-totals": (client, { params }) =>
     client.pumpfun.feeSharingTotals({
       address: params.address as string,
       cursor: params.cursor as (string | null) | undefined,
-    }),
-  "first-trade": (client, { params }) =>
-    client.pumpfun.firstTrade({
-      mint: params.mint as string,
     }),
   "follow-suggestions": (client, { params }) =>
     client.pumpfun.followSuggestions({

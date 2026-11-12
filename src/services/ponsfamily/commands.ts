@@ -55,20 +55,19 @@ const RUNNERS: Record<string, Command['run']> = {
       sort: params.sort as ponsfamily.PostSort | undefined,
       community: params.community as (string | null) | undefined,
     }),
-  "list-graduated-catalog": (client) =>
-    client.ponsfamily.listGraduatedCatalog(),
-  "list-graduations": (client) =>
-    client.ponsfamily.listGraduations(),
+  "list-graduated-catalog": (client, { params }) =>
+    client.ponsfamily.listGraduatedCatalog({
+      cursor: params.cursor as (string | null) | undefined,
+    }),
+  "list-graduations": (client, { params }) =>
+    client.ponsfamily.listGraduations({
+      cursor: params.cursor as (string | null) | undefined,
+    }),
   "list-launches": (client, { params }) =>
     client.ponsfamily.listLaunches({
       sort: params.sort as ponsfamily.LaunchSort | undefined,
-      age: params.age as ponsfamily.LaunchAge | undefined,
       version: params.version as ponsfamily.LaunchVersion | undefined,
-      page: params.page as number | undefined,
-      page_size: params.page_size as number | undefined,
-      include_graduated: params.include_graduated as boolean | undefined,
-      graduated_page: params.graduated_page as number | undefined,
-      graduated_page_size: params.graduated_page_size as number | undefined,
+      cursor: params.cursor as (string | null) | undefined,
     }),
   "list-live-markets": (client, { params }) =>
     client.ponsfamily.listLiveMarkets({
@@ -77,7 +76,6 @@ const RUNNERS: Record<string, Command['run']> = {
   market: (client, { params }) =>
     client.ponsfamily.getMarket({
       token: params.token as string,
-      include_holders: params.include_holders as boolean | undefined,
     }),
   "market-ath": (client, { params }) =>
     client.ponsfamily.getMarketAth({
@@ -120,9 +118,6 @@ const RUNNERS: Record<string, Command['run']> = {
   "search-launches": (client, { params }) =>
     client.ponsfamily.searchLaunches({
       q: params.q as string | undefined,
-      sort: params.sort as ponsfamily.LaunchSearchSort | undefined,
-      age: params.age as ponsfamily.LaunchAge | undefined,
-      page: params.page as number | undefined,
     }),
   token: (client, { params }) =>
     client.ponsfamily.getToken({

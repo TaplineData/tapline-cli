@@ -25,31 +25,6 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
-    name: "ath",
-    method: "ath",
-    summary: "All-time-high market cap for a coin.",
-    credits: 1,
-    route: "GET /v1/pumpfun/coins/{mint}/ath",
-    hasBody: false,
-    params: [
-      { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
-      { name: "currency", flag: "currency", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["USD", "SOL", "BASE", "QUOTE"], default: "USD", description: "Quote currency." },
-      { name: "chain", flag: "chain", in: "query", kind: "string", list: false, required: false, positional: false, choices: ["solana", "ethereum", "bsc", "base", "monad", "robinhood", "hyperevm", "ink", "arc", "megaeth", "xlayer", "polygon", "arbitrum", "elysium", "avalanche", "optimism", "sei", "tron", "unichain"], description: "Chain of the coin. Omit for a Solana pump.fun coin, the original behaviour; set it for an EVM token or to pin a coin to one chain." },
-    ],
-  },
-  {
-    name: "ath-batch",
-    method: "ath_batch",
-    summary: "All-time-high market caps for many coins at once.",
-    credits: 1,
-    perResults: 20,
-    route: "POST /v1/pumpfun/coins/ath/batch",
-    hasBody: true,
-    params: [
-      { name: "mints", flag: "mints", in: "body", kind: "string", list: true, required: true, positional: true, description: "Coin addresses (Solana mints or EVM tokens), 1 to 100." },
-    ],
-  },
-  {
     name: "ban-status",
     method: "ban_status",
     summary: "Moderation ban record for a wallet. Answers `null` when the wallet has no ban.",
@@ -474,20 +449,6 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
-    name: "coin-timeline",
-    method: "coin_timeline",
-    summary: "Creator-fee timeline: creation, distributions and shareholder changes. Pass `cursor` from `pagination.nextCursor` while `pagination.hasMore` is true.",
-    credits: 1,
-    route: "GET /v1/pumpfun/coins/{mint}/timeline",
-    hasBody: false,
-    pagination: { flag: "cursor" },
-    params: [
-      { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
-      { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "50", description: "Maximum timeline events to return." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`nextCursor` from the previous page; omit for the first page." },
-    ],
-  },
-  {
     name: "coin-top-callouts",
     method: "coin_top_callouts",
     summary: "Top callouts on a coin, Solana mint or EVM token, each with the caller's position.",
@@ -630,20 +591,6 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
-    name: "fee-sharing-shares",
-    method: "fee_sharing_shares",
-    summary: "Individual fee-sharing shares held by an account.",
-    credits: 1,
-    route: "GET /v1/pumpfun/accounts/{address}/fee-sharing/shares",
-    hasBody: false,
-    pagination: { flag: "cursor" },
-    params: [
-      { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Solana wallet address. pump.fun refuses EVM wallets here." },
-      { name: "limit", flag: "limit", in: "query", kind: "integer", list: false, required: false, positional: false, default: "20", description: "Maximum shares to return." },
-      { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, default: "\"\"", description: "Cursor from a previous page." },
-    ],
-  },
-  {
     name: "fee-sharing-totals",
     method: "fee_sharing_totals",
     summary: "Deprecated: this read was retired. This route now answers what `/shareholders/{address}/fees` answers: per-coin fee-sharing earnings with wallet totals.",
@@ -654,17 +601,6 @@ export const COMMANDS: CommandSpec[] = [
     params: [
       { name: "address", flag: "address", in: "path", kind: "string", list: false, required: true, positional: true, description: "Wallet address, Solana or EVM (0x)." },
       { name: "cursor", flag: "cursor", in: "query", kind: "string", list: false, required: false, positional: false, description: "`nextCursor` from the previous page; omit for the first page." },
-    ],
-  },
-  {
-    name: "first-trade",
-    method: "first_trade",
-    summary: "The first trade ever recorded against a coin.",
-    credits: 1,
-    route: "GET /v1/pumpfun/coins/{mint}/first-trade",
-    hasBody: false,
-    params: [
-      { name: "mint", flag: "mint", in: "path", kind: "string", list: false, required: true, positional: true, description: "Coin address: a Solana mint or an EVM token (0x)." },
     ],
   },
   {
@@ -891,7 +827,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "market-activity",
     method: "market_activity",
-    summary: "Rolling volume, transaction and trader counts for a coin over 5m, 1h, 6h and 24h. A window with no trades is `null`.",
+    summary: "Rolling volume, transaction and trader counts for a coin over 5m, 1h, 6h and 24h. Trader counts are `null` on Solana coins.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/{mint}/market-activity",
     hasBody: false,
@@ -953,7 +889,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "mayhem-stats",
     method: "mayhem_stats",
-    summary: "Buy/sell totals a mayhem-mode agent has accumulated on a coin.",
+    summary: "Buy/sell totals a mayhem-mode agent has accumulated on a coin. All zero for a coin that never ran mayhem mode.",
     credits: 1,
     route: "GET /v1/pumpfun/coins/{mint}/mayhem-stats",
     hasBody: false,
