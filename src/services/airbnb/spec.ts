@@ -6,7 +6,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "calendar",
     method: "get_calendar",
-    summary: "Check a listing's availability by month.",
+    summary: "Check a listing's availability and stay rules by month. Prices are not included; use `/price` for them.",
     credits: 1,
     route: "POST /v1/airbnb/calendar",
     hasBody: true,
@@ -15,7 +15,7 @@ export const COMMANDS: CommandSpec[] = [
       { name: "month", flag: "month", in: "body", kind: "integer", list: false, required: true, positional: true, description: "Starting month (1-12)" },
       { name: "year", flag: "year", in: "body", kind: "integer", list: false, required: true, positional: true, description: "Starting year" },
       { name: "count", flag: "count", in: "body", kind: "integer", list: false, required: false, positional: false, default: "12", description: "Number of months to fetch" },
-      { name: "currency", flag: "currency", in: "body", kind: "string", list: false, required: false, positional: false, default: "USD", description: "ISO 4217 currency code (default USD). Any valid ISO 4217 code is accepted, but Airbnb only renders prices natively in a subset and silently falls back to USD for the rest, so the response `currency` field is authoritative and may differ from the request. The natively-supported codes are enumerated in the `SupportedCurrency` schema (and machine-readably under this field's `x-supported-currencies`)." },
+      { name: "currency", flag: "currency", in: "body", kind: "string", list: false, required: false, positional: false, default: "USD", description: "Ignored. The calendar carries no prices. Any valid ISO 4217 code is still accepted." },
     ],
   },
   {
