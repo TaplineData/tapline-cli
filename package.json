@@ -75,7 +75,7 @@
     "dist"
   ],
   "dependencies": {
-    "@tapline/client": "^0.2.24"
+    "@tapline/client": "^0.2.26"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
