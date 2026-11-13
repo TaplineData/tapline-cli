@@ -63,7 +63,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "profile",
     method: "get_profile",
-    summary: "Returns a public member profile with its jobs, schools, skills, posts, articles, recommendations and similar people. Missing profiles return 404.",
+    summary: "Returns a public member profile with its jobs, schools, skills, posts, articles, recommendations and similar people. Missing profiles return 404. The logged-out page can mask the headline, About, connections (`500+`), job titles and dates.",
     credits: 2,
     route: "GET /v1/linkedin/profile",
     hasBody: false,
