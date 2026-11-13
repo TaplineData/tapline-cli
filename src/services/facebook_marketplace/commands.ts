@@ -41,6 +41,10 @@ const RUNNERS: Record<string, Command['run']> = {
     client.facebookMarketplace.getMarketplaceListing({
       listing_id: params.listing_id as string,
     }),
+  "marketplace-listing-with-media": (client, { params }) =>
+    client.facebookMarketplace.getMarketplaceListingWithMedia({
+      listing_id: params.listing_id as string,
+    }),
   "search-marketplace": (client, { params }) =>
     client.facebookMarketplace.searchMarketplace({
       query: params.query as string,

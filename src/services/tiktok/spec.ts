@@ -76,7 +76,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "profile",
     method: "get_profile",
-    summary: "Returns a profile by handle or numeric user ID, including its bio, avatars, verification, privacy, follower count, following count, likes, and video count.",
+    summary: "Returns a profile by handle or numeric user ID, including its bio, website, category, avatars, verification, privacy, follower count, following count, likes, and video count.",
     credits: 1,
     route: "GET /v1/tiktok/profile",
     hasBody: false,
@@ -89,7 +89,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "profile-videos",
     method: "get_profile_videos",
-    summary: "Returns up to 35 videos from a profile, sorted by newest or most popular.",
+    summary: "Returns up to 35 videos per page from a profile, newest or most popular first; send `max_cursor` for the next page.",
     credits: 1,
     route: "GET /v1/tiktok/profile/videos",
     hasBody: false,

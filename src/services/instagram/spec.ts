@@ -108,7 +108,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "profile",
     method: "get_profile",
-    summary: "Returns normalized profile data and recent posts. `recent_posts_status` distinguishes available, private, and unavailable timelines. `trim` is accepted for compatibility and does not remove fields.",
+    summary: "Returns an account's profile with its 12 newest posts, 12 newest reels and story highlights.",
     credits: 3,
     route: "GET /v1/instagram/profile",
     hasBody: false,
@@ -134,7 +134,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "user-posts",
     method: "get_user_posts",
-    summary: "Returns normalized profile and post data. Pass `pagination.next_cursor` as `next_max_id` while `pagination.has_more` is true. `trim` is accepted for compatibility and does not remove fields.",
+    summary: "Returns 12 posts per page with their authors; pass `pagination.next_cursor` as `next_max_id` for the next page.",
     credits: 3,
     route: "GET /v1/instagram/user/posts",
     hasBody: false,

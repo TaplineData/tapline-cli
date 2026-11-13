@@ -258,6 +258,17 @@ export const COMMANDS: CommandSpec[] = [
     ],
   },
   {
+    name: "page-by-url",
+    method: "get_page_by_url",
+    summary: "Get a page or public profile from its link: header, Intro card, followers and talking about in one call.",
+    credits: 3,
+    route: "GET /v1/facebook/pages/by-url",
+    hasBody: false,
+    params: [
+      { name: "url", flag: "url", in: "query", kind: "string", list: false, required: true, positional: true, description: "A facebook.com URL or path, such as `https://www.facebook.com/NASA/posts/pfbid0...`." },
+    ],
+  },
+  {
     name: "page-intro",
     method: "get_page_intro",
     summary: "Get the Intro card of a page or public profile.",

@@ -41,7 +41,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "property-records",
     method: "get_property_records",
-    summary: "Returns a property's price and tax history, last sale, schools, nearby homes, and listing, buyer and co-agent attribution.",
+    summary: "Returns a property's full record: price, estimates, address, county, parcel ID, facts and features, taxes, price and tax history, schools, nearby homes and agents.",
     credits: 1,
     route: "GET /v1/zillow/properties/{zpid}/records",
     hasBody: false,

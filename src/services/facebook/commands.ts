@@ -103,6 +103,10 @@ const RUNNERS: Record<string, Command['run']> = {
       profile_id: params.profile_id as string,
       collection_id: params.collection_id as string,
     }),
+  "page-by-url": (client, { params }) =>
+    client.facebook.getPageByUrl({
+      url: params.url as string,
+    }),
   "page-intro": (client, { params }) =>
     client.facebook.getPageIntro({
       profile_id: params.profile_id as string,

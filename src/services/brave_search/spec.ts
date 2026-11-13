@@ -93,7 +93,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "list-suggestions",
     method: "list_suggestions",
-    summary: "Autocomplete a search query.",
+    summary: "Autocomplete a search query: up to 8 suggestions in one page.",
     credits: 1,
     route: "GET /v1/brave-search/suggestions",
     hasBody: false,
@@ -184,7 +184,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "search-news",
     method: "search_news",
-    summary: "Search news articles. Results carry a relative age, not a timestamp; the source sends none.",
+    summary: "Search news articles: up to 50 per page. Results carry a relative age, not a timestamp; the source sends none.",
     credits: 5,
     route: "GET /v1/brave-search/news",
     hasBody: false,
@@ -203,7 +203,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "search-places",
     method: "search_places",
-    summary: "Search places around a point: up to 100 businesses, addresses and areas within about 8 km.",
+    summary: "Search places around a point: up to 100 businesses, addresses and areas within about 8 km, in one page.",
     credits: 8,
     route: "GET /v1/brave-search/places",
     hasBody: false,

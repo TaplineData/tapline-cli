@@ -6,7 +6,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "channel",
     method: "get_channel",
-    summary: "Get a channel's profile and statistics.",
+    summary: "Get a channel's profile, About panel links and statistics.",
     credits: 3,
     route: "GET /v1/youtube/channels/{channel_id}",
     hasBody: false,
@@ -17,7 +17,7 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "channel-videos",
     method: "get_channel_videos",
-    summary: "Get recent videos from a channel.",
+    summary: "Get a channel's videos, newest first: 30 per page, 48 for Shorts.",
     credits: 3,
     route: "GET /v1/youtube/channels/{channel_id}/videos",
     hasBody: false,

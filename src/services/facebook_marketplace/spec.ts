@@ -75,9 +75,20 @@ export const COMMANDS: CommandSpec[] = [
   {
     name: "marketplace-listing",
     method: "get_marketplace_listing",
-    summary: "Get one Marketplace listing with its seller. Photos are on `/marketplace/listings/{listing_id}/photos`.",
+    summary: "Get one Marketplace listing with its seller. `/marketplace/listings/{listing_id}/with-media` adds every photo and video in the same call.",
     credits: 4,
     route: "GET /v1/facebook/marketplace/listings/{listing_id}",
+    hasBody: false,
+    params: [
+      { name: "listing_id", flag: "listing-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Numeric Marketplace listing id." },
+    ],
+  },
+  {
+    name: "marketplace-listing-with-media",
+    method: "get_marketplace_listing_with_media",
+    summary: "Get one Marketplace listing with its seller and every photo and video, from the listing's page in one call.",
+    credits: 4,
+    route: "GET /v1/facebook/marketplace/listings/{listing_id}/with-media",
     hasBody: false,
     params: [
       { name: "listing_id", flag: "listing-id", in: "path", kind: "string", list: false, required: true, positional: true, description: "Numeric Marketplace listing id." },
